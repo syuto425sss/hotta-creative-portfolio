@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hotta Creative ｜ 夫婦フリーランスチーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Hachi+Maru+Pop&family=Quicksand:wght@400;500;600&family=Zen+Maru+Gothic:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:      #F8F2E4;
+    --base-2:    #F3EAD6;
+    --base-3:    #EFE3CB;
+    --buff:      #E0C9A0;
+    --buff-soft: #ECD9B4;
+    --buff-deep: #C9A878;
+    --moss:      #A6B89A;
+    --moss-soft: #C5D2BB;
+    --moss-deep: #8DA383;
+    --ink:       #5C4E3D;
+    --ink-2:     #8C7E6B;
+    --ink-3:     #B5A998;
+    --line:      #E6D9BF;
+    --white:     #FFFDF5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{
+    font-family:'Zen Kaku Gothic New','Zen Maru Gothic', sans-serif;
+    color:var(--ink);
+    background:var(--base);
+    line-height:1.9;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1100px;margin:0 auto;padding:0 28px}
+
+  .hand{font-family:'Caveat',cursive;color:var(--moss-deep);font-weight:500}
+  .en{font-family:'Quicksand',sans-serif;letter-spacing:.15em;font-weight:500}
+  .maru{font-family:'Zen Maru Gothic',sans-serif;font-weight:500}
+
+  /* ===== ヘッダー ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(248,242,228,.9);
+    backdrop-filter:blur(12px);
+  }
+  .nav{display:flex;justify-content:space-between;align-items:center;height:76px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{
+    width:42px;height:42px;
+    background:var(--buff-soft);
+    border-radius:50%;display:grid;place-items:center;
+    font-family:'Caveat',cursive;color:var(--ink);font-size:22px;
+    transform:rotate(-4deg);
+  }
+  .logo-text{
+    font-family:'Quicksand',sans-serif;font-size:19px;
+    letter-spacing:.1em;color:var(--ink);font-weight:600;
+  }
+  .logo-sub{
+    font-family:'Caveat',cursive;font-size:13px;
+    color:var(--moss-deep);margin-top:-2px;letter-spacing:.05em;
+  }
+  nav ul{list-style:none;display:flex;gap:32px;align-items:center}
+  nav ul a{
+    font-size:13px;letter-spacing:.08em;color:var(--ink-2);
+    transition:color .2s;font-weight:500;
+  }
+  nav ul a:hover{color:var(--moss-deep)}
+  .nav-cta{
+    background:var(--moss);color:var(--white) !important;
+    padding:11px 22px;font-size:12px;letter-spacing:.1em;
+    border-radius:999px;transition:all .25s;font-weight:500;
+  }
+  .nav-cta:hover{background:var(--moss-deep);transform:translateY(-2px)}
+
+  /* ===== ヒーロー ===== */
+  .hero{
+    padding:160px 0 120px;
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 80% 20%, var(--buff-soft) 0%, transparent 40%),
+      radial-gradient(circle at 15% 75%, var(--moss-soft) 0%, transparent 35%),
+      var(--base);
+  }
+  .leaf{position:absolute;opacity:.5;pointer-events:none}
+  .leaf-1{top:14%;left:6%;width:60px;height:60px;
+    background:var(--moss);border-radius:0 100% 0 100%;transform:rotate(-25deg)}
+  .leaf-2{bottom:18%;right:8%;width:48px;height:48px;
+    background:var(--buff);border-radius:50%;}
+  .leaf-3{top:60%;left:10%;width:30px;height:30px;
+    background:var(--moss-soft);border-radius:50%;}
+  .dot-cluster{position:absolute;top:25%;right:15%;display:grid;gap:8px;grid-template-columns:repeat(3,6px)}
+  .dot-cluster span{width:6px;height:6px;background:var(--buff-deep);border-radius:50%;opacity:.5}
+
+  .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  .hero-eyebrow{
+    display:inline-block;
+    background:var(--white);
+    padding:8px 18px;border-radius:999px;
+    font-size:12px;color:var(--moss-deep);
+    letter-spacing:.1em;margin-bottom:28px;
+    border:1px dashed var(--moss-soft);
+  }
+  .hero-eyebrow .hand{font-size:18px;margin-right:4px}
+  .hero h1{
+    font-family:'Zen Maru Gothic',sans-serif;font-weight:500;
+    font-size:42px;line-height:1.7;color:var(--ink);
+    margin-bottom:30px;letter-spacing:.03em;
+  }
+  .hero h1 .pen{position:relative;display:inline-block;z-index:1}
+  .hero h1 .pen::after{
+    content:'';position:absolute;left:-4px;right:-4px;bottom:4px;
+    height:14px;background:var(--buff-soft);
+    border-radius:8px;z-index:-1;
+  }
+  .hero h1 .circle{position:relative;display:inline-block}
+  .hero h1 .circle::before{
+    content:'';position:absolute;inset:-6px -10px;
+    border:2px solid var(--moss);border-radius:50%;
+    transform:rotate(-3deg);
+  }
+  .hero-lead{
+    font-size:15px;color:var(--ink-2);line-height:2.1;
+    margin-bottom:40px;max-width:520px;
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 32px;font-size:13px;letter-spacing:.1em;
+    transition:all .25s;border:none;cursor:pointer;
+    border-radius:999px;font-weight:500;
+    font-family:'Zen Kaku Gothic New',sans-serif;
+  }
+  .btn-primary{background:var(--moss);color:var(--white);box-shadow:0 6px 16px -8px rgba(141,163,131,.6)}
+  .btn-primary:hover{background:var(--moss-deep);transform:translateY(-3px);box-shadow:0 10px 20px -8px rgba(141,163,131,.7)}
+  .btn-ghost{background:var(--white);color:var(--ink);border:1.5px solid var(--buff)}
+  .btn-ghost:hover{background:var(--buff-soft);transform:translateY(-3px)}
+  .btn .arrow{transition:transform .25s}
+  .btn:hover .arrow{transform:translateX(4px)}
+  .hero-note{
+    font-family:'Caveat',cursive;color:var(--moss-deep);
+    font-size:17px;margin-left:6px;
+  }
+
+  /* ヒーロービジュアル */
+  .hero-visual{position:relative;aspect-ratio:1/1.15}
+  .photo-frame{
+    position:absolute;top:0;right:0;
+    width:82%;aspect-ratio:848/1264;
+    background:var(--white);
+    padding:10px;
+    border-radius:6px;
+    box-shadow:0 24px 50px -20px rgba(92,78,61,.3);
+    transform:rotate(2deg);
+    transition:transform .3s;
+  }
+  .photo-frame:hover{transform:rotate(0deg) translateY(-4px)}
+  .photo-frame .photo{
+    width:100%;height:100%;
+    border-radius:4px;
+    background:linear-gradient(135deg,var(--buff-soft),var(--moss-soft));
+    display:grid;place-items:center;
+    overflow:hidden;
+    position:relative;
+  }
+  .photo-frame .photo img{
+    width:100%;height:100%;object-fit:cover;
+    display:block;
+  }
+
+  .photo-frame-sub{
+    position:absolute;bottom:0;left:0;
+    width:44%;aspect-ratio:1/1;
+    background:var(--white);
+    padding:10px 10px 32px;
+    border-radius:6px;
+    box-shadow:0 18px 36px -16px rgba(92,78,61,.25);
+    transform:rotate(-6deg);
+    z-index:2;
+    transition:transform .3s;
+  }
+  .photo-frame-sub:hover{transform:rotate(-3deg) translateY(-4px)}
+  .photo-frame-sub .photo{
+    width:100%;height:100%;
+    border-radius:4px;
+    background:linear-gradient(135deg,var(--moss-soft),var(--buff));
+    display:grid;place-items:center;
+    overflow:hidden;
+    position:relative;
+  }
+  .photo-frame-sub .photo img{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .photo-frame-sub .photo-cap{
+    position:absolute;left:0;right:0;bottom:8px;
+    text-align:center;
+    font-family:'Caveat',cursive;font-size:16px;color:var(--ink);
+  }
+  .cute-jp{
+    font-family:'Hachi Maru Pop',cursive;
+    color:var(--moss-deep);font-size:15px;
+    margin-left:2px;
+  }
+  .photo-placeholder{
+    text-align:center;
+    color:var(--ink-2);
+  }
+  .photo-placeholder .text{
+    font-family:'Caveat',cursive;font-size:22px;
+    color:var(--ink);opacity:.55;
+  }
+
+  .stamp{
+    position:absolute;top:0;left:4%;
+    width:78px;height:78px;border-radius:50%;
+    background:var(--moss-deep);color:var(--white);
+    display:grid;place-items:center;text-align:center;
+    transform:rotate(-12deg);z-index:3;
+    font-family:'Caveat',cursive;font-size:15px;line-height:1.1;
+    box-shadow:0 6px 16px -6px rgba(141,163,131,.6);
+  }
+
+  /* ===== セクション共通 ===== */
+  section{padding:120px 0;position:relative}
+  .section-head{text-align:center;margin-bottom:72px}
+  .section-eyebrow{
+    font-family:'Caveat',cursive;
+    font-size:22px;color:var(--moss-deep);
+    margin-bottom:8px;
+  }
+  .section-title{
+    font-family:'Zen Maru Gothic',sans-serif;font-weight:500;
+    font-size:32px;color:var(--ink);letter-spacing:.04em;
+    margin-bottom:22px;
+  }
+  .section-title .leaf-icon{
+    display:inline-block;width:18px;height:18px;
+    background:var(--moss);border-radius:0 100% 0 100%;
+    transform:rotate(45deg);margin:0 12px;vertical-align:middle;
+  }
+  .section-lead{
+    font-size:14px;color:var(--ink-2);
+    max-width:560px;margin:0 auto;line-height:2.1;
+  }
+
+  /* ===== About ===== */
+  .about{background:var(--white)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .about-card{
+    background:var(--base);padding:42px 36px;
+    border-radius:24px;position:relative;
+    transition:transform .3s;
+  }
+  .about-card:hover{transform:translateY(-5px)}
+  .about-card.husband{background:linear-gradient(160deg,var(--base) 0%,var(--buff-soft) 100%)}
+  .about-card.wife{background:linear-gradient(160deg,var(--base) 0%,var(--moss-soft) 100%)}
+  .about-avatar{
+    width:90px;height:90px;border-radius:50%;
+    background:var(--white);
+    display:grid;place-items:center;
+    font-family:'Caveat',cursive;font-size:38px;
+    color:var(--ink);margin-bottom:22px;
+    border:3px solid var(--white);
+    box-shadow:0 8px 20px -8px rgba(92,78,61,.15);
+  }
+  .about-role{
+    font-family:'Caveat',cursive;font-size:18px;
+    color:var(--moss-deep);margin-bottom:4px;
+  }
+  .about-card.husband .about-role{color:var(--buff-deep)}
+  .about-name{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:22px;font-weight:500;
+    margin-bottom:20px;color:var(--ink);
+  }
+  .about-desc{font-size:14px;color:var(--ink-2);line-height:2.1;margin-bottom:24px}
+  .about-skills{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-tag{
+    font-size:11.5px;padding:6px 14px;background:var(--white);
+    color:var(--ink-2);border-radius:999px;
+    letter-spacing:.02em;
+  }
+
+  /* ===== Services ===== */
+  .services{background:var(--base-2)}
+  .services::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:60px;
+    background:var(--white);
+    border-radius:0 0 50% 50%/0 0 100% 100%;transform:scaleX(1.5);
+  }
+  .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:20px}
+  .service-card{
+    background:var(--white);padding:40px 34px;
+    border-radius:24px;transition:all .3s;
+    position:relative;
+  }
+  .service-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px -20px rgba(92,78,61,.2);
+  }
+  .service-icon-wrap{
+    width:62px;height:62px;border-radius:50%;
+    display:grid;place-items:center;
+    font-family:'Quicksand',sans-serif;font-weight:600;font-size:14px;
+    color:var(--white);margin-bottom:20px;
+    letter-spacing:.05em;
+  }
+  .service-card:nth-child(1) .service-icon-wrap{background:var(--buff-deep)}
+  .service-card:nth-child(2) .service-icon-wrap{background:var(--moss)}
+  .service-card:nth-child(3) .service-icon-wrap{background:var(--buff)}
+  .service-card:nth-child(4) .service-icon-wrap{background:var(--moss-deep)}
+  .service-card:nth-child(5) .service-icon-wrap{background:var(--buff-deep)}
+  .service-title{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:21px;font-weight:500;
+    margin-bottom:6px;color:var(--ink);
+  }
+  .service-subtitle{
+    font-family:'Caveat',cursive;font-size:16px;
+    color:var(--moss-deep);margin-bottom:18px;
+  }
+  .service-desc{font-size:13.5px;color:var(--ink-2);line-height:2;margin-bottom:22px}
+  .service-block{
+    padding-top:18px;border-top:1.5px dashed var(--line);
+    margin-top:6px;
+  }
+  .service-block + .service-block{
+    border-top:1.5px dashed var(--line);
+    margin-top:18px;padding-top:18px;
+  }
+  .block-label{
+    display:inline-block;
+    font-family:'Caveat',cursive;font-size:17px;
+    color:var(--moss-deep);margin-bottom:8px;
+  }
+  .service-list{list-style:none}
+  .service-list li{
+    font-size:13px;color:var(--ink-2);padding:3px 0;
+    display:flex;gap:10px;align-items:flex-start;line-height:1.8;
+  }
+  .service-list li::before{content:'♡';color:var(--moss);flex-shrink:0}
+  .service-example{
+    font-size:13px;color:var(--ink-2);line-height:1.9;
+    background:var(--base);padding:14px 16px;border-radius:12px;
+  }
+
+  /* ===== Strength ===== */
+  .strength{
+    background:linear-gradient(160deg,var(--moss-soft) 0%,var(--base-2) 100%);
+    text-align:center;
+  }
+  .strength h2{
+    font-family:'Zen Maru Gothic',sans-serif;font-weight:500;
+    font-size:30px;line-height:1.8;color:var(--ink);
+    margin-bottom:20px;letter-spacing:.04em;
+  }
+  .strength h2 .pen{position:relative;z-index:1;display:inline-block}
+  .strength h2 .pen::after{
+    content:'';position:absolute;left:-4px;right:-4px;bottom:4px;
+    height:14px;background:var(--buff-soft);border-radius:8px;z-index:-1;
+  }
+  .strength-lead{
+    font-size:14px;color:var(--ink-2);max-width:600px;
+    margin:0 auto 60px;line-height:2;
+  }
+  .strength-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .strength-item{
+    background:var(--white);padding:40px 28px;
+    border-radius:24px;
+    box-shadow:0 12px 30px -15px rgba(92,78,61,.12);
+  }
+  .strength-num{
+    font-family:'Caveat',cursive;font-size:36px;
+    color:var(--moss-deep);line-height:1;margin-bottom:14px;
+  }
+  .strength-title{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:18px;
+    font-weight:500;margin-bottom:12px;color:var(--ink);
+  }
+  .strength-desc{font-size:13px;color:var(--ink-2);line-height:2}
+
+  /* ===== Works ===== */
+  .works{background:var(--base)}
+  .works-tabs{
+    display:flex;justify-content:center;gap:8px;
+    margin-bottom:50px;flex-wrap:wrap;
+  }
+  .tab{
+    padding:10px 22px;font-size:12px;letter-spacing:.05em;
+    background:var(--white);color:var(--ink-2);
+    border:none;cursor:pointer;border-radius:999px;
+    transition:all .2s;font-family:'Zen Kaku Gothic New',sans-serif;
+    font-weight:500;
+  }
+  .tab.active,.tab:hover{
+    background:var(--moss);color:var(--white);
+  }
+  .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .work-card{cursor:pointer;transition:transform .3s;animation:fadeIn .4s ease both}
+  .work-card:hover{transform:translateY(-6px)}
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(10px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .works-empty{
+    text-align:center;font-size:20px;color:var(--ink-3);
+    padding:40px 0;font-family:'Caveat',cursive;
+  }
+  .work-thumb{
+    aspect-ratio:1/1;border-radius:18px;
+    position:relative;overflow:hidden;margin-bottom:18px;
+    display:grid;place-items:center;
+  }
+  .work-card[data-category="richmenu"] .work-thumb,
+  .work-card[data-category="lp"] .work-thumb.has-image,
+  .work-card[data-category="card"] .work-thumb.has-image{
+    aspect-ratio:3/2;
+  }
+  .work-thumb.has-image{background:var(--base-2)}
+  .work-thumb img{
+    width:100%;height:100%;object-fit:contain;
+    transition:transform .4s ease;
+  }
+  .work-card:hover .work-thumb img{transform:scale(1.04)}
+  .work-thumb.t1{background:linear-gradient(135deg,var(--buff-soft),var(--buff))}
+  .work-thumb.t2{background:linear-gradient(135deg,var(--moss-soft),var(--moss))}
+  .work-thumb.t3{background:linear-gradient(135deg,var(--base-3),var(--buff-deep))}
+  .work-thumb.t5{background:linear-gradient(135deg,var(--base-2),var(--buff))}
+  .work-thumb.t6{background:linear-gradient(135deg,var(--buff),var(--buff-deep));color:var(--white)}
+  .work-mockup{
+    font-family:'Caveat',cursive;font-size:42px;
+    color:var(--white);opacity:.75;
+  }
+  .work-cat{
+    font-family:'Caveat',cursive;font-size:16px;
+    color:var(--moss-deep);margin-bottom:6px;
+  }
+  .work-title{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:16px;
+    font-weight:500;margin-bottom:6px;color:var(--ink);
+  }
+  .work-meta{font-size:12px;color:var(--ink-3)}
+  .work-result{
+    display:inline-block;margin-top:10px;
+    background:var(--white);
+    padding:5px 14px;font-size:11.5px;color:var(--moss-deep);
+    border-radius:999px;font-weight:500;
+  }
+
+  /* ===== Contact ===== */
+  .contact{
+    background:linear-gradient(180deg,var(--base) 0%,var(--buff-soft) 100%);
+    text-align:center;
+  }
+  .contact-card{
+    background:var(--white);max-width:720px;margin:0 auto;
+    padding:64px 50px;border-radius:32px;
+    box-shadow:0 30px 80px -30px rgba(92,78,61,.2);
+    position:relative;
+  }
+  .contact-card::before,.contact-card::after{
+    content:'';position:absolute;width:60px;height:60px;
+    background:var(--moss-soft);border-radius:50%;opacity:.5;
+  }
+  .contact-card::before{top:-20px;left:-20px}
+  .contact-card::after{bottom:-20px;right:-20px;background:var(--buff)}
+  .contact h2{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:26px;font-weight:500;
+    margin-bottom:14px;color:var(--ink);letter-spacing:.04em;
+  }
+  .contact p{font-size:14px;color:var(--ink-2);margin-bottom:36px;line-height:2}
+  .contact-channels{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:16px;margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto;
+  }
+  .channel{
+    display:block;
+    padding:28px 16px;background:var(--base);
+    border-radius:18px;transition:all .25s;cursor:pointer;
+    text-decoration:none;color:inherit;
+  }
+  .channel:hover{background:var(--moss-soft);transform:translateY(-3px)}
+  .channel-icon{
+    font-family:'Caveat',cursive;font-size:30px;
+    color:var(--moss-deep);margin-bottom:6px;line-height:1;
+  }
+  .channel-name{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:14px;
+    color:var(--ink);font-weight:500;
+  }
+  .channel-id{
+    font-family:'Quicksand',sans-serif;font-size:11px;
+    color:var(--ink-3);margin-top:4px;letter-spacing:.05em;
+  }
+  .contact-note{
+    font-family:'Caveat',cursive;font-size:16px;
+    color:var(--moss-deep);margin-top:24px;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    background:var(--ink);color:var(--base-3);
+    padding:60px 0 30px;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:40px;margin-bottom:48px;
+  }
+  .footer-brand .logo-text{color:var(--white)}
+  .footer-brand .logo-mark{background:var(--moss-deep);color:var(--white)}
+  .footer-brand .logo-sub{color:var(--moss-soft)}
+  .footer-brand p{
+    font-size:12.5px;color:var(--base-3);
+    line-height:2;margin-top:18px;max-width:280px;opacity:.7;
+  }
+  .footer-col h4{
+    font-family:'Caveat',cursive;font-size:20px;
+    color:var(--moss-soft);margin-bottom:18px;
+  }
+  .footer-col ul{list-style:none}
+  .footer-col li{margin-bottom:10px}
+  .footer-col a{
+    font-size:12.5px;color:var(--base-3);opacity:.75;
+    transition:opacity .2s;
+  }
+  .footer-col a:hover{opacity:1}
+  .footer-bottom{
+    border-top:1px solid rgba(230,217,191,.15);
+    padding-top:24px;display:flex;justify-content:space-between;
+    font-size:11px;color:var(--ink-3);letter-spacing:.05em;
+  }
+
+  /* ===== レスポンシブ ===== */
+  @media (max-width: 860px){
+    nav ul{display:none}
+    .hero{padding:130px 0 80px}
+    .hero-inner{grid-template-columns:1fr;gap:50px}
+    .hero h1{font-size:30px}
+    .hero-visual{max-width:380px;margin:0 auto;width:100%}
+    .about-grid,.service-grid,.works-grid,.strength-grid,.footer-grid{
+      grid-template-columns:1fr;
+    }
+    section{padding:80px 0}
+    .section-title{font-size:24px}
+    .contact-card{padding:40px 24px}
+    .strength h2{font-size:22px}
+    .footer-bottom{flex-direction:column;gap:10px;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-mark">H</div>
+      <div>
+        <div class="logo-text">Hotta Creative</div>
+        <div class="logo-sub">— freelance couple —</div>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="leaf leaf-1"></div>
+  <div class="leaf leaf-2"></div>
+  <div class="leaf leaf-3"></div>
+  <div class="dot-cluster"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-eyebrow">はじめまして。</div>
+      <h1>
+        広告も、デザインも、<br>
+        運用も、ぜんぶ。<br>
+        <span class="pen">夫婦ふたり</span>で、<br>
+        <span class="circle">一緒に</span>つくります。
+      </h1>
+      <p class="hero-lead">
+        Meta広告の運用が得意な夫と、<br>
+        Webデザイン・SNSが得意な妻。<br>
+        「集客の入口から出口まで」、<br>
+        ひとつの窓口でまるっとお任せいただけます。
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">
+          まずは無料相談 <span class="arrow">→</span>
+        </a>
+        <a href="#works" class="btn btn-ghost">
+          実績を見る <span class="arrow">→</span>
+        </a>
+        <span class="hero-note">↑ お気軽にどうぞ ♡</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="photo-frame">
+        <div class="photo">
+          <img src="img/couple.webp" alt="Hotta夫婦のイラスト">
+        </div>
+      </div>
+
+      <div class="photo-frame-sub">
+        <div class="photo">
+          <img src="img/ham.jpg" alt="愛犬 HAM">
+        </div>
+        <div class="photo-cap">HAM ♡ <span class="cute-jp">愛犬</span></div>
+      </div>
+
+      <div class="stamp"></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">about us</div>
+      <h2 class="section-title">わたしたちのこと<span class="leaf-icon"></span></h2>
+      <p class="section-lead">
+        鳥取県で活動している、夫婦フリーランスチーム「Hotta」です。<br>
+        広告とデザイン、ふたつの専門性を、ひとつの窓口でお届けしています。
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card husband">
+        <div class="about-avatar">S</div>
+        <div class="about-role">— husband / marketer</div>
+        <div class="about-name">Hotta Shuto</div>
+        <p class="about-desc">
+          マーケティング歴6年、Meta広告運用を中心に、
+          累計売上3.5億円規模の広告アカウントを担当してきました。
+          LINE構築や、AIを活用した24時間自動監視・自動応答など、
+          「数字をつくる」仕組みづくりが得意です。
+        </p>
+        <div class="about-skills">
+          <span class="skill-tag">Meta広告</span>
+          <span class="skill-tag">Google広告</span>
+          <span class="skill-tag">LINE構築</span>
+          <span class="skill-tag">Notion構築</span>
+          <span class="skill-tag">AI 24時間監視</span>
+          <span class="skill-tag">自動化設計</span>
+          <span class="skill-tag">分析・改善</span>
+        </div>
+      </div>
+
+      <div class="about-card wife">
+        <div class="about-avatar">A</div>
+        <div class="about-role">— wife / designer</div>
+        <div class="about-name">Hotta Ayumi</div>
+        <p class="about-desc">
+          Webデザインを軸に、SNSコンテンツの制作・運用まで担当。
+          広告の「クリエイティブ」と「世界観」を、
+          ターゲットに届く形に整えていきます。
+        </p>
+        <div class="about-skills">
+          <span class="skill-tag">Webデザイン</span>
+          <span class="skill-tag">LP制作</span>
+          <span class="skill-tag">バナー制作</span>
+          <span class="skill-tag">リッチメニュー制作</span>
+          <span class="skill-tag">Instagram運用</span>
+          <span class="skill-tag">Canva</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="service">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">— service —</div>
+      <h2 class="section-title">できること<span class="leaf-icon"></span></h2>
+      <p class="section-lead">
+        ひとつの分野だけでも、組み合わせでも。<br>
+        ご予算と目的に合わせて、いちばん合う形をご提案します。
+      </p>
+    </div>
+
+    <div class="service-grid">
+
+      <div class="service-card">
+        <div class="service-icon-wrap">01</div>
+        <h3 class="service-title">Meta広告運用</h3>
+        <div class="service-subtitle">Facebook / Instagram Ads</div>
+        <p class="service-desc">
+          契約100件超・売上3.5億円規模の運用経験から、
+          広告 × LP × LINE を夫婦で一気通貫設計します。
+        </p>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>アカウント設計・初期構築</li>
+            <li>ターゲティング・配信設計の強化</li>
+            <li>バナー / A/Bテスト用クリエイティブ制作</li>
+            <li>コンバージョン設定・計測タグ実装</li>
+            <li>既存広告アカウントの最適化</li>
+            <li>運用代行（手数料制でスケーリング対応）</li>
+            <li>LP制作 / LINE導線まで連携対応</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「初めてMeta広告を始めたい」「広告を回しているけど成果が出ない」「広告→LP→LINEまで一貫した導線を作りたい」月5万円〜の広告予算がある事業者の方など
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">02</div>
+        <h3 class="service-title">LINE公式構築</h3>
+        <div class="service-subtitle">LINE公式 / Lステップ / エルメ対応</div>
+        <p class="service-desc">
+          「LINEを作る」のではなく「売上に直結するLINEを設計」。
+          広告 × デザイン × LINE構築を、夫婦チームで一気通貫対応します。
+        </p>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>LINE公式アカウント初期設定・プロフィール構築</li>
+            <li>リッチメニュー制作（最大6分割）</li>
+            <li>挨拶・自動応答メッセージ設定</li>
+            <li>ステップ配信シナリオ設計（5通〜20通）</li>
+            <li>Lステップ／エルメ初期設定</li>
+            <li>販売導線設計（集客 → 教育 → 販売）</li>
+            <li>タグ管理・顧客管理設計</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「公式LINEを開設したけど何を設定すればいいかわからない」「LINEを作ったけど放置してしまっている」「LINEと広告を連携させたい」コーチ・コンサル・サロン・スクール経営者の方など
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">03</div>
+        <h3 class="service-title">バナー制作</h3>
+        <div class="service-subtitle">広告で反応が取れるバナー</div>
+        <p class="service-desc">
+          ただ綺麗なだけじゃない、「広告で反応が取れる」バナーを。
+          Meta広告運用者 × Webデザイナーの夫婦チームで、
+          反応率の上がる構成・配色・コピーを1枚に凝縮します。
+        </p>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>ターゲットが指を止める1秒インパクト設計</li>
+            <li>コンバージョンに繋がる訴求文の優先順位</li>
+            <li>媒体（Meta / LINE / Web）ごとの最適サイズ・余白</li>
+            <li>A/Bテスト用クリエイティブ制作</li>
+            <li>キャッチコピー考案・リサイズ展開</li>
+            <li>最短2営業日のスピード納品</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「バナーを作ってもクリックされない」「見た目だけで発注して成果に繋がらなかった」ToC商材を販売している方、SNS広告・LINE広告を回している方など
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">04</div>
+        <h3 class="service-title">Notion構築代行</h3>
+        <div class="service-subtitle">マーケ視点のNotion設計</div>
+        <p class="service-desc">
+          「もう散らからない」業務に合わせたNotionをオーダーメイド構築。
+          スタートアップを年商5億に育てた現場の設計思想を、
+          あなたのビジネスに合わせて落とし込みます。
+        </p>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>業務に合わせたページ・テンプレ設計</li>
+            <li>データベース構築・リレーション設定</li>
+            <li>自動化設計（ボタン・テンプレ・自動入力）</li>
+            <li>マーケ視点での運用設計</li>
+            <li>操作マニュアル（PDF）作成・運用レクチャー</li>
+            <li>納品後のチャットサポート</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「Notionを使いたいけど何から始めればいいかわからない」「自分で作ったけど散らかってしまう」「業務に合った仕組みが欲しい」個人事業主・フリーランス・スタートアップの方など
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">05</div>
+        <h3 class="service-title">Notionレクチャー</h3>
+        <div class="service-subtitle">60分マンツーマン</div>
+        <p class="service-desc">
+          年商5億企業を支えたNotion術を、60分で凝縮してお伝えします。
+          「基本操作」だけでなく、マーケ視点で「成果につながる使い方」を、
+          あなたのビジネスに合わせて完全カスタマイズ。
+        </p>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>Notion基本操作（散らからない使い方の原則）</li>
+            <li>データベース・ページ設計の考え方</li>
+            <li>ご自身のビジネスへの応用方法</li>
+            <li>マーケ視点での活用アイデア</li>
+            <li>テンプレ・拡張のヒント</li>
+            <li>事前ヒアリング + 画面録画の提供付き</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「本やYouTubeで学んでもピンと来ない」「自分のビジネスに最適化したい」初心者〜既に使っているが活用しきれていない個人事業主・フリーランスの方など
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="strength">
+  <div class="container">
+    <div class="section-eyebrow">our strength</div>
+    <h2>
+      「広告」と「デザイン」を、<br>
+      <span class="pen">夫婦ふたり</span>で、まるっと。
+    </h2>
+    <p class="strength-lead">
+      通常は別々の外注先に分かれてしまう領域を、
+      私たちはひとつのチームで完結。
+      連絡コストも、認識のズレも、ぐっと少なくなります。
+    </p>
+
+    <div class="strength-grid">
+      <div class="strength-item">
+        <div class="strength-num">01</div>
+        <div class="strength-title">窓口はひとつ</div>
+        <div class="strength-desc">
+          広告担当・デザイナーを、別々に探す必要がありません。
+          ひとつのご依頼で完結します。
+        </div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">02</div>
+        <div class="strength-title">数字に強いデザイン</div>
+        <div class="strength-desc">
+          広告運用者の知見を踏まえた、
+          「CVRが上がる」クリエイティブをご提案。
+        </div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-num">03</div>
+        <div class="strength-title">スピード感</div>
+        <div class="strength-desc">
+          チーム内ですべて完結するため、
+          修正・改善のサイクルがはやいです。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="works" id="works">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">— our works —</div>
+      <h2 class="section-title">これまでの実績<span class="leaf-icon"></span></h2>
+      <p class="section-lead">
+        広告運用・LP制作・LINE構築など、<br>
+        これまでお手伝いさせていただいた案件の一部をご紹介します。
+      </p>
+    </div>
+
+    <div class="works-tabs">
+      <button class="tab active" data-category="banner">バナー</button>
+      <button class="tab" data-category="richmenu">リッチメニュー</button>
+      <button class="tab" data-category="meta">Meta広告</button>
+      <button class="tab" data-category="lp">LP制作</button>
+      <button class="tab" data-category="card">名刺</button>
+    </div>
+
+    <div class="works-grid">
+      <div class="work-card" data-category="meta">
+        <div class="work-thumb t1"><span class="work-mockup">case 01</span></div>
+        <div class="work-cat">— Meta広告</div>
+        <div class="work-title">健康食品EC｜新規CPA改善</div>
+        <div class="work-meta">運用3ヶ月 / 健康食品</div>
+        <span class="work-result">CPA -62%</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-myselfnotebook.png" alt="My Self Note Book リッチメニュー">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">My Self Note Book｜講座用</div>
+        <div class="work-meta">2分割 / 女性向け講座</div>
+        <span class="work-result">アンケート誘導</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-nail-atelier.png" alt="nail atelier lume リッチメニュー">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">nail atelier lume｜ネイルサロン</div>
+        <div class="work-meta">2分割 / ネイルサロン</div>
+        <span class="work-result">予約導線</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-salon-green.png" alt="サロン リッチメニュー モスグリーン">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">サロン｜モスグリーン6分割</div>
+        <div class="work-meta">6分割 / 美容サロン</div>
+        <span class="work-result">フル機能訴求</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-salon-blue.png" alt="サロン リッチメニュー ブルー水彩">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">サロン｜ブルー水彩タッチ</div>
+        <div class="work-meta">6分割 / 美容サロン</div>
+        <span class="work-result">透明感のあるデザイン</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-shop-natural.png" alt="店舗 リッチメニュー ナチュラル">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">店舗｜営業時間入りナチュラル</div>
+        <div class="work-meta">3分割 / 店舗</div>
+        <span class="work-result">情報集約型</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-paw-care.png" alt="PAW &amp; CARE ペットサロン リッチメニュー">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">PAW &amp; CARE｜ペットサロン</div>
+        <div class="work-meta">4分割 / ペットサロン</div>
+        <span class="work-result">写真活用型</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-school-blue.png" alt="講座 リッチメニュー 青×黄">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">講座｜お問い合わせ集約型</div>
+        <div class="work-meta">6分割 / オンライン講座</div>
+        <span class="work-result">コントラスト訴求</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-bloom-path.png" alt="Bloom Path リッチメニュー">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">Bloom Path｜自己分析サービス</div>
+        <div class="work-meta">3分割 / 自己分析・キャリア</div>
+        <span class="work-result">水彩フローラル</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-cafe-beige.png" alt="カフェ リッチメニュー シーズナル">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">カフェ｜シーズナル6分割</div>
+        <div class="work-meta">6分割 / カフェ・飲食</div>
+        <span class="work-result">フル機能訴求</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-school-pink.png" alt="講座 リッチメニュー ピンクマーブル">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">講座｜フェミニンスクール</div>
+        <div class="work-meta">6分割 / オンライン講座</div>
+        <span class="work-result">上品な大人女性向け</span>
+      </div>
+      <div class="work-card" data-category="richmenu">
+        <div class="work-thumb has-image">
+          <img src="img/richmenu-ecru-nail.png" alt="écru nail ネイルサロン リッチメニュー">
+        </div>
+        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-title">écru nail｜ネイルサロン</div>
+        <div class="work-meta">2分割 / ネイルサロン</div>
+        <span class="work-result">大人ニュアンス系</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-fukugyou-salon.png" alt="副業サロン 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">副業サロン｜SNS広告バナー</div>
+        <div class="work-meta">正方形 / 副業コミュニティ</div>
+        <span class="work-result">会員獲得訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-webdesigner.png" alt="WEBデザインスクール 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">WEBデザインスクール｜申込訴求</div>
+        <div class="work-meta">正方形 / スクール業界</div>
+        <span class="work-result">未経験向け訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-gym-1.png" alt="女性専用ジム 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">女性専用ジム｜体験訴求</div>
+        <div class="work-meta">正方形 / フィットネス業界</div>
+        <span class="work-result">入会金0円訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-gym-2.png" alt="24時間ジム 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">24時間ジム｜駅近訴求</div>
+        <div class="work-meta">正方形 / フィットネス業界</div>
+        <span class="work-result">続けやすさ訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-gym-3.png" alt="短期集中ダイエット 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">パーソナルジム｜短期集中ダイエット</div>
+        <div class="work-meta">正方形 / フィットネス業界</div>
+        <span class="work-result">期間限定訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-maternity.png" alt="産前産後ダイエット 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">産前産後ダイエット｜オンライン</div>
+        <div class="work-meta">正方形 / オンラインフィットネス</div>
+        <span class="work-result">ママ向け訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-video-editor.png" alt="動画編集スクール 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">動画編集スクール｜副収入訴求</div>
+        <div class="work-meta">正方形 / スクール業界</div>
+        <span class="work-result">在宅副業訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-cat-cafe.png" alt="猫カフェ 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">猫カフェ｜来店予約バナー</div>
+        <div class="work-meta">正方形 / 店舗・サービス業</div>
+        <span class="work-result">期間限定訴求</span>
+      </div>
+      <div class="work-card" data-category="banner">
+        <div class="work-thumb has-image">
+          <img src="img/banner-fukugyou-kensho.webp" alt="副業＆懸賞アプリ 広告バナー">
+        </div>
+        <div class="work-cat">— バナー</div>
+        <div class="work-title">副業＆懸賞アプリ｜会員登録訴求</div>
+        <div class="work-meta">正方形 / 副業・モニター案件</div>
+        <span class="work-result">お得感訴求</span>
+      </div>
+      <div class="work-card" data-category="meta">
+        <div class="work-thumb t5"><span class="work-mockup">case 05</span></div>
+        <div class="work-cat">— Meta広告</div>
+        <div class="work-title">スクール｜資料請求広告</div>
+        <div class="work-meta">運用6ヶ月 / 教育</div>
+        <span class="work-result">ROAS ×3.2</span>
+      </div>
+      <div class="work-card" data-category="card">
+        <div class="work-thumb has-image">
+          <img src="img/card-1.png" alt="Lumière Palette 名刺">
+        </div>
+        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-title">女性向けブランド｜表裏セット</div>
+        <div class="work-meta">両面 / フェミニンブランド</div>
+        <span class="work-result">ガーリー訴求</span>
+      </div>
+      <div class="work-card" data-category="card">
+        <div class="work-thumb has-image">
+          <img src="img/card-2.png" alt="さくらファミリー歯科 名刺">
+        </div>
+        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-title">親子歯科医院｜表裏セット</div>
+        <div class="work-meta">両面 / 歯科・医療業界</div>
+        <span class="work-result">ファミリー訴求</span>
+      </div>
+      <div class="work-card" data-category="card">
+        <div class="work-thumb has-image">
+          <img src="img/card-3.png" alt="NEXLEAD 名刺">
+        </div>
+        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-title">DXコンサル企業｜表裏セット</div>
+        <div class="work-meta">両面 / コンサル・ビジネス</div>
+        <span class="work-result">信頼感訴求</span>
+      </div>
+      <div class="work-card" data-category="card">
+        <div class="work-thumb has-image">
+          <img src="img/card-4.png" alt="FRAME SHIFT 名刺">
+        </div>
+        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-title">映像クリエイター｜表裏セット</div>
+        <div class="work-meta">両面 / 映像・クリエイティブ</div>
+        <span class="work-result">ラグジュアリー訴求</span>
+      </div>
+      <div class="work-card" data-category="lp">
+        <div class="work-thumb has-image">
+          <img src="img/lp-tm-salon.png" alt="副業診断サービス LP">
+        </div>
+        <div class="work-cat">— LP制作</div>
+        <div class="work-title">副業診断サービス｜LP</div>
+        <div class="work-meta">PC + スマホ / 副業診断サービス</div>
+        <span class="work-result">LINE誘導訴求</span>
+      </div>
+      <div class="work-card" data-category="lp">
+        <div class="work-thumb has-image">
+          <img src="img/lp-personal-training.png" alt="パーソナルトレーニング LP">
+        </div>
+        <div class="work-cat">— LP制作</div>
+        <div class="work-title">パーソナルトレーニング｜LP</div>
+        <div class="work-meta">PC + スマホ / フィットネス業界</div>
+        <span class="work-result">継続性訴求</span>
+      </div>
+      <div class="work-card" data-category="lp">
+        <div class="work-thumb has-image">
+          <img src="img/lp-body-make.png" alt="20代からボディメイク LP">
+        </div>
+        <div class="work-cat">— LP制作</div>
+        <div class="work-title">20代からボディメイク｜店舗LP</div>
+        <div class="work-meta">PC + スマホ / フィットネス業界</div>
+        <span class="work-result">店舗集客訴求</span>
+      </div>
+    </div>
+    <p class="works-empty" hidden>該当する実績がありません。</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <div class="section-eyebrow">— let's talk —</div>
+      <h2>まずは、お気軽にご相談ください。</h2>
+      <p>
+        ご予算・お悩みに合わせて、ぴったりのプランをご提案します。<br>
+        ご返信は原則、当日中〜翌営業日にお送りします。
+      </p>
+
+      <div class="contact-channels">
+        <a class="channel" href="https://www.lancers.jp/profile/syuto_s" target="_blank" rel="noopener noreferrer">
+          <div class="channel-icon">✎</div>
+          <div class="channel-name">Lancers</div>
+          <div class="channel-id">@syuto_s</div>
+        </a>
+        <a class="channel" href="https://coconala.com/users/4943677" target="_blank" rel="noopener noreferrer">
+          <div class="channel-icon">♡</div>
+          <div class="channel-name">Coconala</div>
+          <div class="channel-id">プロフィールへ</div>
+        </a>
+      </div>
+
+      <p class="contact-note">お問い合わせ・お見積もりは無料です ♡</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">H</div>
+          <div>
+            <div class="logo-text">Hotta Creative</div>
+            <div class="logo-sub">— freelance couple —</div>
+          </div>
+        </div>
+        <p>鳥取県を拠点に活動する、夫婦フリーランスチーム。広告 × デザインで、地方からあなたの事業を支えます。</p>
+      </div>
+      <div class="footer-col">
+        <h4>service</h4>
+        <ul>
+          <li><a href="#service">Meta広告運用</a></li>
+          <li><a href="#service">LINE公式構築</a></li>
+          <li><a href="#service">バナー制作</a></li>
+          <li><a href="#service">Notion構築代行</a></li>
+          <li><a href="#service">Notionレクチャー</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>about</h4>
+        <ul>
+          <li><a href="#about">わたしたちのこと</a></li>
+          <li><a href="#works">実績</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>contact</h4>
+        <ul>
+          <li><a href="#contact">お問い合わせ</a></li>
+          <li><a href="https://www.lancers.jp/profile/syuto_s" target="_blank" rel="noopener noreferrer">Lancers</a></li>
+          <li><a href="https://coconala.com/users/4943677" target="_blank" rel="noopener noreferrer">Coconala</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Hotta Creative. All rights reserved.</div>
+      <div>TOTTORI ／ JAPAN</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const tabs = document.querySelectorAll('.works-tabs .tab');
+    const cards = document.querySelectorAll('.works-grid .work-card');
+    const empty = document.querySelector('.works-empty');
+
+    function filterCards(cat){
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const show = (cat === 'all' || card.dataset.category === cat);
+        if(show){
+          card.style.display = '';
+          card.style.animation = 'none';
+          void card.offsetWidth;
+          card.style.animation = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      if(empty){
+        empty.hidden = visibleCount > 0;
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        filterCards(tab.dataset.category);
+      });
+    });
+
+    // 初期表示：アクティブなタブのカテゴリで絞り込み
+    const initialTab = document.querySelector('.works-tabs .tab.active');
+    if(initialTab){
+      filterCards(initialTab.dataset.category);
+    }
+  })();
+</script>
+</body>
+</html>
