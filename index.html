@@ -722,6 +722,18 @@
     font-family:'Zen Kaku Gothic New',sans-serif;font-weight:400;
     font-size:11.5px;color:var(--ink-2);margin-left:3px;
   }
+  /* 入口商品（お試し価格）を目立たせる */
+  .price-row.is-entry{
+    background:var(--base);border-radius:14px;
+    margin:6px -14px;padding:16px 14px;border-bottom:none;
+  }
+  .price-row .nm b.entry{
+    display:inline-block;vertical-align:2px;margin-left:9px;
+    font-size:10.5px;font-weight:500;letter-spacing:.06em;
+    background:var(--moss);color:var(--white);
+    padding:4px 10px;border-radius:999px;white-space:nowrap;
+  }
+
   .price-single .note{
     font-size:11.5px;color:var(--ink-3);line-height:1.9;
     margin-top:16px;text-align:center;
@@ -1755,7 +1767,7 @@
       <h2 class="section-title">料金のめやす<span class="leaf-icon"></span></h2>
       <p class="section-lead">
         制作会社や代理店の一般的な価格帯と、並べて載せています。<br>
-        まとめてのプランでも、必要なものだけの単品でも承ります。
+        まずは単品でお試しいただいてから、で構いません。
       </p>
     </div>
 
@@ -1771,7 +1783,7 @@
         </svg></div>
         <div class="price-name">ライト</div>
         <div class="price-sub">まず広告だけ</div>
-        <div class="price-amount" style="white-space:nowrap">25<span class="unit">,000円 / 月</span></div>
+        <div class="price-amount" style="white-space:nowrap">200<span class="unit">,000円 / 月</span></div>
         <div class="price-note">一般的な価格帯 50,000円〜／広告費は別途（月5万円〜が目安）</div>
         <ul class="price-inc">
           <li>広告アカウントの設計・初期構築</li>
@@ -1841,60 +1853,60 @@
 
     <div class="price-single">
       <h3>単品でのご依頼</h3>
-      <p class="sub">一般的な価格帯と、並べてみてください。</p>
+      <p class="sub">「まずはここから」の4つは、お試しいただきやすい価格にしています。</p>
       <div class="price-table">
         <div class="price-row">
           <span class="nm">Meta広告運用代行<em>月額 / 広告費は別途</em></span>
           <span class="ref"><i>一般的な価格帯</i>50,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>25,000<small>円 / 月</small></span>
+          <span class="amt"><i>Hotta Creative</i>50,000<small>円 / 月</small></span>
         </div>
-        <div class="price-row">
-          <span class="nm">バナー制作<em>1枚あたり</em></span>
+        <div class="price-row is-entry">
+          <span class="nm">広告アカウント診断<b class="entry">まずはここから</b><em>レポート1枚でお渡し</em></span>
+          <span class="ref"><i>一般的な価格帯</i>30,000円〜</span>
+          <span class="amt"><i>Hotta Creative</i>15,000<small>円 / 1回</small></span>
+        </div>
+        <div class="price-row is-entry">
+          <span class="nm">バナー制作<b class="entry">まずはここから</b><em>1枚あたり</em></span>
           <span class="ref"><i>一般的な価格帯</i>10,000円〜</span>
           <span class="amt"><i>Hotta Creative</i>5,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">リッチメニュー制作<em>最大6分割</em></span>
           <span class="ref"><i>一般的な価格帯</i>20,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>10,000<small>円</small></span>
+          <span class="amt"><i>Hotta Creative</i>20,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">LP制作<em>広告連携用・1ページ</em></span>
           <span class="ref"><i>一般的な価格帯</i>100,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>50,000<small>円</small></span>
+          <span class="amt"><i>Hotta Creative</i>100,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">公式LINE構築<em>初期設定・メニュー・応答</em></span>
           <span class="ref"><i>一般的な価格帯</i>100,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>50,000<small>円</small></span>
+          <span class="amt"><i>Hotta Creative</i>100,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">Notion構築代行<em>業務に合わせた設計</em></span>
           <span class="ref"><i>一般的な価格帯</i>50,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>25,000<small>円</small></span>
+          <span class="amt"><i>Hotta Creative</i>50,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">AI活用のシステム開発<em>小さく作って試す形から</em></span>
           <span class="ref"><i>一般的な価格帯</i>300,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>150,000<small>円〜</small></span>
-        </div>
-        <div class="price-row">
-          <span class="nm">広告アカウント診断<em>レポート1枚でお渡し</em></span>
-          <span class="ref"><i>一般的な価格帯</i>30,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>15,000<small>円 / 1回</small></span>
+          <span class="amt"><i>Hotta Creative</i>300,000<small>円〜</small></span>
         </div>
         <div class="price-row">
           <span class="nm">実績資料の制作<em>実測値から作成</em></span>
           <span class="ref"><i>一般的な価格帯</i>50,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>25,000<small>円〜</small></span>
+          <span class="amt"><i>Hotta Creative</i>50,000<small>円〜</small></span>
         </div>
-        <div class="price-row">
-          <span class="nm">Notionレクチャー<em>マンツーマン60分</em></span>
+        <div class="price-row is-entry">
+          <span class="nm">Notionレクチャー<b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
           <span class="ref"><i>一般的な価格帯</i>10,000円〜</span>
           <span class="amt"><i>Hotta Creative</i>5,000<small>円 / 60分</small></span>
         </div>
-        <div class="price-row">
-          <span class="nm">AI開発レクチャー<em>マンツーマン60分</em></span>
+        <div class="price-row is-entry">
+          <span class="nm">AI開発レクチャー<b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
           <span class="ref"><i>一般的な価格帯</i>15,000円〜</span>
           <span class="amt"><i>Hotta Creative</i>7,500<small>円 / 60分</small></span>
         </div>
