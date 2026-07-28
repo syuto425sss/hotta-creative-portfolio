@@ -314,6 +314,16 @@
     flex:0 0 calc((100% - 24px) / 2);
     scroll-snap-align:start;
   }
+  /* サービスの分類チップ。数が増えても「メニュー表」に見えるようにする */
+  .svc-group{
+    display:inline-block;margin-bottom:16px;
+    font-size:11.5px;letter-spacing:.1em;font-weight:500;
+    padding:6px 14px;border-radius:999px;
+  }
+  .svc-group.g1{background:var(--buff-soft);color:#7A5E33}
+  .svc-group.g2{background:var(--moss-soft);color:#4E6340}
+  .svc-group.g3{background:var(--base-3);color:#6B5C46}
+
   .svc-more{
     display:flex;align-items:center;justify-content:center;gap:8px;
     width:100%;margin-top:18px;min-height:48px;
@@ -353,6 +363,9 @@
   .service-card:nth-child(4) .service-icon-wrap{background:var(--moss-deep)}
   .service-card:nth-child(5) .service-icon-wrap{background:var(--buff-deep)}
   .service-card:nth-child(6) .service-icon-wrap{background:var(--moss)}
+  .service-card:nth-child(7) .service-icon-wrap{background:var(--buff)}
+  .service-card:nth-child(8) .service-icon-wrap{background:var(--moss-deep)}
+  .service-card:nth-child(9) .service-icon-wrap{background:var(--buff-deep)}
   .service-title{
     font-family:'Zen Maru Gothic',sans-serif;font-size:21px;font-weight:500;
     margin-bottom:6px;color:var(--ink);
@@ -1019,6 +1032,7 @@
 
       <div class="service-card">
         <div class="service-icon-wrap">01</div>
+        <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">Meta広告運用</h3>
         <div class="service-subtitle">Facebook / Instagram Ads</div>
         <p class="service-desc">
@@ -1050,6 +1064,7 @@
 
       <div class="service-card">
         <div class="service-icon-wrap">02</div>
+        <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">LINE公式構築</h3>
         <div class="service-subtitle">LINE公式 / Lステップ / エルメ対応</div>
         <p class="service-desc">
@@ -1081,6 +1096,7 @@
 
       <div class="service-card">
         <div class="service-icon-wrap">03</div>
+        <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">バナー制作</h3>
         <div class="service-subtitle">広告で反応が取れるバナー</div>
         <p class="service-desc">
@@ -1112,6 +1128,39 @@
 
       <div class="service-card">
         <div class="service-icon-wrap">04</div>
+        <span class="svc-group g1">つくる・運用する</span>
+        <h3 class="service-title">AI活用のシステム開発</h3>
+        <div class="service-subtitle">Web App / 業務自動化</div>
+        <p class="service-desc">
+          「こういうものが欲しい」を、AIを使って動くシステムにします。
+          自社の業務のために30本以上つくってきた作り方を、そのままお渡しします。
+        </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>業務用Webアプリ（見積・予約・進捗・在庫の管理など）</li>
+            <li>手作業の自動化（集計・レポート作成・定期配信）</li>
+            <li>LINE Bot・チャットボットの制作</li>
+            <li>AIを使った業務支援（文字起こし・要約・書類作成・OCR）</li>
+            <li>Notion / スプレッドシート / 外部サービスとの連携</li>
+            <li>業務のヒアリング → 要件整理 → 実装 → 公開まで一括</li>
+            <li>まず小さく作って試す、から始められます</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「Excelと手作業で回していて限界」「開発会社の見積が高すぎて止まっている」「まず小さく試したい」「エンジニアに頼むほどでもない細かい仕組みが欲しい」という事業者の方など
+          </p>
+        </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">05</div>
+        <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">Notion構築代行</h3>
         <div class="service-subtitle">マーケ視点のNotion設計</div>
         <p class="service-desc">
@@ -1142,7 +1191,67 @@
       </div>
 
       <div class="service-card">
-        <div class="service-icon-wrap">05</div>
+        <div class="service-icon-wrap">06</div>
+        <span class="svc-group g2">単発で頼む</span>
+        <h3 class="service-title">広告アカウント診断</h3>
+        <div class="service-subtitle">スポット / レポート1枚</div>
+        <p class="service-desc">
+          いまの広告アカウントで何が起きているかを、実データだけで1枚にまとめます。運用を任せる前の健康診断として。
+        </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>管理画面からの実数値の抽出（推測値は使いません）</li>
+            <li>埋もれている成果・止め忘れの配信の洗い出し</li>
+            <li>コンバージョン計測が正しく動いているかの確認</li>
+            <li>改善すべき点を優先順位つきで3つに整理</li>
+            <li>レポート1枚にまとめてお渡し</li>
+            <li>そのまま運用代行へ引き継ぐことも可能</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「代理店に任せているが中身が分からない」「数字は見ているけれど、どこを直せばいいか分からない」「引き継いだアカウントの状態を知りたい」という方など
+          </p>
+        </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">07</div>
+        <span class="svc-group g2">単発で頼む</span>
+        <h3 class="service-title">実績資料の制作</h3>
+        <div class="service-subtitle">ポートフォリオ / 提案資料</div>
+        <p class="service-desc">
+          管理画面の実数から、盛らずに伝わる実績資料をつくります。このサイトに並んでいる実績カードも同じ作り方です。
+        </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>管理画面からの数値抽出と検算</li>
+            <li>社名を伏せ業種のみで表現（守秘に配慮）</li>
+            <li>実績カード画像の制作</li>
+            <li>提案書・営業資料への展開</li>
+            <li>数字が変わったらご自身で差し替えられる形でお渡し</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「実績はあるのに資料にできていない」「見積を出す前に信頼してもらいたい」「数字の見せ方が分からない」というフリーランス・事業者の方など
+          </p>
+        </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">08</div>
+        <span class="svc-group g3">教わる</span>
         <h3 class="service-title">Notionレクチャー</h3>
         <div class="service-subtitle">60分マンツーマン</div>
         <p class="service-desc">
@@ -1173,31 +1282,30 @@
       </div>
 
       <div class="service-card">
-        <div class="service-icon-wrap">06</div>
-        <h3 class="service-title">AI活用のシステム開発</h3>
-        <div class="service-subtitle">Web App / 業務自動化</div>
+        <div class="service-icon-wrap">09</div>
+        <span class="svc-group g3">教わる</span>
+        <h3 class="service-title">AI開発レクチャー</h3>
+        <div class="service-subtitle">マンツーマン / 画面録画つき</div>
         <p class="service-desc">
-          「こういうものが欲しい」を、AIを使って動くシステムにします。
-          自社の業務のために20本以上つくってきた作り方を、そのままお渡しします。
+          コードが書けない状態から、自分の業務に必要な仕組みを自分で作れるところまで。実際に30本以上つくってきた手順を、そのままお伝えします。
         </p>
         <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
         <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
-            <li>業務用Webアプリ（見積・予約・進捗・在庫の管理など）</li>
-            <li>手作業の自動化（集計・レポート作成・定期配信）</li>
-            <li>LINE Bot・チャットボットの制作</li>
-            <li>AIを使った業務支援（文字起こし・要約・書類作成・OCR）</li>
-            <li>Notion / スプレッドシート / 外部サービスとの連携</li>
-            <li>業務のヒアリング → 要件整理 → 実装 → 公開まで一括</li>
-            <li>まず小さく作って試す、から始められます</li>
+            <li>何を用意すれば始められるか（環境づくり）</li>
+            <li>AIへの頼み方（ここで9割決まります）</li>
+            <li>小さく作って動かすまでの型</li>
+            <li>うまくいかないときの戻し方</li>
+            <li>ご自身の業務に合わせた題材で実践</li>
+            <li>事前ヒアリング + 画面録画の提供付き</li>
           </ul>
         </div>
         <div class="service-block">
           <span class="block-label">こんな方におすすめ</span>
           <p class="service-example">
-            「Excelと手作業で回していて限界」「開発会社の見積が高すぎて止まっている」「まず小さく試したい」「エンジニアに頼むほどでもない細かい仕組みが欲しい」という事業者の方など
+            「エンジニアに頼むほどでもない仕組みを自分で作りたい」「AIを触っているが形にならない」「外注し続けるのをやめたい」という個人事業主・事業者の方など
           </p>
         </div>
         </div>
