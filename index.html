@@ -543,9 +543,69 @@
     font-size:11px;color:var(--ink-3);letter-spacing:.05em;
   }
 
-  /* ===== レスポンシブ ===== */
+  /* ===== ハンバーガー（スマホのみ表示） ===== */
+  .nav-toggle{
+    display:none;background:none;border:none;cursor:pointer;
+    width:44px;height:44px;padding:0;
+    align-items:center;justify-content:center;flex-direction:column;gap:5px;
+    margin-right:-8px;
+  }
+  .nav-toggle span{
+    display:block;width:22px;height:1.5px;background:var(--ink);
+    border-radius:2px;transition:transform .28s ease,opacity .2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+  .mobile-menu{
+    display:none;
+    position:fixed;left:0;right:0;top:64px;z-index:99;
+    background:rgba(248,242,228,.98);
+    backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    padding:10px 20px calc(20px + env(safe-area-inset-bottom));
+    box-shadow:0 20px 40px -20px rgba(92,78,61,.3);
+    max-height:calc(100dvh - 64px);overflow-y:auto;
+  }
+  .mobile-menu a{
+    display:flex;align-items:baseline;gap:10px;
+    padding:15px 6px;min-height:52px;
+    border-bottom:1px dashed var(--line);
+    font-size:16px;color:var(--ink);font-weight:500;
+  }
+  .mobile-menu a:last-of-type{border-bottom:none}
+  .mobile-menu a small{
+    font-size:12px;color:var(--ink-3);font-weight:400;letter-spacing:.02em;
+  }
+  .mobile-menu .mm-cta{
+    justify-content:center;margin-top:14px;
+    background:var(--moss);color:var(--white);
+    border-radius:999px;border-bottom:none;
+    font-size:15px;letter-spacing:.08em;
+  }
+
+  /* ===== スマホ下部の固定CTA ===== */
+  .mobile-cta{
+    display:none;
+    position:fixed;left:0;right:0;bottom:0;z-index:98;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(248,242,228,.94);
+    backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+  }
+  .mobile-cta a{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    height:52px;border-radius:999px;
+    background:var(--moss);color:var(--white);
+    font-size:15px;letter-spacing:.08em;font-weight:500;
+    box-shadow:0 8px 20px -10px rgba(141,163,131,.9);
+  }
+
+  /* ===== レスポンシブ：タブレット ===== */
   @media (max-width: 860px){
     nav ul{display:none}
+    .nav-toggle{display:flex}
     .hero{padding:130px 0 80px}
     .hero-inner{grid-template-columns:1fr;gap:50px}
     .hero h1{font-size:30px}
@@ -558,6 +618,140 @@
     .contact-card{padding:40px 24px}
     .strength h2{font-size:22px}
     .footer-bottom{flex-direction:column;gap:10px;text-align:center}
+  }
+
+  /* ===== レスポンシブ：スマホ ===== */
+  @media (max-width: 600px){
+    .container{padding:0 20px}
+
+    /* ヘッダーを低くして、本文の面積を稼ぐ */
+    .nav{height:64px}
+    .logo-mark{width:36px;height:36px;font-size:19px}
+    .logo-text{font-size:16px}
+    .logo-sub{font-size:11px}
+    .mobile-menu.is-open{display:block}
+    .mobile-cta{display:block}
+    body.menu-open{overflow:hidden}
+
+    /* 固定CTAぶんの余白を最後に確保（コンテンツが隠れないように） */
+    footer{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+
+    /* ヒーロー */
+    .hero{padding:96px 0 64px}
+    .hero-inner{gap:38px}
+    .hero-eyebrow{margin-bottom:20px;font-size:11.5px}
+    .hero h1{
+      font-size:clamp(23px,7.2vw,30px);
+      line-height:1.75;margin-bottom:22px;letter-spacing:.01em;
+    }
+    .hero h1 .pen::after{height:11px;bottom:2px}
+    .hero-lead{font-size:14px;line-height:2;margin-bottom:30px}
+    /* ボタンは縦積み・全幅。横に並べると375pxでは必ずはみ出す */
+    .hero-cta{flex-direction:column;align-items:stretch;gap:11px}
+    .hero-cta .btn{justify-content:center;width:100%;padding:0 24px;height:54px}
+    .hero-note{margin:14px 0 0;text-align:center;font-size:16px}
+    .hero-visual{max-width:300px}
+    .stamp{width:64px;height:64px;font-size:13px}
+    .leaf-1{width:42px;height:42px}
+    .leaf-2{width:34px;height:34px}
+    .dot-cluster{display:none}
+
+    /* セクション共通 */
+    section{padding:60px 0}
+    .section-head{margin-bottom:40px}
+    .section-eyebrow{font-size:19px}
+    .section-title{font-size:clamp(20px,5.6vw,24px);margin-bottom:16px}
+    .section-title .leaf-icon{margin:0 8px;width:15px;height:15px}
+    .section-lead{font-size:13.5px;line-height:2}
+
+    /* About */
+    .about-card{padding:32px 22px;border-radius:20px}
+    .about-avatar{width:76px;height:76px;font-size:32px;margin-bottom:18px}
+    .about-name{font-size:20px;margin-bottom:16px}
+    .about-desc{font-size:13.5px;margin-bottom:20px}
+    .skill-tag{font-size:11.5px;padding:7px 13px}
+
+    /* Service */
+    .service-grid{gap:18px;margin-top:12px}
+    .service-card{padding:30px 22px;border-radius:20px}
+    .service-icon-wrap{width:54px;height:54px;font-size:13px;margin-bottom:16px}
+    .service-title{font-size:19px}
+    .service-desc{font-size:13.5px;line-height:1.95}
+    .service-list li{font-size:13px;line-height:1.9;padding:5px 0}
+    .service-example{font-size:12.5px;padding:13px 14px}
+
+    /* Strength */
+    .strength h2{font-size:clamp(19px,5.4vw,22px);line-height:1.75}
+    .strength-lead{font-size:13.5px;margin-bottom:34px}
+    .strength-grid{gap:16px}
+    .strength-item{padding:30px 24px;border-radius:20px}
+    .strength-num{font-size:30px;margin-bottom:10px}
+    .strength-title{font-size:17px}
+
+    /* Works：タブは折り返さず横スクロールにする（5個を2段にすると迷子になる） */
+    .works-tabs{
+      justify-content:flex-start;flex-wrap:nowrap;
+      overflow-x:auto;scroll-snap-type:x proximity;
+      -webkit-overflow-scrolling:touch;scrollbar-width:none;
+      margin:0 -20px 30px;padding:2px 20px 10px;
+    }
+    .works-tabs::-webkit-scrollbar{display:none}
+    .tab{
+      flex:none;scroll-snap-align:start;
+      padding:0 20px;height:44px;display:inline-flex;align-items:center;
+      font-size:13px;
+    }
+    .works-grid{gap:34px}
+    .work-thumb{border-radius:16px;margin-bottom:14px}
+    .work-title{font-size:15.5px;line-height:1.6}
+    .work-meta{font-size:12.5px}
+    .work-result{font-size:12px;padding:6px 14px}
+    .work-card:hover{transform:none}   /* タップ端末でホバー浮きは邪魔 */
+
+    /* 日本語の改行あばれを抑える。
+       balance＝行の長さを揃える／pretty＝最終行に1〜2文字だけ残すのを防ぐ */
+    .hero h1,.section-title,.strength h2,.contact h2,.service-title,.work-title{
+      text-wrap:balance;
+    }
+    .hero-lead,.section-lead,.strength-lead,.contact p,.service-desc,
+    .about-desc,.service-example,.strength-desc{
+      text-wrap:pretty;
+    }
+
+    /* Contact */
+    .contact-card{padding:36px 20px;border-radius:24px}
+    .contact h2{font-size:clamp(19px,5.4vw,24px)}
+    .contact p{font-size:13.5px;margin-bottom:28px}
+    .contact-channels{gap:12px;margin-bottom:28px}
+    .channel{padding:22px 10px;border-radius:16px}
+    .channel-icon{font-size:26px}
+    .channel-name{font-size:13px}
+    .channel-id{font-size:10.5px}
+
+    /* Footer */
+    footer{padding-top:48px}
+    .footer-grid{gap:32px;margin-bottom:36px}
+    .footer-brand p{max-width:none}
+    .footer-col li{margin-bottom:4px}
+    .footer-col a{display:inline-block;padding:8px 0;font-size:13px}
+  }
+
+  /* ===== レスポンシブ：小さいスマホ（iPhone SE 等） ===== */
+  @media (max-width: 380px){
+    .container{padding:0 16px}
+    .logo-sub{display:none}
+    .hero h1{font-size:22px}
+    .hero-lead{font-size:13.5px}
+    .contact-channels{grid-template-columns:1fr}
+    .channel{padding:18px 14px;display:flex;align-items:center;gap:14px;text-align:left}
+    .channel-icon{margin-bottom:0;font-size:24px}
+    /* 「ます。」だけが次行に落ちるのを防ぐため、ここだけ0.5px詰める */
+    .contact p{font-size:13px}
+  }
+
+  /* 端末の設定で「動きを減らす」にしている人には、アニメを止める */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
   }
 </style>
 </head>
@@ -580,8 +774,19 @@
         <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く"
+            aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about">About<small>わたしたちのこと</small></a>
+  <a href="#service">Service<small>できること</small></a>
+  <a href="#works">Works<small>これまでの実績</small></a>
+  <a href="#contact" class="mm-cta">お問い合わせ</a>
+</div>
 
 <section class="hero">
   <div class="leaf leaf-1"></div>
@@ -1331,7 +1536,55 @@
     if(initialTab){
       filterCards(initialTab.dataset.category);
     }
+
+    // タブを押したとき、選んだタブが画面外なら見える位置まで寄せる
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if(window.matchMedia('(max-width: 600px)').matches){
+          tab.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+        }
+      });
+    });
+  })();
+
+  /* ===== スマホメニューの開閉 ===== */
+  (function(){
+    const btn  = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if(!btn || !menu) return;
+
+    function setOpen(open){
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      menu.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+    }
+
+    btn.addEventListener('click', () => {
+      setOpen(btn.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // メニュー内のリンクを押したら閉じる（押した先へスクロールさせる）
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+
+    // Escキー / 画面外タップ / 画面幅が広がったら閉じる
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') setOpen(false);
+    });
+    document.addEventListener('click', e => {
+      if(menu.classList.contains('is-open') &&
+         !menu.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    window.matchMedia('(min-width: 601px)').addEventListener('change', e => {
+      if(e.matches) setOpen(false);
+    });
   })();
 </script>
+
+<div class="mobile-cta">
+  <a href="#contact">まずは無料相談 <span aria-hidden="true">→</span></a>
+</div>
 </body>
 </html>
