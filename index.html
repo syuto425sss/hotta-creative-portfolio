@@ -323,6 +323,65 @@
     letter-spacing:.02em;
   }
 
+  /* 担当の見出し（カード内） */
+  .about-tags-label{
+    display:block;font-family:'Caveat',cursive;font-size:16px;
+    color:var(--moss-deep);margin-bottom:10px;
+  }
+  .about-card.husband .about-tags-label{color:var(--buff-deep)}
+  .about-charge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--white);border-radius:999px;
+    padding:7px 16px;font-size:12.5px;color:var(--ink);
+    margin-bottom:18px;font-weight:500;
+  }
+  .about-charge svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7}
+
+  /* ===== ふたりの担当わけ（受け渡し図） ===== */
+  .handoff{margin-top:56px}
+  .handoff-ttl{
+    text-align:center;font-family:'Zen Maru Gothic',sans-serif;font-weight:500;
+    font-size:19px;color:var(--ink);margin-bottom:8px;
+  }
+  .handoff-sub{
+    text-align:center;font-size:13px;color:var(--ink-2);margin-bottom:30px;
+  }
+  .handoff-row{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+    background:var(--base);border-radius:22px;padding:26px 20px;
+    position:relative;
+  }
+  .ho{
+    display:flex;flex-direction:column;align-items:center;gap:9px;
+    position:relative;text-align:center;
+  }
+  /* 説明が2行の項目があっても、担当バッジの高さが揃うようにする */
+  .ho-who{margin-top:auto}
+  .ho + .ho::before{
+    content:'';position:absolute;left:-6px;top:26px;
+    width:8px;height:8px;
+    border-top:1.5px solid var(--buff);border-right:1.5px solid var(--buff);
+    transform:rotate(45deg);
+  }
+  .ho-icon{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--white);display:grid;place-items:center;
+  }
+  .ho-icon svg{width:26px;height:26px;fill:none;stroke:var(--moss-deep);
+    stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .ho-step{font-size:13px;color:var(--ink);font-weight:500;line-height:1.5}
+  .ho-who{
+    font-size:11px;letter-spacing:.06em;padding:4px 12px;border-radius:999px;
+    white-space:nowrap;
+  }
+  .ho-who.h{background:var(--buff-soft);color:#7A5E33}
+  .ho-who.w{background:var(--moss-soft);color:#4E6340}
+  .ho-who.b{background:var(--ink-3);color:var(--white)}
+  .handoff-note{
+    text-align:center;font-size:13px;color:var(--ink-2);
+    margin-top:22px;line-height:1.9;
+  }
+
   /* ===== Services ===== */
   .services{background:var(--base-2)}
   .services::before{
@@ -1111,6 +1170,19 @@
     .section-title .leaf-icon{margin:0 8px;width:15px;height:15px}
     .section-lead{font-size:13.5px;line-height:2}
 
+    /* 担当わけ図：4列だと1マスが狭すぎるので2列×2段に */
+    .handoff{margin-top:40px}
+    .handoff-ttl{font-size:17px}
+    .handoff-sub{font-size:12.5px;margin-bottom:22px}
+    .handoff-row{grid-template-columns:1fr 1fr;gap:20px 10px;padding:22px 14px;border-radius:18px}
+    .ho + .ho::before{display:none}
+    .ho-icon{width:46px;height:46px}
+    .ho-icon svg{width:23px;height:23px}
+    .ho-step{font-size:12.5px}
+    .ho-who{font-size:10.5px;padding:3px 10px}
+    .handoff-note{font-size:12.5px;margin-top:18px}
+    .about-charge{font-size:12px;padding:6px 14px;margin-bottom:14px}
+
     /* About：アイコンと名前を横並びにして、2枚ぶんの縦の長さを詰める */
     .about-grid{gap:16px}
     .about-card{
@@ -1334,10 +1406,9 @@
   <div class="container hero-inner">
     <div>
       <h1>
-        広告も、デザインも、<br>
-        運用も、ぜんぶ。<br>
-        <span class="pen">夫婦ふたり</span>で、<br>
-        <span class="circle">一緒に</span>つくります。
+        広告とデザイン、<br>
+        <span class="pen">別々に頼むの</span>、<br>
+        もうやめませんか。
       </h1>
       <p class="hero-lead">
         Meta広告が得意な夫と、デザインが得意な妻。<br>
@@ -1385,6 +1456,7 @@
 
       <div class="stamp"></div>
     </div>
+
   </div>
 </section>
 
@@ -1451,12 +1523,17 @@
         <div class="about-avatar"><img src="img/avatar-husband.png" alt="夫（マーケター）"></div>
         <div class="about-role">— husband / marketer</div>
         <div class="about-name">Hotta.S</div>
+        <div class="about-charge">
+          <svg viewBox="0 0 24 24"><path d="M4 20V9M10 20V4M16 20v-7M22 20H2"/></svg>
+          数字をつくる担当
+        </div>
         <p class="about-desc">
           マーケティング歴6年、Meta広告運用を中心に、
           累計売上3.5億円規模の広告アカウントを担当してきました。
           LINE構築や、AIを活用した24時間自動監視・自動応答など、
           「数字をつくる」仕組みづくりが得意です。
         </p>
+        <span class="about-tags-label">得意なこと</span>
         <div class="about-skills">
           <span class="skill-tag">Meta広告</span>
           <span class="skill-tag">Google広告</span>
@@ -1472,11 +1549,16 @@
         <div class="about-avatar"><img src="img/avatar-wife.png" alt="妻（デザイナー）"></div>
         <div class="about-role">— wife / designer</div>
         <div class="about-name">Hotta.A</div>
+        <div class="about-charge">
+          <svg viewBox="0 0 24 24"><path d="M12 19l7-7a4.2 4.2 0 0 0-6-6l-7 7a2.8 2.8 0 0 0 4 4l6-6"/></svg>
+          伝わる形にする担当
+        </div>
         <p class="about-desc">
           Webデザインを軸に、SNSコンテンツの制作・運用まで担当。
           広告の「クリエイティブ」と「世界観」を、
           ターゲットに届く形に整えていきます。
         </p>
+        <span class="about-tags-label">得意なこと</span>
         <div class="about-skills">
           <span class="skill-tag">Webデザイン</span>
           <span class="skill-tag">LP制作</span>
@@ -1486,6 +1568,37 @@
           <span class="skill-tag">Canva</span>
         </div>
       </div>
+    </div>
+    <div class="handoff">
+      <div class="handoff-ttl">ふたりで、こう分けています</div>
+      <p class="handoff-sub">どこを誰が持つかが決まっているので、抜けも二度手間も起きません。</p>
+
+      <div class="handoff-row">
+        <div class="ho">
+          <div class="ho-icon"><svg viewBox="0 0 24 24"><path d="M4 10h5l9-5v14l-9-5H4z"/><path d="M8 14v4a2 2 0 0 0 4 0v-3"/></svg></div>
+          <div class="ho-step">広告を出す</div>
+          <span class="ho-who h">夫</span>
+        </div>
+        <div class="ho">
+          <div class="ho-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="9" r="1.6"/></svg></div>
+          <div class="ho-step">見た目をつくる<br>LP・バナー</div>
+          <span class="ho-who w">妻</span>
+        </div>
+        <div class="ho">
+          <div class="ho-icon"><svg viewBox="0 0 24 24"><path d="M12 4c5 0 9 3.2 9 7.2S17 18.4 12 18.4c-.9 0-1.8-.1-2.6-.3L4 21l1.2-3.5C3.2 16.2 3 13.9 3 11.2 3 7.2 7 4 12 4z"/></svg></div>
+          <div class="ho-step">LINEで受ける</div>
+          <span class="ho-who h">夫</span>
+        </div>
+        <div class="ho">
+          <div class="ho-icon"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M6 19v-6M11 19v-10M16 19v-4"/><path d="M5 8l4-3 4 2 6-4"/></svg></div>
+          <div class="ho-step">数字を見て直す</div>
+          <span class="ho-who b">ふたり</span>
+        </div>
+      </div>
+
+      <p class="handoff-note">
+        あいだをつなぐ人が要らないので、思いついたその日に手が動きます。
+      </p>
     </div>
   </div>
 </section>
