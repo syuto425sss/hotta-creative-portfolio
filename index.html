@@ -321,6 +321,7 @@
   .service-card:nth-child(3) .service-icon-wrap{background:var(--buff)}
   .service-card:nth-child(4) .service-icon-wrap{background:var(--moss-deep)}
   .service-card:nth-child(5) .service-icon-wrap{background:var(--buff-deep)}
+  .service-card:nth-child(6) .service-icon-wrap{background:var(--moss)}
   .service-title{
     font-family:'Zen Maru Gothic',sans-serif;font-size:21px;font-weight:500;
     margin-bottom:6px;color:var(--ink);
@@ -408,7 +409,47 @@
   .tab.active,.tab:hover{
     background:var(--moss);color:var(--white);
   }
-  .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  /* ===== 実績カルーセル =====
+     縦に積むと延々スクロールになるので、横に流して1画面に収める。 */
+  .works-carousel{position:relative}
+  .works-grid{
+    display:flex;gap:30px;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:4px;
+  }
+  .works-grid::-webkit-scrollbar{display:none}
+  .works-grid > .work-card{
+    flex:0 0 calc((100% - 60px) / 3);
+    scroll-snap-align:start;
+  }
+  .works-ctrl{
+    display:flex;align-items:center;justify-content:center;gap:18px;
+    margin-top:30px;
+  }
+  .wc-btn{
+    width:46px;height:46px;flex:none;border-radius:50%;
+    background:var(--white);border:1.5px solid var(--buff);
+    color:var(--ink);cursor:pointer;
+    display:grid;place-items:center;
+    transition:all .25s;
+  }
+  .wc-btn:hover:not(:disabled){background:var(--moss);border-color:var(--moss);color:var(--white)}
+  .wc-btn:disabled{opacity:.32;cursor:default}
+  .wc-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8}
+  .wc-dots{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:60%}
+  .wc-dot{
+    width:8px;height:8px;padding:0;border:none;border-radius:50%;
+    background:var(--buff);cursor:pointer;transition:all .25s;
+  }
+  .wc-dot[aria-current="true"]{background:var(--moss);width:22px;border-radius:999px}
+  .wc-hint{
+    text-align:center;font-family:'Caveat',cursive;
+    font-size:16px;color:var(--ink-3);margin-top:10px;
+  }
+
   .work-card{cursor:pointer;transition:transform .3s;animation:fadeIn .4s ease both}
   .work-card:hover{transform:translateY(-6px)}
   @keyframes fadeIn{
@@ -610,9 +651,12 @@
     .hero-inner{grid-template-columns:1fr;gap:50px}
     .hero h1{font-size:30px}
     .hero-visual{max-width:380px;margin:0 auto;width:100%}
-    .about-grid,.service-grid,.works-grid,.strength-grid,.footer-grid{
+    .about-grid,.service-grid,.strength-grid,.footer-grid{
       grid-template-columns:1fr;
     }
+    /* カルーセルは2枚見せ */
+    .works-grid{gap:22px}
+    .works-grid > .work-card{flex-basis:calc((100% - 22px) / 2)}
     section{padding:80px 0}
     .section-title{font-size:24px}
     .contact-card{padding:40px 24px}
@@ -701,7 +745,13 @@
       padding:0 20px;height:44px;display:inline-flex;align-items:center;
       font-size:13px;
     }
-    .works-grid{gap:34px}
+    /* カルーセルは1枚見せ＋次の1枚をちら見せ（横に続くと分かるように）。
+       scroll-padding が無いと、snapがpadding分ズレて1枚目の左が20px切れる */
+    .works-grid{gap:16px;margin:0 -20px;padding:0 20px 4px;scroll-padding-left:20px}
+    .works-grid > .work-card{flex-basis:84%}
+    .works-ctrl{margin-top:24px;gap:14px}
+    .wc-btn{width:44px;height:44px}
+    .wc-dots{max-width:56%;gap:7px}
     .work-thumb{border-radius:16px;margin-bottom:14px}
     .work-title{font-size:15.5px;line-height:1.6}
     .work-meta{font-size:12.5px}
@@ -1047,6 +1097,34 @@
         </div>
       </div>
 
+      <div class="service-card">
+        <div class="service-icon-wrap">06</div>
+        <h3 class="service-title">AI活用のシステム開発</h3>
+        <div class="service-subtitle">Web App / 業務自動化</div>
+        <p class="service-desc">
+          「こういうものが欲しい」を、AIを使って動くシステムにします。
+          自社の業務のために20本以上つくってきた作り方を、そのままお渡しします。
+        </p>
+        <div class="service-block">
+          <span class="block-label">対応できること</span>
+          <ul class="service-list">
+            <li>業務用Webアプリ（見積・予約・進捗・在庫の管理など）</li>
+            <li>手作業の自動化（集計・レポート作成・定期配信）</li>
+            <li>LINE Bot・チャットボットの制作</li>
+            <li>AIを使った業務支援（文字起こし・要約・書類作成・OCR）</li>
+            <li>Notion / スプレッドシート / 外部サービスとの連携</li>
+            <li>業務のヒアリング → 要件整理 → 実装 → 公開まで一括</li>
+            <li>まず小さく作って試す、から始められます</li>
+          </ul>
+        </div>
+        <div class="service-block">
+          <span class="block-label">こんな方におすすめ</span>
+          <p class="service-example">
+            「Excelと手作業で回していて限界」「開発会社の見積が高すぎて止まっている」「まず小さく試したい」「エンジニアに頼むほどでもない細かい仕組みが欲しい」という事業者の方など
+          </p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1099,7 +1177,7 @@
       <div class="section-eyebrow">— our works —</div>
       <h2 class="section-title">これまでの実績<span class="leaf-icon"></span></h2>
       <p class="section-lead">
-        広告運用・LP制作・LINE構築など、<br>
+        広告運用・LP制作・LINE構築・アプリ開発など、<br>
         これまでお手伝いさせていただいた案件の一部をご紹介します。
       </p>
     </div>
@@ -1108,11 +1186,13 @@
       <button class="tab active" data-category="banner">バナー</button>
       <button class="tab" data-category="richmenu">リッチメニュー</button>
       <button class="tab" data-category="meta">Meta広告</button>
+      <button class="tab" data-category="app">アプリ開発</button>
       <button class="tab" data-category="lp">LP制作</button>
       <button class="tab" data-category="card">名刺</button>
     </div>
 
-    <div class="works-grid">
+    <div class="works-carousel">
+    <div class="works-grid" role="group" aria-roledescription="carousel" aria-label="実績カルーセル" tabindex="0">
       <div class="work-card" data-category="meta">
         <div class="work-thumb has-image">
           <img src="img/meta-case-web-school.png" alt="Web制作スクール Meta・WEB広告 × インサイドセールス 実績">
@@ -1166,6 +1246,88 @@
         <div class="work-title">美容サロン系スクール②｜キャンペーン目的の再設計</div>
         <div class="work-meta">ファネル全体 / 目的切替の効果</div>
         <span class="work-result">0件→104件</span>
+      </div>
+
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-01.png" alt="出張旅費精算SaaS">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">出張旅費 精算SaaS</div>
+        <div class="work-meta">GPS打刻 / 規定判定 / CSV出力</div>
+        <span class="work-result">業務用SaaS</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-02.png" alt="見積比較プラットフォーム">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">見積比較 プラットフォーム</div>
+        <div class="work-meta">複数社比較 / 行動計測 / スマホ最適化</div>
+        <span class="work-result">マッチングPF</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-03.png" alt="AI営業ロールプレイ">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">AI営業 ロールプレイ</div>
+        <div class="work-meta">音声で商談練習 / AIが自動採点</div>
+        <span class="work-result">AI活用ツール</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-04.png" alt="架電管理アプリ">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">架電管理 アプリ</div>
+        <div class="work-meta">架電リスト / 結果記録 / 誤発信防止</div>
+        <span class="work-result">インサイドセールス</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-05.png" alt="レシート経費管理">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">レシート 経費管理</div>
+        <div class="work-meta">撮影→AI読取→Notionへ記帳</div>
+        <span class="work-result">経理の自動化</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-06.png" alt="LINEでタスク管理">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">LINEで タスク管理</div>
+        <div class="work-meta">送るだけで登録 / 朝のリマインド</div>
+        <span class="work-result">LINE Bot</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-07.png" alt="シフト自動作成">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">シフト 自動作成</div>
+        <div class="work-meta">希望休・人員条件・有給まで自動調整</div>
+        <span class="work-result">複雑な条件に対応</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-08.png" alt="議事録メーカー">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">議事録 メーカー</div>
+        <div class="work-meta">録音→文字起こし→議事録化</div>
+        <span class="work-result">利用料ゼロで運用</span>
+      </div>
+      <div class="work-card" data-category="app">
+        <div class="work-thumb has-image">
+          <img src="img/app-09.png" alt="広告レポート自動配信">
+        </div>
+        <div class="work-cat">— アプリ開発</div>
+        <div class="work-title">広告レポート 自動配信</div>
+        <div class="work-meta">毎朝の自動取得 / LINE配信 / 異常検知</div>
+        <span class="work-result">運用の自動化</span>
       </div>
       <div class="work-card" data-category="richmenu">
         <div class="work-thumb has-image">
@@ -1420,6 +1582,19 @@
         <span class="work-result">店舗集客訴求</span>
       </div>
     </div>
+
+    <div class="works-ctrl">
+      <button class="wc-btn wc-prev" type="button" aria-label="前の実績へ">
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="wc-dots" role="tablist" aria-label="実績の位置"></div>
+      <button class="wc-btn wc-next" type="button" aria-label="次の実績へ">
+        <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <p class="wc-hint">← 横にスワイプできます →</p>
+    </div>
+
     <p class="works-empty" hidden>該当する実績がありません。</p>
   </div>
 </section>
@@ -1545,6 +1720,130 @@
         }
       });
     });
+  })();
+
+  /* ===== 実績カルーセル =====
+     ハマりどころ（かたづけ比較で判明済み・2026-07）：
+       ・scroll-snap-type:mandatory のコンテナに scrollTo({behavior:'smooth'})
+         を投げると、ブラウザが黙ってキャンセルする
+         → アニメ中だけ snap を切って、自前のイージングで動かす
+       ・requestAnimationFrame は省電力タブで発火しないことがある
+         → setTimeout で駆動する                                   */
+  (function(){
+    const track = document.querySelector('.works-grid');
+    const dots  = document.querySelector('.wc-dots');
+    const prev  = document.querySelector('.wc-prev');
+    const next  = document.querySelector('.wc-next');
+    if(!track || !dots) return;
+
+    let anim = null;
+
+    const shown = () => [...track.querySelectorAll('.work-card')]
+                        .filter(c => c.style.display !== 'none');
+
+    // カードを左端に寄せるための scrollLeft。
+    // コンテナの padding を基準にすると1枚目が20pxズレるので、1枚目を0とする相対位置で測る。
+    function leftOf(card){
+      const first = shown()[0];
+      return first ? card.offsetLeft - first.offsetLeft : 0;
+    }
+
+    function activeIndex(){
+      const cards = shown();
+      if(!cards.length) return 0;
+      const cur = track.scrollLeft;
+      let best = 0, dist = Infinity;
+      cards.forEach((c,i) => {
+        const d = Math.abs(leftOf(c) - cur);
+        if(d < dist){ dist = d; best = i; }
+      });
+      return best;
+    }
+
+    function slideTo(i){
+      const cards = shown();
+      if(!cards.length) return;
+      const n = Math.max(0, Math.min(cards.length - 1, i));
+      const max = track.scrollWidth - track.clientWidth;
+      const to  = Math.max(0, Math.min(max, leftOf(cards[n])));
+      const from = track.scrollLeft;
+      const dist = to - from;
+      if(anim){ clearTimeout(anim); anim = null; }
+      if(Math.abs(dist) < 2){ sync(); return; }
+
+      const DUR = 320, STEP = 16, start = Date.now();
+      track.style.scrollSnapType = 'none';   // ← これが無いとアニメが無効化される
+      (function tick(){
+        const t = Math.min(1, (Date.now() - start) / DUR);
+        const e = t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;  // easeInOutQuad
+        track.scrollLeft = from + dist * e;
+        if(t < 1){ anim = setTimeout(tick, STEP); }
+        else { track.style.scrollSnapType = ''; anim = null; sync(); }
+      })();
+    }
+
+    // ドットを作り直す（タブでカードの枚数が変わるため）
+    function buildDots(){
+      const cards = shown();
+      dots.innerHTML = '';
+      if(cards.length <= 1){ dots.parentElement.hidden = true; return; }
+      dots.parentElement.hidden = false;
+      cards.forEach((_,i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'wc-dot';
+        b.setAttribute('aria-label', (i+1) + '枚目へ');
+        b.addEventListener('click', () => slideTo(i));
+        dots.appendChild(b);
+      });
+      sync();
+    }
+
+    // 現在位置に合わせてドットと矢印の状態を更新
+    function sync(){
+      const cards = shown();
+      const i = activeIndex();
+      [...dots.children].forEach((d,k) =>
+        d.setAttribute('aria-current', String(k === i)));
+      const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      if(prev) prev.disabled = (i === 0 && track.scrollLeft <= 2);
+      if(next) next.disabled = atEnd || cards.length <= 1;
+    }
+
+    prev && prev.addEventListener('click', () => slideTo(activeIndex() - 1));
+    next && next.addEventListener('click', () => slideTo(activeIndex() + 1));
+
+    // 指でスワイプされたときも、止まったタイミングで状態を合わせる
+    let st;
+    track.addEventListener('scroll', () => {
+      if(anim) return;                 // 自前アニメ中は無視（相互発火でカクつく）
+      clearTimeout(st);
+      st = setTimeout(sync, 90);
+    }, {passive:true});
+
+    // キーボードでも動かせるように
+    track.addEventListener('keydown', e => {
+      if(e.key === 'ArrowRight'){ e.preventDefault(); slideTo(activeIndex() + 1); }
+      if(e.key === 'ArrowLeft'){  e.preventDefault(); slideTo(activeIndex() - 1); }
+    });
+
+    window.addEventListener('resize', () => { clearTimeout(st); st = setTimeout(sync, 150); });
+
+    // タブ切り替え時に先頭へ戻してドットを作り直す
+    document.querySelectorAll('.works-tabs .tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // 絞り込み後のカードで作り直す。描画が終わってから測らないと幅がゼロになる
+        requestAnimationFrame(() => {
+          track.style.scrollSnapType = 'none';
+          track.scrollLeft = 0;
+          track.style.scrollSnapType = '';
+          buildDots();
+        });
+      });
+    });
+
+    buildDots();
+    window.addEventListener('load', buildDots);
   })();
 
   /* ===== スマホメニューの開閉 ===== */
