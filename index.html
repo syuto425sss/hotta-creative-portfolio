@@ -736,8 +736,8 @@
   }
   .price-table{background:var(--white);border-radius:22px;padding:12px 26px}
   .price-row{
-    display:grid;grid-template-columns:1fr auto auto;
-    align-items:baseline;column-gap:16px;
+    display:grid;grid-template-columns:1fr auto;
+    align-items:baseline;column-gap:20px;
     padding:16px 0;border-bottom:1px dashed var(--line);
   }
   .price-row:last-child{border-bottom:none}
@@ -746,17 +746,6 @@
     display:block;font-style:normal;font-size:11.5px;
     color:var(--ink-3);margin-top:2px;
   }
-  /* 一般的な価格帯。取り消し線や「◯％OFF」は使わず、並べて比べてもらう形にする */
-  .price-row .ref{
-    font-size:14px;color:var(--ink-3);white-space:nowrap;text-align:right;
-    font-family:'Quicksand',sans-serif;font-weight:500;
-  }
-  .price-row .ref i,.price-row .amt i{
-    display:block;font-style:normal;font-size:10px;letter-spacing:.06em;
-    font-family:'Zen Kaku Gothic New',sans-serif;font-weight:400;
-    color:var(--ink-3);margin-bottom:3px;
-  }
-  .price-row .amt i{color:var(--moss-deep)}
   .price-row .amt{
     font-family:'Quicksand',sans-serif;font-weight:600;
     font-size:19px;color:var(--moss-deep);white-space:nowrap;text-align:right;
@@ -1172,20 +1161,19 @@
     .price-amount{font-size:31px}
     .price-foot{font-size:12.5px;margin-top:30px;text-align:left}
 
-    /* 単品メニュー：3列のままだと項目名が「Meta広告／運用代行」のように
-       固有名詞の途中で割れるので、名前を1行使い切る2段組みにする */
+    /* 単品メニュー：項目名が「Meta広告／運用代行」のように固有名詞の途中で
+       割れないよう、名前に1行使い切らせてから金額を右下に置く */
     .price-single{margin-top:44px}
     .price-single h3{font-size:18px}
     .price-table{padding:8px 18px;border-radius:18px}
     .price-row{
-      grid-template-columns:1fr auto;
-      grid-template-areas:"nm nm" "ref amt";
-      row-gap:9px;column-gap:12px;padding:16px 0;
+      grid-template-columns:1fr;
+      grid-template-areas:"nm" "amt";
+      row-gap:8px;padding:16px 0;
     }
     .price-row .nm{grid-area:nm;font-size:14px}
     .price-row .nm em{font-size:11.5px;margin-top:3px}
-    .price-row .ref{grid-area:ref;text-align:left;align-self:center;white-space:normal}
-    .price-row .amt{grid-area:amt;font-size:17px}
+    .price-row .amt{grid-area:amt;font-size:18px}
 
     /* 流れ */
     .flow-step{gap:16px;padding-bottom:28px}
