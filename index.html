@@ -129,6 +129,37 @@
     font-size:15px;color:var(--ink-2);line-height:2.1;
     margin-bottom:40px;max-width:520px;
   }
+  /* ファーストビューの実績帯。「誰が」の直後に「証拠」を置く */
+  .hero-proof{
+    display:flex;align-items:stretch;
+    background:rgba(255,253,245,.72);
+    backdrop-filter:blur(6px);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:20px 8px;margin-bottom:34px;
+    max-width:520px;
+  }
+  .hero-proof .hp{
+    flex:1;display:flex;flex-direction:column;align-items:center;
+    gap:9px;position:relative;padding:0 6px;
+  }
+  .hero-proof .hp + .hp::before{
+    content:'';position:absolute;left:0;top:8%;bottom:8%;
+    width:1px;background:var(--line);
+  }
+  .hero-proof .hp-lbl{
+    font-size:11px;letter-spacing:.08em;color:var(--ink-2);white-space:nowrap;
+  }
+  .hero-proof .hp-num{
+    font-family:'Quicksand',sans-serif;font-weight:600;
+    font-size:27px;color:var(--moss-deep);line-height:1;
+    white-space:nowrap;
+  }
+  .hero-proof .hp-num u{
+    text-decoration:none;font-family:'Zen Kaku Gothic New',sans-serif;
+    font-weight:400;font-size:12px;color:var(--ink-2);margin-left:2px;
+  }
+
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn{
     display:inline-flex;align-items:center;gap:10px;
@@ -598,7 +629,19 @@
 
   /* ===== 料金 ===== */
   .price{background:var(--base-2)}
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+  .plan-carousel{position:relative}
+  .price-grid{
+    display:flex;gap:22px;align-items:stretch;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding:18px 0 4px;
+  }
+  .price-grid::-webkit-scrollbar{display:none}
+  .price-grid > .price-card{
+    flex:0 0 calc((100% - 44px) / 3);
+    scroll-snap-align:start;
+  }
   .price-card{
     background:var(--white);border-radius:24px;padding:36px 28px;
     display:flex;flex-direction:column;
@@ -996,7 +1039,14 @@
       line-height:1.62;margin-bottom:20px;letter-spacing:0;
     }
     .hero h1 .pen::after{height:11px;bottom:2px}
-    .hero-lead{font-size:14.5px;line-height:1.95;margin-bottom:26px}
+    .hero-lead{font-size:14.5px;line-height:1.95;margin-bottom:24px}
+    .hero-proof{
+      max-width:none;padding:16px 4px;margin-bottom:26px;border-radius:16px;
+    }
+    .hero-proof .hp{gap:7px;padding:0 3px}
+    .hero-proof .hp-lbl{font-size:10px;letter-spacing:.04em}
+    .hero-proof .hp-num{font-size:22px}
+    .hero-proof .hp-num u{font-size:10.5px}
     /* 4行に折る指定はPC用。スマホでは自然に流す */
     .hero-lead br{display:none}
     /* ボタンは縦積み・全幅。横に並べると375pxでは必ずはみ出す */
@@ -1114,10 +1164,11 @@
     .midcta p{font-size:14px;margin-bottom:18px}
     .midcta .btn{width:100%;justify-content:center;height:54px;padding:0 24px}
 
-    /* 料金：横スクロールではなく縦積み（金額は比べたいので全部見せる） */
-    .price-grid{grid-template-columns:1fr;gap:26px}
+    /* 料金プラン：1枚見せ＋次のちら見せ（実績カルーセルと同じ挙動） */
+    .price-grid{gap:16px;margin:0 -20px;padding:18px 20px 4px;scroll-padding-left:20px}
+    .price-grid > .price-card{flex-basis:84%}
     .price-card{padding:30px 22px;border-radius:20px}
-    .price-card.pickup{margin-top:8px}
+
     .price-amount{font-size:31px}
     .price-foot{font-size:12.5px;margin-top:30px;text-align:left}
 
@@ -1238,6 +1289,21 @@
         Meta広告が得意な夫と、デザインが得意な妻。<br>
         集客の入口から出口まで、ひとつの窓口でお任せいただけます。
       </p>
+      <div class="hero-proof">
+        <div class="hp">
+          <span class="hp-lbl">累計運用額</span>
+          <span class="hp-num">908<u>万円</u></span>
+        </div>
+        <div class="hp">
+          <span class="hp-lbl">累計登録獲得</span>
+          <span class="hp-num">3,177<u>件</u></span>
+        </div>
+        <div class="hp">
+          <span class="hp-lbl">最長の継続</span>
+          <span class="hp-num">29<u>ヶ月</u></span>
+        </div>
+      </div>
+
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">
           まずは無料相談 <span class="arrow">→</span>
@@ -1766,12 +1832,13 @@
       <div class="section-eyebrow">price</div>
       <h2 class="section-title">料金のめやす<span class="leaf-icon"></span></h2>
       <p class="section-lead">
-        制作会社や代理店の一般的な価格帯と、並べて載せています。<br>
+        まとめてのプランでも、必要なものだけの単品でも承ります。<br>
         まずは単品でお試しいただいてから、で構いません。
       </p>
     </div>
 
-    <div class="price-grid">
+    <div class="plan-carousel">
+    <div class="price-grid" data-track role="group" aria-roledescription="carousel" aria-label="料金プラン" tabindex="0">
       <div class="price-card">
         <div class="price-illust"><svg class="illust" viewBox="0 0 64 64" aria-hidden="true">
           <path class="fl" d="M31 33c-7.5 0-12.5-4.6-12.5-11.2C25.6 21.8 31 26.4 31 33z"/>
@@ -1783,8 +1850,8 @@
         </svg></div>
         <div class="price-name">ライト</div>
         <div class="price-sub">まず広告だけ</div>
-        <div class="price-amount" style="white-space:nowrap">200<span class="unit">,000円 / 月</span></div>
-        <div class="price-note">一般的な価格帯 50,000円〜／広告費は別途（月5万円〜が目安）</div>
+        <div class="price-amount" style="white-space:nowrap">50<span class="unit">,000円 / 月</span></div>
+        <div class="price-note">広告費は別途（月5万円〜が目安）</div>
         <ul class="price-inc">
           <li>広告アカウントの設計・初期構築</li>
           <li>配信の運用・調整</li>
@@ -1808,8 +1875,8 @@
         </svg></div>
         <div class="price-name">スタンダード</div>
         <div class="price-sub">広告 × クリエイティブ</div>
-        <div class="price-amount" style="white-space:nowrap">50<span class="unit">,000円 / 月</span></div>
-        <div class="price-note">一般的な価格帯 100,000円〜／広告費は別途（月10万円〜が目安）</div>
+        <div class="price-amount" style="white-space:nowrap">100<span class="unit">,000円 / 月</span></div>
+        <div class="price-note">広告費は別途（月10万円〜が目安）</div>
         <ul class="price-inc">
           <li>ライトの内容すべて</li>
           <li>バナー制作 枚数の上限なし</li>
@@ -1834,8 +1901,8 @@
         </svg></div>
         <div class="price-name">まるっとお任せ</div>
         <div class="price-sub">入口から出口まで</div>
-        <div class="price-amount" style="white-space:nowrap">100<span class="unit">,000円 / 月</span></div>
-        <div class="price-note">一般的な価格帯 200,000円〜／初期構築費が別途かかる場合があります</div>
+        <div class="price-amount" style="white-space:nowrap">200<span class="unit">,000円 / 月</span></div>
+        <div class="price-note">初期構築費が別途かかる場合があります</div>
         <ul class="price-inc">
           <li>スタンダードの内容すべて</li>
           <li>LP制作・改修</li>
@@ -1845,6 +1912,18 @@
         </ul>
       </div>
     </div>
+
+
+    <div class="works-ctrl">
+      <button class="wc-btn wc-prev" type="button" aria-label="前のプランへ">
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="wc-dots" role="tablist" aria-label="プランの位置"></div>
+      <button class="wc-btn wc-next" type="button" aria-label="次のプランへ">
+        <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    </div><!-- /plan-carousel -->
 
     <div class="price-foot">
       表示はすべて税込です。ご契約期間の縛りはありません。<br>
@@ -1857,64 +1936,50 @@
       <div class="price-table">
         <div class="price-row">
           <span class="nm">Meta広告運用代行<em>月額 / 広告費は別途</em></span>
-          <span class="ref"><i>一般的な価格帯</i>50,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>50,000<small>円 / 月</small></span>
+          <span class="amt">50,000<small>円 / 月</small></span>
         </div>
         <div class="price-row is-entry">
           <span class="nm">広告アカウント診断<b class="entry">まずはここから</b><em>レポート1枚でお渡し</em></span>
-          <span class="ref"><i>一般的な価格帯</i>30,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>15,000<small>円 / 1回</small></span>
+          <span class="amt">15,000<small>円 / 1回</small></span>
         </div>
         <div class="price-row is-entry">
           <span class="nm">バナー制作<b class="entry">まずはここから</b><em>1枚あたり</em></span>
-          <span class="ref"><i>一般的な価格帯</i>10,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>5,000<small>円</small></span>
+          <span class="amt">5,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">リッチメニュー制作<em>最大6分割</em></span>
-          <span class="ref"><i>一般的な価格帯</i>20,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>20,000<small>円</small></span>
+          <span class="amt">20,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">LP制作<em>広告連携用・1ページ</em></span>
-          <span class="ref"><i>一般的な価格帯</i>100,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>100,000<small>円</small></span>
+          <span class="amt">100,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">公式LINE構築<em>初期設定・メニュー・応答</em></span>
-          <span class="ref"><i>一般的な価格帯</i>100,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>100,000<small>円</small></span>
+          <span class="amt">100,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">Notion構築代行<em>業務に合わせた設計</em></span>
-          <span class="ref"><i>一般的な価格帯</i>50,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>50,000<small>円</small></span>
+          <span class="amt">50,000<small>円</small></span>
         </div>
         <div class="price-row">
           <span class="nm">AI活用のシステム開発<em>小さく作って試す形から</em></span>
-          <span class="ref"><i>一般的な価格帯</i>300,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>300,000<small>円〜</small></span>
+          <span class="amt">300,000<small>円〜</small></span>
         </div>
         <div class="price-row">
           <span class="nm">実績資料の制作<em>実測値から作成</em></span>
-          <span class="ref"><i>一般的な価格帯</i>50,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>50,000<small>円〜</small></span>
+          <span class="amt">50,000<small>円〜</small></span>
         </div>
         <div class="price-row is-entry">
           <span class="nm">Notionレクチャー<b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
-          <span class="ref"><i>一般的な価格帯</i>10,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>5,000<small>円 / 60分</small></span>
+          <span class="amt">5,000<small>円 / 60分</small></span>
         </div>
         <div class="price-row is-entry">
           <span class="nm">AI開発レクチャー<b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
-          <span class="ref"><i>一般的な価格帯</i>15,000円〜</span>
-          <span class="amt"><i>Hotta Creative</i>7,500<small>円 / 60分</small></span>
+          <span class="amt">7,500<small>円 / 60分</small></span>
         </div>
       </div>
-      <p class="note">
-        「一般的な価格帯」は制作会社・代理店が公開している価格をもとにした目安で、<br>
-        当方の値引き前価格ではありません。表示はすべて税込です。
-      </p>
+      <p class="note">表示はすべて税込です。内容によって前後する場合があります。</p>
     </div>
 </section>
 
@@ -2300,6 +2365,15 @@
         <div class="work-title">映像クリエイター｜表裏セット</div>
         <div class="work-meta">両面 / 映像・クリエイティブ</div>
         <span class="work-result">ラグジュアリー訴求</span>
+      </div>
+      <div class="work-card" data-category="lp">
+        <div class="work-thumb has-image">
+          <img src="img/lp-renai-koza.png" alt="恋愛・自己啓発オンライン講座 LP">
+        </div>
+        <div class="work-cat">— LP制作</div>
+        <div class="work-title">恋愛・自己啓発オンライン講座｜LP</div>
+        <div class="work-meta">PC + スマホ / オンライン講座</div>
+        <span class="work-result">10大特典でLINE誘導</span>
       </div>
       <div class="work-card" data-category="lp">
         <div class="work-thumb has-image">
@@ -2742,6 +2816,12 @@
     document.querySelectorAll('.works-tabs .tab').forEach(tab => {
       tab.addEventListener('click', c.rebuild);
     });
+  })();
+
+  /* 料金プランカルーセル */
+  (function(){
+    const root = document.querySelector('.plan-carousel');
+    if(root) makeCarousel(root, '.price-card');
   })();
 
   /* できることカルーセル */
