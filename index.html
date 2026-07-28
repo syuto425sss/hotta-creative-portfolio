@@ -668,6 +668,20 @@
   .head-illust{display:grid;place-items:center;margin-bottom:10px}
   .head-illust .illust{width:64px;height:64px}
 
+
+  /* サービスカード右上の飾り。高さを増やさずに文字だけの画面を和らげる */
+  .svc-illust{
+    position:absolute;top:26px;right:24px;
+    width:64px;height:64px;opacity:.95;pointer-events:none;
+  }
+  .flow-illust{
+    position:absolute;top:6px;right:0;
+    width:52px;height:52px;opacity:.9;pointer-events:none;
+  }
+  .flow-body{position:relative;padding-right:62px}
+  .faq-illust{display:grid;place-items:center;margin-bottom:8px}
+  .faq-illust .illust{width:64px;height:64px}
+
   /* 単品メニュー（プランの下に置く一覧） */
   .price-single{max-width:760px;margin:64px auto 0}
   .price-single h3{
@@ -679,22 +693,31 @@
   }
   .price-table{background:var(--white);border-radius:22px;padding:12px 26px}
   .price-row{
-    display:flex;align-items:baseline;gap:14px;
+    display:grid;grid-template-columns:1fr auto auto;
+    align-items:baseline;column-gap:16px;
     padding:16px 0;border-bottom:1px dashed var(--line);
   }
   .price-row:last-child{border-bottom:none}
-  .price-row .nm{font-size:14px;color:var(--ink);font-weight:500}
-  .price-row .dt{
-    flex:1;border-bottom:1px dotted var(--line);
-    transform:translateY(-4px);min-width:14px;
+  .price-row .nm{font-size:14px;color:var(--ink);font-weight:500;line-height:1.6}
+  .price-row .nm em{
+    display:block;font-style:normal;font-size:11.5px;
+    color:var(--ink-3);margin-top:2px;
+  }
+  /* 一般的な価格帯。値引き表現ではなく参考情報として控えめに置く */
+  .price-row .ref{
+    font-size:11.5px;color:var(--ink-3);white-space:nowrap;text-align:right;
   }
   .price-row .amt{
     font-family:'Quicksand',sans-serif;font-weight:600;
-    font-size:17px;color:var(--moss-deep);white-space:nowrap;
+    font-size:17px;color:var(--moss-deep);white-space:nowrap;text-align:right;
   }
   .price-row .amt small{
     font-family:'Zen Kaku Gothic New',sans-serif;font-weight:400;
     font-size:11.5px;color:var(--ink-2);margin-left:3px;
+  }
+  .price-single .note{
+    font-size:11.5px;color:var(--ink-3);line-height:1.9;
+    margin-top:16px;text-align:center;
   }
 
   /* ===== ご依頼の流れ ===== */
@@ -750,6 +773,8 @@
     display:flex;gap:14px;align-items:flex-start;
     padding:0 4px 24px;font-size:13.5px;color:var(--ink-2);line-height:2;
   }
+  /* display:flex は hidden 属性(display:none)より強いので、明示的に打ち消す */
+  .faq-a[hidden]{display:none}
   .faq-a .amark{
     flex:none;font-family:'Quicksand',sans-serif;font-weight:600;
     color:var(--buff-deep);font-size:16px;
@@ -1052,6 +1077,9 @@
       text-wrap:pretty;
     }
 
+    /* ルール4：見出しは手動改行、本文は自動折返し。
+       PC向けに入れた<br>はスマホでは変な位置で切れるので解除する */
+    .section-lead br,.strength-lead br,.contact p br{display:none}
     /* 悩み */
     .worry-item{padding:16px 18px;gap:13px;border-radius:14px;margin-bottom:10px}
     .worry-item p{font-size:14px;line-height:1.8}
@@ -1074,13 +1102,20 @@
     .price-amount{font-size:31px}
     .price-foot{font-size:12.5px;margin-top:30px;text-align:left}
 
-    /* 単品メニュー */
+    /* 単品メニュー：3列のままだと項目名が「Meta広告／運用代行」のように
+       固有名詞の途中で割れるので、名前を1行使い切る2段組みにする */
     .price-single{margin-top:44px}
     .price-single h3{font-size:18px}
     .price-table{padding:8px 18px;border-radius:18px}
-    .price-row{padding:14px 0;gap:10px}
-    .price-row .nm{font-size:13.5px}
-    .price-row .amt{font-size:16px}
+    .price-row{
+      grid-template-columns:1fr auto;
+      grid-template-areas:"nm nm" "ref amt";
+      row-gap:9px;column-gap:12px;padding:16px 0;
+    }
+    .price-row .nm{grid-area:nm;font-size:14px}
+    .price-row .nm em{font-size:11.5px;margin-top:3px}
+    .price-row .ref{grid-area:ref;text-align:left;align-self:center;white-space:normal}
+    .price-row .amt{grid-area:amt;font-size:17px}
 
     /* 流れ */
     .flow-step{gap:16px;padding-bottom:28px}
@@ -1218,7 +1253,7 @@
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow">your worry</div>
-      <h2 class="section-title">こんなことで止まっていませんか<span class="leaf-icon"></span></h2>
+      <h2 class="section-title">こんなことで<br>止まっていませんか<span class="leaf-icon"></span></h2>
     </div>
 
     <div class="worry-list">
@@ -1334,6 +1369,7 @@
         <div class="service-icon-wrap">01</div>
         <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">Meta広告運用</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M14 26h9l16-9v30l-16-9h-9z"/><path class="ln" d="M14 26h9l16-9v30l-16-9h-9a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3z"/><path class="ln2" d="M45 24a11 11 0 0 1 0 16M50 19a18 18 0 0 1 0 26"/><path class="ln" d="M20 38v7a3 3 0 0 0 6 0v-5"/></svg>
         <div class="service-subtitle">Facebook / Instagram Ads</div>
         <p class="service-desc">
           契約100件超・売上3.5億円規模の運用経験から、
@@ -1366,6 +1402,7 @@
         <div class="service-icon-wrap">02</div>
         <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">LINE公式構築</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M32 13c11 0 20 7 20 15.5S43 44 32 44c-2 0-4-.2-5.8-.6L16 49l2.6-7.6C14.5 38.5 12 33.9 12 28.5 12 20 21 13 32 13z"/><path class="ln" d="M32 13c11 0 20 7 20 15.5S43 44 32 44c-2 0-4-.2-5.8-.6L16 49l2.6-7.6C14.5 38.5 12 33.9 12 28.5 12 20 21 13 32 13z"/><path class="ln2" d="M24 26v6M24 26h4M28 32h-4M32 26v6M36 32v-6l4 6v-6"/></svg>
         <div class="service-subtitle">LINE公式 / Lステップ / エルメ対応</div>
         <p class="service-desc">
           「LINEを作る」のではなく「売上に直結するLINEを設計」。
@@ -1398,6 +1435,7 @@
         <div class="service-icon-wrap">03</div>
         <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">バナー制作</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><rect class="fl2" x="10" y="16" width="44" height="32" rx="3"/><rect class="ln" x="10" y="16" width="44" height="32" rx="3"/><path class="ln" d="M10 40l11-10 8 7 8-9 17 12"/><circle class="ln2" cx="22" cy="26" r="3.5"/></svg>
         <div class="service-subtitle">広告で反応が取れるバナー</div>
         <p class="service-desc">
           ただ綺麗なだけじゃない、「広告で反応が取れる」バナーを。
@@ -1430,6 +1468,7 @@
         <div class="service-icon-wrap">04</div>
         <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">AI活用のシステム開発</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M32 20a12 12 0 1 1 0 24 12 12 0 0 1 0-24z"/><circle class="ln" cx="32" cy="32" r="12"/><circle class="ln" cx="32" cy="32" r="4.5"/><path class="ln" d="M32 14v6M32 44v6M14 32h6M44 32h6M19.5 19.5l4.2 4.2M40.3 40.3l4.2 4.2M44.5 19.5l-4.2 4.2M23.7 40.3l-4.2 4.2"/><path class="ln2" d="M50 12l1.4 3.6L55 17l-3.6 1.4L50 22l-1.4-3.6L45 17l3.6-1.4z"/></svg>
         <div class="service-subtitle">Web App / 業務自動化</div>
         <p class="service-desc">
           「こういうものが欲しい」を、AIを使って動くシステムにします。
@@ -1462,6 +1501,7 @@
         <div class="service-icon-wrap">05</div>
         <span class="svc-group g1">つくる・運用する</span>
         <h3 class="service-title">Notion構築代行</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><rect class="fl2" x="14" y="10" width="36" height="44" rx="3"/><rect class="ln" x="14" y="10" width="36" height="44" rx="3"/><path class="ln" d="M14 20h36"/><path class="ln2" d="M22 30h20M22 38h20M22 46h12"/><path class="ln" d="M21 15h6"/></svg>
         <div class="service-subtitle">マーケ視点のNotion設計</div>
         <p class="service-desc">
           「もう散らからない」業務に合わせたNotionをオーダーメイド構築。
@@ -1494,6 +1534,7 @@
         <div class="service-icon-wrap">06</div>
         <span class="svc-group g2">単発で頼む</span>
         <h3 class="service-title">広告アカウント診断</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M20 38h5v10h-5zM29 30h5v18h-5zM38 34h5v14h-5z"/><path class="ln" d="M20 38h5v10h-5zM29 30h5v18h-5zM38 34h5v14h-5z"/><path class="ln" d="M14 48h36"/><circle class="ln2" cx="42" cy="20" r="9"/><path class="ln2" d="M48.5 26.5L55 33"/></svg>
         <div class="service-subtitle">スポット / レポート1枚</div>
         <p class="service-desc">
           いまの広告アカウントで何が起きているかを、実データだけで1枚にまとめます。運用を任せる前の健康診断として。
@@ -1524,6 +1565,7 @@
         <div class="service-icon-wrap">07</div>
         <span class="svc-group g2">単発で頼む</span>
         <h3 class="service-title">実績資料の制作</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M17 8h20l10 10v38H17z"/><path class="ln" d="M17 8h20l10 10v38H17a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z"/><path class="ln" d="M37 8v10h10"/><path class="ln2" d="M24 44v-8M31 44V30M38 44v-6"/><path class="ln" d="M24 26h9"/></svg>
         <div class="service-subtitle">ポートフォリオ / 提案資料</div>
         <p class="service-desc">
           管理画面の実数から、盛らずに伝わる実績資料をつくります。このサイトに並んでいる実績カードも同じ作り方です。
@@ -1553,6 +1595,7 @@
         <div class="service-icon-wrap">08</div>
         <span class="svc-group g3">教わる</span>
         <h3 class="service-title">Notionレクチャー</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M12 14h18a4 4 0 0 1 4 4v32a4 4 0 0 0-4-4H12z"/><path class="ln" d="M12 14h18a4 4 0 0 1 4 4v32a4 4 0 0 0-4-4H12z"/><path class="ln2" d="M52 14H34a4 4 0 0 0-4 4v32a4 4 0 0 1 4-4h18z"/><path class="ln" d="M32 18v32"/></svg>
         <div class="service-subtitle">60分マンツーマン</div>
         <p class="service-desc">
           年商5億企業を支えたNotion術を、60分で凝縮してお伝えします。
@@ -1585,6 +1628,7 @@
         <div class="service-icon-wrap">09</div>
         <span class="svc-group g3">教わる</span>
         <h3 class="service-title">AI開発レクチャー</h3>
+        <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><rect class="fl2" x="10" y="14" width="44" height="28" rx="3"/><rect class="ln" x="10" y="14" width="44" height="28" rx="3"/><path class="ln" d="M24 50h16M32 42v8"/><path class="ln2" d="M26 28l-4 4 4 4M38 28l4 4-4 4"/><path class="ln" d="M47 10l1.2 3L51 14l-2.8 1L47 18l-1.2-3L43 14l2.8-1z"/></svg>
         <div class="service-subtitle">マンツーマン / 画面録画つき</div>
         <p class="service-desc">
           コードが書けない状態から、自分の業務に必要な仕組みを自分で作れるところまで。実際に30本以上つくってきた手順を、そのままお伝えします。
@@ -1720,7 +1764,7 @@
         </svg></div>
         <div class="price-name">ライト</div>
         <div class="price-sub">まず広告だけ</div>
-        <div class="price-amount">8<span class="tilde">〜</span><span class="unit">万円 / 月</span></div>
+        <div class="price-amount" style="white-space:nowrap">8<span class="tilde">〜</span><span class="unit">万円 / 月</span></div>
         <div class="price-note">広告費は別途（月5万円〜が目安）</div>
         <ul class="price-inc">
           <li>広告アカウントの設計・初期構築</li>
@@ -1745,7 +1789,7 @@
         </svg></div>
         <div class="price-name">スタンダード</div>
         <div class="price-sub">広告 × クリエイティブ</div>
-        <div class="price-amount">12<span class="tilde">〜</span><span class="unit">万円 / 月</span></div>
+        <div class="price-amount" style="white-space:nowrap">12<span class="tilde">〜</span><span class="unit">万円 / 月</span></div>
         <div class="price-note">広告費は別途（月10万円〜が目安）</div>
         <ul class="price-inc">
           <li>ライトの内容すべて</li>
@@ -1771,7 +1815,7 @@
         </svg></div>
         <div class="price-name">まるっとお任せ</div>
         <div class="price-sub">入口から出口まで</div>
-        <div class="price-amount">20<span class="tilde">〜</span><span class="unit">万円 / 月</span></div>
+        <div class="price-amount" style="white-space:nowrap">20<span class="tilde">〜</span><span class="unit">万円 / 月</span></div>
         <div class="price-note">初期構築費が別途かかる場合があります</div>
         <ul class="price-inc">
           <li>スタンダードの内容すべて</li>
@@ -1792,27 +1836,66 @@
       <h3>単品でのご依頼</h3>
       <p class="sub">「これだけお願いしたい」も歓迎です。</p>
       <div class="price-table">
-        <div class="price-row"><span class="nm">バナー制作</span><span class="dt"></span>
-          <span class="amt">8,000<small>円 / 1枚〜</small></span></div>
-        <div class="price-row"><span class="nm">リッチメニュー制作</span><span class="dt"></span>
-          <span class="amt">20,000<small>円〜</small></span></div>
-        <div class="price-row"><span class="nm">LP制作</span><span class="dt"></span>
-          <span class="amt">150,000<small>円〜</small></span></div>
-        <div class="price-row"><span class="nm">公式LINE構築</span><span class="dt"></span>
-          <span class="amt">200,000<small>円〜</small></span></div>
-        <div class="price-row"><span class="nm">AI活用のシステム開発</span><span class="dt"></span>
-          <span class="amt">200,000<small>円〜</small></span></div>
-        <div class="price-row"><span class="nm">Notion構築代行</span><span class="dt"></span>
-          <span class="amt">80,000<small>円〜</small></span></div>
-        <div class="price-row"><span class="nm">広告アカウント診断</span><span class="dt"></span>
-          <span class="amt">30,000<small>円 / 1回</small></span></div>
-        <div class="price-row"><span class="nm">実績資料の制作</span><span class="dt"></span>
-          <span class="amt">50,000<small>円〜</small></span></div>
-        <div class="price-row"><span class="nm">Notionレクチャー</span><span class="dt"></span>
-          <span class="amt">15,000<small>円 / 60分</small></span></div>
-        <div class="price-row"><span class="nm">AI開発レクチャー</span><span class="dt"></span>
-          <span class="amt">20,000<small>円 / 60分</small></span></div>
+        <div class="price-row">
+          <span class="nm">Meta広告運用代行<em>月額 / 広告費は別途</em></span>
+          <span class="ref">一般的な価格帯<br>広告費の20%（最低5万円）</span>
+          <span class="amt">19,000<small>円 / 月</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">バナー制作<em>1枚あたり</em></span>
+          <span class="ref">一般的な価格帯<br>10,000〜30,000円</span>
+          <span class="amt">5,000<small>円</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">リッチメニュー制作<em>最大6分割</em></span>
+          <span class="ref">一般的な価格帯<br>20,000〜50,000円</span>
+          <span class="amt">5,000<small>円</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">LP制作<em>広告連携用・1ページ</em></span>
+          <span class="ref">一般的な価格帯<br>100,000〜300,000円</span>
+          <span class="amt">30,000<small>円</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">公式LINE構築<em>初期設定・メニュー・応答</em></span>
+          <span class="ref">一般的な価格帯<br>100,000〜300,000円</span>
+          <span class="amt">15,000<small>円</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">Notion構築代行<em>業務に合わせた設計</em></span>
+          <span class="ref">一般的な価格帯<br>50,000〜300,000円</span>
+          <span class="amt">19,500<small>円</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">AI活用のシステム開発<em>小さく作って試す形から</em></span>
+          <span class="ref">一般的な価格帯<br>300,000〜1,000,000円</span>
+          <span class="amt">80,000<small>円〜</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">広告アカウント診断<em>レポート1枚でお渡し</em></span>
+          <span class="ref">一般的な価格帯<br>30,000〜100,000円</span>
+          <span class="amt">15,000<small>円 / 1回</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">実績資料の制作<em>実測値から作成</em></span>
+          <span class="ref">一般的な価格帯<br>50,000〜150,000円</span>
+          <span class="amt">25,000<small>円〜</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">Notionレクチャー<em>マンツーマン60分</em></span>
+          <span class="ref">一般的な価格帯<br>10,000〜20,000円</span>
+          <span class="amt">6,500<small>円 / 60分</small></span>
+        </div>
+        <div class="price-row">
+          <span class="nm">AI開発レクチャー<em>マンツーマン60分</em></span>
+          <span class="ref">一般的な価格帯<br>15,000〜30,000円</span>
+          <span class="amt">9,800<small>円 / 60分</small></span>
+        </div>
       </div>
+      <p class="note">
+        「一般的な価格帯」は制作会社・代理店の公開価格をもとにした目安で、<br>
+        当方の値引き前価格ではありません。表示はすべて税込です。
+      </p>
     </div>
   </div>
 </section>
@@ -2267,6 +2350,7 @@
       <div class="flow-step">
         <div class="flow-num">01</div>
         <div class="flow-body">
+          <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M10 18h44v28H10z"/><path class="ln" d="M10 18h44v28H10z"/><path class="ln" d="M10 18l22 16 22-16"/></svg>
           <h4>お問い合わせ</h4>
           <p>LancersかCoconalaから、ひとことだけ送ってください。「何をお願いできるか分からない」の段階で大丈夫です。</p>
           <span class="tag">無料 ／ 当日中〜翌営業日にご返信</span>
@@ -2275,6 +2359,7 @@
       <div class="flow-step">
         <div class="flow-num">02</div>
         <div class="flow-body">
+          <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M8 14h30v20H20l-8 7v-7H8z"/><path class="ln" d="M8 14h30v20H20l-8 7v-7H8z"/><path class="ln2" d="M28 30h28v18H44l-6 6v-6h-10z"/></svg>
           <h4>ヒアリング</h4>
           <p>いまの状況と、困っていることをお聞きします。すでにお使いの広告アカウントやLINEがあれば、その場で拝見します。</p>
           <span class="tag">無料 ／ オンライン30分ほど</span>
@@ -2283,6 +2368,7 @@
       <div class="flow-step">
         <div class="flow-num">03</div>
         <div class="flow-body">
+          <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M16 8h20l10 10v38H16z"/><path class="ln" d="M16 8h20l10 10v38H16a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z"/><path class="ln" d="M36 8v10h10"/><path class="ln2" d="M22 34l5 5 11-12"/></svg>
           <h4>ご提案・お見積り</h4>
           <p>ご予算と目的に合わせて、いちばん合う形をご提案します。「そこまでは要りません」もはっきりお伝えします。</p>
           <span class="tag">無料 ／ ここで終了しても費用はかかりません</span>
@@ -2291,6 +2377,7 @@
       <div class="flow-step">
         <div class="flow-num">04</div>
         <div class="flow-body">
+          <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M40 10l14 14-26 26-14-14z"/><path class="ln" d="M40 10l14 14-26 26-14-14z"/><path class="ln" d="M14 36L8 56l20-6"/><path class="ln2" d="M36 16l12 12"/></svg>
           <h4>制作・運用スタート</h4>
           <p>内容が決まったら着手します。進み具合はこまめに共有するので、放置される心配はありません。</p>
         </div>
@@ -2298,6 +2385,7 @@
       <div class="flow-step">
         <div class="flow-num">05</div>
         <div class="flow-body">
+          <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M14 40h7v12h-7zM27 30h7v22h-7zM40 34h7v18h-7z"/><path class="ln" d="M14 40h7v12h-7zM27 30h7v22h-7zM40 34h7v18h-7z"/><path class="ln" d="M10 52h44"/><path class="ln2" d="M16 24l10-8 9 5 13-11"/><path class="ln2" d="M43 10h6v6"/></svg>
           <h4>ご報告・改善</h4>
           <p>運用が始まったら、数字をそのままお見せします。良かった月も、悪かった月も、隠さずお伝えします。</p>
         </div>
@@ -2310,6 +2398,7 @@
   <div class="container">
     <div class="section-head">
       <div class="section-eyebrow">questions</div>
+<div class="faq-illust"><svg class="illust " viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M10 12h44v30H30l-11 9v-9H10z"/><path class="ln" d="M10 12h44v30H30l-11 9v-9H10a2 2 0 0 1-2-2V14a2 2 0 0 1 2-2z"/><path class="ln2" d="M26 22a6 6 0 1 1 8 5.6V31"/><circle class="ln2" cx="32" cy="36" r="1.4"/></svg></div>
       <h2 class="section-title">よくあるご質問<span class="leaf-icon"></span></h2>
     </div>
 
@@ -2382,7 +2471,7 @@
   <div class="container">
     <div class="contact-card">
       <div class="section-eyebrow">— let's talk —</div>
-      <h2>まずは、お気軽にご相談ください。</h2>
+      <h2>まずは、お気軽に<br>ご相談ください。</h2>
       <p>
         ご予算・お悩みに合わせて、ぴったりのプランをご提案します。<br>
         ご返信は原則、当日中〜翌営業日にお送りします。
