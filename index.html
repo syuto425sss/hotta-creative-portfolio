@@ -25,7 +25,10 @@
     --white:     #FFFDF5;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;overflow-x:hidden}
+  /* ★iOS Safari対策：scroll-behavior:smooth は overflow-x:hidden と組むと
+     アンカー移動が握りつぶされたり、復元位置がおかしくなる（かたづけ比較で確認済み）。
+     CSSからは外し、スムーススクロールはJS側で明示的に行う。 */
+  html{overflow-x:hidden}
   body{
     font-family:'Zen Kaku Gothic New','Zen Maru Gothic', sans-serif;
     color:var(--ink);
@@ -597,6 +600,39 @@
   .tab.active,.tab:hover{
     background:var(--moss);color:var(--white);
   }
+
+  /* ===== 開いたときに最下部へ飛ぶ問題への対策 =====
+     iOS Safari は前回のスクロール位置を復元する（scrollRestoration:auto）。
+     一枚もののLPでは毎回先頭から読ませたいので manual に切り替える。      */
+  (function(){
+    if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+    function toTop(){
+      if(!location.hash) window.scrollTo(0, 0);
+    }
+    toTop();
+    window.addEventListener('load', toTop);
+    // 一部端末で load 後にレイアウトが伸びて再度ずれることがあるので、念のためもう一度
+    window.addEventListener('load', function(){ setTimeout(toTop, 60); });
+
+    /* CSSの scroll-behavior:smooth を外したぶん、ページ内リンクはJSで滑らかに動かす。
+       固定ヘッダー(64px)に隠れないよう、その分だけ手前で止める。 */
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      var id = a.getAttribute('href');
+      if(id === '#' || id.length < 2) return;
+      var t = document.querySelector(id);
+      if(!t) return;
+      e.preventDefault();
+      var header = window.matchMedia('(max-width:600px)').matches ? 64 : 76;
+      var y = t.getBoundingClientRect().top + window.pageYOffset - header + 1;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({top:y, behavior: reduce ? 'auto' : 'smooth'});
+      history.replaceState(null, '', id);
+    });
+  })();
+
   /* ===== 実績カルーセル =====
      縦に積むと延々スクロールになるので、横に流して1画面に収める。 */
   .works-carousel{position:relative}
@@ -1235,10 +1271,16 @@
       grid-template-areas:
         "avatar role"
         "avatar name"
+        "charge charge"
         "desc   desc"
+        "tglabel tglabel"
         "skills skills";
       column-gap:16px;
     }
+    /* 後から足した担当チップ・見出しにも場所を与える。
+       未定義のままだと勝手に下へ回り込んでレイアウトが崩れる */
+    .about-charge{grid-area:charge;justify-self:start;margin:14px 0 0}
+    .about-tags-label{grid-area:tglabel;margin:0 0 9px}
     .about-avatar{
       grid-area:avatar;align-self:center;
       width:62px;height:62px;font-size:26px;
@@ -1411,7 +1453,7 @@
 
   /* 端末の設定で「動きを減らす」にしている人には、アニメを止める */
   @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+    *{animation:none !important;transition:none !important}
   }
 </style>
 </head>
