@@ -545,6 +545,159 @@
     border-radius:999px;font-weight:500;
   }
 
+  /* ===== 悩み → 原因 → だから私たち（LP動線の入口） ===== */
+  .worry{background:var(--white)}
+  .worry-list{max-width:640px;margin:0 auto}
+  .worry-item{
+    display:flex;gap:16px;align-items:flex-start;
+    background:var(--base);border-radius:16px;
+    padding:20px 24px;margin-bottom:12px;
+  }
+  .worry-item .check{
+    flex:none;width:22px;height:22px;border-radius:6px;
+    border:1.5px solid var(--buff);background:var(--white);
+    display:grid;place-items:center;margin-top:2px;
+  }
+  .worry-item .check::after{
+    content:'';width:10px;height:6px;
+    border-left:1.7px solid var(--buff-deep);border-bottom:1.7px solid var(--buff-deep);
+    transform:rotate(-45deg) translate(1px,-1px);
+  }
+  .worry-item p{font-size:14.5px;line-height:1.85;color:var(--ink)}
+  .worry-arrow{
+    text-align:center;margin:34px 0 30px;
+    font-family:'Caveat',cursive;font-size:20px;color:var(--moss-deep);
+  }
+  .worry-arrow::before{
+    content:'';display:block;width:1px;height:40px;
+    background:var(--moss-soft);margin:0 auto 14px;
+  }
+  .worry-answer{
+    max-width:680px;margin:0 auto;text-align:center;
+    background:linear-gradient(160deg,var(--base) 0%,var(--moss-soft) 100%);
+    border-radius:28px;padding:48px 40px;
+  }
+  .worry-answer h3{
+    font-family:'Zen Maru Gothic',sans-serif;font-weight:500;
+    font-size:24px;line-height:1.75;color:var(--ink);margin-bottom:20px;
+  }
+  .worry-answer p{font-size:14.5px;line-height:2.1;color:var(--ink-2)}
+  .worry-answer .lead-strong{
+    display:block;margin-top:24px;font-size:16px;color:var(--ink);
+    font-family:'Zen Maru Gothic',sans-serif;font-weight:500;line-height:1.9;
+  }
+
+  /* ===== 途中のCTA（読み進めた勢いのまま押せるように） ===== */
+  .midcta{
+    background:var(--base-2);text-align:center;padding:64px 0;
+  }
+  .midcta p{
+    font-size:15px;color:var(--ink);margin-bottom:22px;line-height:1.9;
+  }
+  .midcta .hand{font-size:19px;display:block;margin-bottom:8px}
+
+  /* ===== 料金 ===== */
+  .price{background:var(--base-2)}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+  .price-card{
+    background:var(--white);border-radius:24px;padding:36px 28px;
+    display:flex;flex-direction:column;
+  }
+  .price-card.pickup{
+    border:2px solid var(--moss);position:relative;
+  }
+  .price-badge{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:var(--moss);color:var(--white);
+    font-size:11.5px;letter-spacing:.1em;padding:6px 18px;border-radius:999px;
+    white-space:nowrap;
+  }
+  .price-name{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:19px;font-weight:500;
+    color:var(--ink);margin-bottom:6px;
+  }
+  .price-sub{font-family:'Caveat',cursive;font-size:15px;color:var(--moss-deep);margin-bottom:20px}
+  .price-amount{
+    font-family:'Quicksand',sans-serif;font-weight:600;
+    font-size:34px;color:var(--moss-deep);line-height:1.2;
+    letter-spacing:.01em;
+  }
+  .price-amount .unit{font-size:14px;font-family:'Zen Kaku Gothic New',sans-serif;
+    color:var(--ink-2);margin-left:4px;font-weight:400}
+  .price-amount .tilde{font-size:20px;margin-left:2px}
+  .price-note{font-size:12px;color:var(--ink-3);margin-top:8px;line-height:1.7}
+  .price-inc{
+    list-style:none;margin-top:22px;padding-top:20px;
+    border-top:1.5px dashed var(--line);flex:1;
+  }
+  .price-inc li{
+    font-size:13px;color:var(--ink-2);line-height:1.8;
+    padding:5px 0;display:flex;gap:9px;align-items:flex-start;
+  }
+  .price-inc li::before{content:'♡';color:var(--moss);flex-shrink:0}
+  .price-foot{
+    max-width:680px;margin:40px auto 0;text-align:center;
+    font-size:13px;color:var(--ink-2);line-height:2;
+  }
+
+  /* ===== ご依頼の流れ ===== */
+  .flow{background:var(--base)}
+  .flow-list{max-width:660px;margin:0 auto}
+  .flow-step{display:flex;gap:22px;align-items:flex-start;position:relative;padding-bottom:34px}
+  .flow-step:last-child{padding-bottom:0}
+  .flow-step::before{
+    content:'';position:absolute;left:23px;top:52px;bottom:6px;
+    width:1.5px;background:var(--line);
+  }
+  .flow-step:last-child::before{display:none}
+  .flow-num{
+    flex:none;width:47px;height:47px;border-radius:50%;
+    background:var(--white);border:1.5px solid var(--moss-soft);
+    display:grid;place-items:center;position:relative;z-index:1;
+    font-family:'Quicksand',sans-serif;font-weight:600;font-size:15px;
+    color:var(--moss-deep);
+  }
+  .flow-body h4{
+    font-family:'Zen Maru Gothic',sans-serif;font-size:17px;font-weight:500;
+    color:var(--ink);margin:11px 0 7px;
+  }
+  .flow-body p{font-size:13.5px;color:var(--ink-2);line-height:1.95}
+  .flow-body .tag{
+    display:inline-block;margin-top:9px;font-size:11.5px;
+    background:var(--moss-soft);color:#4E6340;
+    padding:5px 13px;border-radius:999px;
+  }
+
+  /* ===== よくある質問 ===== */
+  .faq{background:var(--white)}
+  .faq-list{max-width:680px;margin:0 auto}
+  .faq-item{border-bottom:1px dashed var(--line)}
+  .faq-q{
+    width:100%;display:flex;gap:14px;align-items:flex-start;
+    background:none;border:none;cursor:pointer;text-align:left;
+    padding:22px 4px;min-height:56px;
+    font-family:'Zen Kaku Gothic New',sans-serif;font-weight:500;
+    font-size:14.5px;color:var(--ink);line-height:1.7;
+  }
+  .faq-q .qmark{
+    flex:none;font-family:'Quicksand',sans-serif;font-weight:600;
+    color:var(--moss-deep);font-size:16px;margin-top:-1px;
+  }
+  .faq-q .caret{
+    margin-left:auto;flex:none;width:9px;height:9px;align-self:center;
+    border-right:1.5px solid var(--ink-3);border-bottom:1.5px solid var(--ink-3);
+    transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s;
+  }
+  .faq-q[aria-expanded="true"] .caret{transform:rotate(-135deg) translate(-3px,-3px)}
+  .faq-a{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:0 4px 24px;font-size:13.5px;color:var(--ink-2);line-height:2;
+  }
+  .faq-a .amark{
+    flex:none;font-family:'Quicksand',sans-serif;font-weight:600;
+    color:var(--buff-deep);font-size:16px;
+  }
+
   /* ===== Contact ===== */
   .contact{
     background:linear-gradient(180deg,var(--base) 0%,var(--buff-soft) 100%);
@@ -842,6 +995,39 @@
       text-wrap:pretty;
     }
 
+    /* 悩み */
+    .worry-item{padding:16px 18px;gap:13px;border-radius:14px;margin-bottom:10px}
+    .worry-item p{font-size:14px;line-height:1.8}
+    .worry-arrow{margin:26px 0 24px;font-size:18px}
+    .worry-arrow::before{height:30px;margin-bottom:11px}
+    .worry-answer{padding:34px 22px;border-radius:22px}
+    .worry-answer h3{font-size:19px;line-height:1.7;margin-bottom:16px}
+    .worry-answer p{font-size:13.5px;line-height:2}
+    .worry-answer .lead-strong{font-size:15px;margin-top:20px}
+
+    /* 途中CTA */
+    .midcta{padding:48px 0}
+    .midcta p{font-size:14px;margin-bottom:18px}
+    .midcta .btn{width:100%;justify-content:center;height:54px;padding:0 24px}
+
+    /* 料金：横スクロールではなく縦積み（金額は比べたいので全部見せる） */
+    .price-grid{grid-template-columns:1fr;gap:26px}
+    .price-card{padding:30px 22px;border-radius:20px}
+    .price-card.pickup{margin-top:8px}
+    .price-amount{font-size:31px}
+    .price-foot{font-size:12.5px;margin-top:30px;text-align:left}
+
+    /* 流れ */
+    .flow-step{gap:16px;padding-bottom:28px}
+    .flow-step::before{left:20px;top:46px}
+    .flow-num{width:41px;height:41px;font-size:14px}
+    .flow-body h4{font-size:16px;margin:9px 0 6px}
+    .flow-body p{font-size:13.5px}
+
+    /* FAQ */
+    .faq-q{font-size:14px;padding:19px 2px;gap:11px}
+    .faq-a{font-size:13.5px;padding:0 2px 21px;gap:11px}
+
     /* Contact */
     .contact-card{padding:36px 20px;border-radius:24px}
     .contact h2{font-size:clamp(19px,5.4vw,24px)}
@@ -957,6 +1143,43 @@
       </div>
 
       <div class="stamp"></div>
+    </div>
+  </div>
+</section>
+
+<section class="worry">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">your worry</div>
+      <h2 class="section-title">こんなことで止まっていませんか<span class="leaf-icon"></span></h2>
+    </div>
+
+    <div class="worry-list">
+      <div class="worry-item"><span class="check"></span>
+        <p>広告を回しているけれど、何が効いていて何が無駄なのか分からない。</p></div>
+      <div class="worry-item"><span class="check"></span>
+        <p>デザインは制作会社、広告は別の会社。あいだの調整を、結局こちらがやっている。</p></div>
+      <div class="worry-item"><span class="check"></span>
+        <p>公式LINEを作ったものの、置いたままになっている。</p></div>
+      <div class="worry-item"><span class="check"></span>
+        <p>お願いしたい仕組みはあるけれど、開発の見積が高くて止まっている。</p></div>
+      <div class="worry-item"><span class="check"></span>
+        <p>手作業とExcelに時間を取られて、集客に手が回らない。</p></div>
+    </div>
+
+    <div class="worry-arrow">原因は、たいてい同じところにあります</div>
+
+    <div class="worry-answer">
+      <h3>「バラバラに頼むこと」が、<br>いちばんの遠回りです。</h3>
+      <p>
+        広告の担当者はデザインを知らず、デザイナーは数字を知らない。<br>
+        あいだをつなぐ人がいないと、そのズレは全部あなたの仕事になります。<br>
+        伝言と調整に時間を取られて、肝心の改善が進まない。
+      </p>
+      <span class="lead-strong">
+        だから私たちは、ぜんぶまとめて<br>
+        夫婦ふたりで最後まで持ちます。
+      </span>
     </div>
   </div>
 </section>
@@ -1325,6 +1548,13 @@
     <p class="wc-hint">← 横にスワイプできます →</p>
 
     </div><!-- /service-carousel -->
+  </div>
+</section>
+
+<section class="midcta">
+  <div class="container">
+    <p><span class="hand">どれが合うか分からなくても、大丈夫。</span>いまの状況をお聞きして、いちばん合う形をご提案します。</p>
+    <a href="#contact" class="btn btn-primary">まずは無料相談 <span class="arrow">→</span></a>
   </div>
 </section>
 
@@ -1798,6 +2028,139 @@
   </div>
 </section>
 
+<section class="midcta">
+  <div class="container">
+    <p><span class="hand">気になる実績はありましたか？</span>「うちの場合はどうなる？」のご相談だけでも歓迎です。</p>
+    <a href="#contact" class="btn btn-primary">まずは無料相談 <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">how it works</div>
+      <h2 class="section-title">ご依頼の流れ<span class="leaf-icon"></span></h2>
+      <p class="section-lead">
+        はじめての方でも迷わないように、5つの手順にしています。<br>
+        ご相談だけで終わっても、もちろん大丈夫です。
+      </p>
+    </div>
+
+    <div class="flow-list">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-body">
+          <h4>お問い合わせ</h4>
+          <p>LancersかCoconalaから、ひとことだけ送ってください。「何をお願いできるか分からない」の段階で大丈夫です。</p>
+          <span class="tag">無料 ／ 当日中〜翌営業日にご返信</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-body">
+          <h4>ヒアリング</h4>
+          <p>いまの状況と、困っていることをお聞きします。すでにお使いの広告アカウントやLINEがあれば、その場で拝見します。</p>
+          <span class="tag">無料 ／ オンライン30分ほど</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-body">
+          <h4>ご提案・お見積り</h4>
+          <p>ご予算と目的に合わせて、いちばん合う形をご提案します。「そこまでは要りません」もはっきりお伝えします。</p>
+          <span class="tag">無料 ／ ここで終了しても費用はかかりません</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-body">
+          <h4>制作・運用スタート</h4>
+          <p>内容が決まったら着手します。進み具合はこまめに共有するので、放置される心配はありません。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-body">
+          <h4>ご報告・改善</h4>
+          <p>運用が始まったら、数字をそのままお見せします。良かった月も、悪かった月も、隠さずお伝えします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">questions</div>
+      <h2 class="section-title">よくあるご質問<span class="leaf-icon"></span></h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qmark">Q.</span>
+          <span>鳥取県以外でも対応できますか？</span>
+          <span class="caret"></span>
+        </button>
+        <div class="faq-a" hidden><span class="amark">A.</span>
+          <span>はい。打ち合わせはすべてオンラインで完結するので、全国どこでも対応しています。現在のお取引先も県外の方が中心です。</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qmark">Q.</span>
+          <span>広告予算はいくらから始められますか？</span>
+          <span class="caret"></span>
+        </button>
+        <div class="faq-a" hidden><span class="amark">A.</span>
+          <span>月5万円ほどから始められます。ただし予算が小さいほど検証に時間がかかるので、目的によっては「今は広告以外から」とお伝えすることもあります。</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qmark">Q.</span>
+          <span>サイトに載っている実績の数字は、どこから出したものですか？</span>
+          <span class="caret"></span>
+        </button>
+        <div class="faq-a" hidden><span class="amark">A.</span>
+          <span>すべて広告管理画面から取得した実測値です。推測や業界平均は一切入れていません。数字の出どころはいつでもご説明できます。</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qmark">Q.</span>
+          <span>途中でやめることはできますか？</span>
+          <span class="caret"></span>
+        </button>
+        <div class="faq-a" hidden><span class="amark">A.</span>
+          <span>できます。長期の縛りは設けていません。合わないと感じたら、その月で終了していただいて構いません。</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qmark">Q.</span>
+          <span>一部分だけお願いすることもできますか？</span>
+          <span class="caret"></span>
+        </button>
+        <div class="faq-a" hidden><span class="amark">A.</span>
+          <span>もちろんです。バナー1枚から、広告アカウントを見るだけの単発まで対応しています。まとめてお任せいただくこともできます。</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qmark">Q.</span>
+          <span>他社が作ったものを引き継いでもらえますか？</span>
+          <span class="caret"></span>
+        </button>
+        <div class="faq-a" hidden><span class="amark">A.</span>
+          <span>対応しています。広告アカウント・公式LINE・LPなど、途中まで作られたものの引き継ぎや立て直しもよくご相談いただきます。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-card">
@@ -2073,6 +2436,18 @@
         btn.querySelector('.svc-more-label').textContent = open ? '詳しく見る' : '閉じる';
         detail.hidden = open;
         c.refresh();
+      });
+    });
+  })();
+
+
+  /* ===== よくある質問の開閉 ===== */
+  (function(){
+    document.querySelectorAll('.faq-q').forEach(function(q){
+      q.addEventListener('click', function(){
+        var open = q.getAttribute('aria-expanded') === 'true';
+        q.setAttribute('aria-expanded', String(!open));
+        q.nextElementSibling.hidden = open;
       });
     });
   })();
