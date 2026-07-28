@@ -299,7 +299,38 @@
     background:var(--white);
     border-radius:0 0 50% 50%/0 0 100% 100%;transform:scaleX(1.5);
   }
-  .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:20px}
+  /* ===== できること：カルーセル＋折りたたみ =====
+     6枚を縦に積むと延々スクロールになるので、横に流して詳細は畳んでおく。 */
+  .service-carousel{position:relative;margin-top:20px}
+  .service-grid{
+    display:flex;gap:24px;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    align-items:flex-start;padding-bottom:4px;
+  }
+  .service-grid::-webkit-scrollbar{display:none}
+  .service-grid > .service-card{
+    flex:0 0 calc((100% - 24px) / 2);
+    scroll-snap-align:start;
+  }
+  .svc-more{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;margin-top:18px;min-height:48px;
+    background:var(--base);border:1px solid var(--line);
+    border-radius:999px;cursor:pointer;
+    font-family:'Zen Kaku Gothic New',sans-serif;font-weight:500;
+    font-size:13px;letter-spacing:.06em;color:var(--ink-2);
+    transition:all .22s;
+  }
+  .svc-more:hover{background:var(--moss-soft);border-color:var(--moss-soft);color:var(--ink)}
+  .svc-more .svc-more-icon{
+    width:9px;height:9px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s;
+  }
+  .svc-more[aria-expanded="true"] .svc-more-icon{transform:rotate(-135deg) translate(-3px,-3px)}
+
+  .service-grid{margin-top:0}
   .service-card{
     background:var(--white);padding:40px 34px;
     border-radius:24px;transition:all .3s;
@@ -651,12 +682,14 @@
     .hero-inner{grid-template-columns:1fr;gap:50px}
     .hero h1{font-size:30px}
     .hero-visual{max-width:380px;margin:0 auto;width:100%}
-    .about-grid,.service-grid,.strength-grid,.footer-grid{
+    .about-grid,.strength-grid,.footer-grid{
       grid-template-columns:1fr;
     }
     /* カルーセルは2枚見せ */
     .works-grid{gap:22px}
     .works-grid > .work-card{flex-basis:calc((100% - 22px) / 2)}
+    .service-grid{gap:22px}
+    .service-grid > .service-card{flex-basis:calc((100% - 22px) / 2)}
     section{padding:80px 0}
     .section-title{font-size:24px}
     .contact-card{padding:40px 24px}
@@ -680,21 +713,31 @@
     /* 固定CTAぶんの余白を最後に確保（コンテンツが隠れないように） */
     footer{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
 
+    /* 本文グレーのコントラストが 3.54:1 しかなく WCAG AA(4.5:1) 未満だったので、
+       スマホでは濃いめに置き換える（#7A6D5B で 4.52:1）。色味はそのまま。 */
+    .hero-lead,.section-lead,.about-desc,.service-desc,.service-list li,
+    .strength-lead,.strength-desc,.contact p,.work-meta,.service-example{
+      color:#7A6D5B;
+    }
+
     /* ヒーロー */
-    .hero{padding:96px 0 64px}
-    .hero-inner{gap:38px}
-    .hero-eyebrow{margin-bottom:20px;font-size:11.5px}
+    .hero{padding:88px 0 56px}
+    .hero-inner{gap:30px}
+    .hero-eyebrow{margin-bottom:18px;font-size:11.5px}
     .hero h1{
-      font-size:clamp(23px,7.2vw,30px);
-      line-height:1.75;margin-bottom:22px;letter-spacing:.01em;
+      font-size:clamp(24px,7.6vw,30px);
+      line-height:1.62;margin-bottom:20px;letter-spacing:0;
     }
     .hero h1 .pen::after{height:11px;bottom:2px}
-    .hero-lead{font-size:14px;line-height:2;margin-bottom:30px}
+    .hero-lead{font-size:14.5px;line-height:1.95;margin-bottom:26px}
+    /* 4行に折る指定はPC用。スマホでは自然に流す */
+    .hero-lead br{display:none}
     /* ボタンは縦積み・全幅。横に並べると375pxでは必ずはみ出す */
     .hero-cta{flex-direction:column;align-items:stretch;gap:11px}
     .hero-cta .btn{justify-content:center;width:100%;padding:0 24px;height:54px}
     .hero-note{margin:14px 0 0;text-align:center;font-size:16px}
-    .hero-visual{max-width:300px}
+    /* 写真は主役を譲る。CTAより下でよいので、その分だけ小さくする */
+    .hero-visual{max-width:250px}
     .stamp{width:64px;height:64px;font-size:13px}
     .leaf-1{width:42px;height:42px}
     .leaf-2{width:34px;height:34px}
@@ -708,15 +751,33 @@
     .section-title .leaf-icon{margin:0 8px;width:15px;height:15px}
     .section-lead{font-size:13.5px;line-height:2}
 
-    /* About */
-    .about-card{padding:32px 22px;border-radius:20px}
-    .about-avatar{width:76px;height:76px;font-size:32px;margin-bottom:18px}
-    .about-name{font-size:20px;margin-bottom:16px}
-    .about-desc{font-size:13.5px;margin-bottom:20px}
+    /* About：アイコンと名前を横並びにして、2枚ぶんの縦の長さを詰める */
+    .about-grid{gap:16px}
+    .about-card{
+      padding:24px 20px;border-radius:20px;
+      display:grid;grid-template-columns:auto 1fr;
+      grid-template-areas:
+        "avatar role"
+        "avatar name"
+        "desc   desc"
+        "skills skills";
+      column-gap:16px;
+    }
+    .about-avatar{
+      grid-area:avatar;align-self:center;
+      width:62px;height:62px;font-size:26px;
+      margin-bottom:0;border-width:2px;
+    }
+    .about-role{grid-area:role;align-self:end;font-size:15px;margin-bottom:2px}
+    .about-name{grid-area:name;align-self:start;font-size:20px;margin-bottom:0}
+    .about-desc{grid-area:desc;font-size:13.5px;margin:16px 0 16px;line-height:1.95}
+    .about-skills{grid-area:skills;gap:7px}
     .skill-tag{font-size:11.5px;padding:7px 13px}
 
-    /* Service */
-    .service-grid{gap:18px;margin-top:12px}
+    /* Service：1枚見せ＋ちら見せ。実績カルーセルと同じ挙動に揃える */
+    .service-carousel{margin-top:12px}
+    .service-grid{gap:16px;margin:0 -20px;padding:0 20px 4px;scroll-padding-left:20px}
+    .service-grid > .service-card{flex-basis:84%}
     .service-card{padding:30px 22px;border-radius:20px}
     .service-icon-wrap{width:54px;height:54px;font-size:13px;margin-bottom:16px}
     .service-title{font-size:19px}
@@ -790,8 +851,8 @@
   @media (max-width: 380px){
     .container{padding:0 16px}
     .logo-sub{display:none}
-    .hero h1{font-size:22px}
-    .hero-lead{font-size:13.5px}
+    .hero h1{font-size:24px}
+    .hero-lead{font-size:14px}
     .contact-channels{grid-template-columns:1fr}
     .channel{padding:18px 14px;display:flex;align-items:center;gap:14px;text-align:left}
     .channel-icon{margin-bottom:0;font-size:24px}
@@ -854,10 +915,8 @@
         <span class="circle">一緒に</span>つくります。
       </h1>
       <p class="hero-lead">
-        Meta広告の運用が得意な夫と、<br>
-        Webデザイン・SNSが得意な妻。<br>
-        「集客の入口から出口まで」、<br>
-        ひとつの窓口でまるっとお任せいただけます。
+        Meta広告が得意な夫と、デザインが得意な妻。<br>
+        集客の入口から出口まで、ひとつの窓口でお任せいただけます。
       </p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">
@@ -955,7 +1014,8 @@
       </p>
     </div>
 
-    <div class="service-grid">
+    <div class="service-carousel">
+    <div class="service-grid" data-track role="group" aria-roledescription="carousel" aria-label="できることカルーセル" tabindex="0">
 
       <div class="service-card">
         <div class="service-icon-wrap">01</div>
@@ -965,6 +1025,8 @@
           契約100件超・売上3.5億円規模の運用経験から、
           広告 × LP × LINE を夫婦で一気通貫設計します。
         </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
@@ -983,6 +1045,7 @@
             「初めてMeta広告を始めたい」「広告を回しているけど成果が出ない」「広告→LP→LINEまで一貫した導線を作りたい」月5万円〜の広告予算がある事業者の方など
           </p>
         </div>
+        </div>
       </div>
 
       <div class="service-card">
@@ -993,6 +1056,8 @@
           「LINEを作る」のではなく「売上に直結するLINEを設計」。
           広告 × デザイン × LINE構築を、夫婦チームで一気通貫対応します。
         </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
@@ -1011,6 +1076,7 @@
             「公式LINEを開設したけど何を設定すればいいかわからない」「LINEを作ったけど放置してしまっている」「LINEと広告を連携させたい」コーチ・コンサル・サロン・スクール経営者の方など
           </p>
         </div>
+        </div>
       </div>
 
       <div class="service-card">
@@ -1022,6 +1088,8 @@
           Meta広告運用者 × Webデザイナーの夫婦チームで、
           反応率の上がる構成・配色・コピーを1枚に凝縮します。
         </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
@@ -1039,6 +1107,7 @@
             「バナーを作ってもクリックされない」「見た目だけで発注して成果に繋がらなかった」ToC商材を販売している方、SNS広告・LINE広告を回している方など
           </p>
         </div>
+        </div>
       </div>
 
       <div class="service-card">
@@ -1050,6 +1119,8 @@
           スタートアップを年商5億に育てた現場の設計思想を、
           あなたのビジネスに合わせて落とし込みます。
         </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
@@ -1067,6 +1138,7 @@
             「Notionを使いたいけど何から始めればいいかわからない」「自分で作ったけど散らかってしまう」「業務に合った仕組みが欲しい」個人事業主・フリーランス・スタートアップの方など
           </p>
         </div>
+        </div>
       </div>
 
       <div class="service-card">
@@ -1078,6 +1150,8 @@
           「基本操作」だけでなく、マーケ視点で「成果につながる使い方」を、
           あなたのビジネスに合わせて完全カスタマイズ。
         </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
@@ -1095,6 +1169,7 @@
             「本やYouTubeで学んでもピンと来ない」「自分のビジネスに最適化したい」初心者〜既に使っているが活用しきれていない個人事業主・フリーランスの方など
           </p>
         </div>
+        </div>
       </div>
 
       <div class="service-card">
@@ -1105,6 +1180,8 @@
           「こういうものが欲しい」を、AIを使って動くシステムにします。
           自社の業務のために20本以上つくってきた作り方を、そのままお渡しします。
         </p>
+        <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
+        <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
@@ -1123,9 +1200,23 @@
             「Excelと手作業で回していて限界」「開発会社の見積が高すぎて止まっている」「まず小さく試したい」「エンジニアに頼むほどでもない細かい仕組みが欲しい」という事業者の方など
           </p>
         </div>
+        </div>
       </div>
 
+    </div><!-- /service-grid -->
+
+    <div class="works-ctrl">
+      <button class="wc-btn wc-prev" type="button" aria-label="前のサービスへ">
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="wc-dots" role="tablist" aria-label="サービスの位置"></div>
+      <button class="wc-btn wc-next" type="button" aria-label="次のサービスへ">
+        <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
     </div>
+    <p class="wc-hint">← 横にスワイプできます →</p>
+
+    </div><!-- /service-carousel -->
   </div>
 </section>
 
@@ -1192,7 +1283,7 @@
     </div>
 
     <div class="works-carousel">
-    <div class="works-grid" role="group" aria-roledescription="carousel" aria-label="実績カルーセル" tabindex="0">
+    <div class="works-grid" data-track role="group" aria-roledescription="carousel" aria-label="実績カルーセル" tabindex="0">
       <div class="work-card" data-category="meta">
         <div class="work-thumb has-image">
           <img src="img/meta-case-web-school.png" alt="Web制作スクール Meta・WEB広告 × インサイドセールス 実績">
@@ -1729,16 +1820,16 @@
          → アニメ中だけ snap を切って、自前のイージングで動かす
        ・requestAnimationFrame は省電力タブで発火しないことがある
          → setTimeout で駆動する                                   */
-  (function(){
-    const track = document.querySelector('.works-grid');
-    const dots  = document.querySelector('.wc-dots');
-    const prev  = document.querySelector('.wc-prev');
-    const next  = document.querySelector('.wc-next');
-    if(!track || !dots) return;
+  function makeCarousel(root, itemSelector){
+    const track = root.querySelector('[data-track]');
+    const dots  = root.querySelector('.wc-dots');
+    const prev  = root.querySelector('.wc-prev');
+    const next  = root.querySelector('.wc-next');
+    if(!track || !dots) return null;
 
     let anim = null;
 
-    const shown = () => [...track.querySelectorAll('.work-card')]
+    const shown = () => [...track.querySelectorAll(itemSelector)]
                         .filter(c => c.style.display !== 'none');
 
     // カードを左端に寄せるための scrollLeft。
@@ -1829,21 +1920,53 @@
 
     window.addEventListener('resize', () => { clearTimeout(st); st = setTimeout(sync, 150); });
 
-    // タブ切り替え時に先頭へ戻してドットを作り直す
-    document.querySelectorAll('.works-tabs .tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        // 絞り込み後のカードで作り直す。描画が終わってから測らないと幅がゼロになる
+    buildDots();
+    window.addEventListener('load', buildDots);
+
+    // 外から作り直せるように返す（タブ切り替え・折りたたみの開閉で使う）
+    return {
+      rebuild(){
         requestAnimationFrame(() => {
           track.style.scrollSnapType = 'none';
           track.scrollLeft = 0;
           track.style.scrollSnapType = '';
           buildDots();
         });
+      },
+      refresh(){ requestAnimationFrame(sync); }
+    };
+  }
+
+  /* 実績カルーセル */
+  (function(){
+    const root = document.querySelector('.works-carousel');
+    if(!root) return;
+    const c = makeCarousel(root, '.work-card');
+    if(!c) return;
+    // タブで絞り込むと枚数が変わるので、ドットを作り直して先頭へ戻す
+    document.querySelectorAll('.works-tabs .tab').forEach(tab => {
+      tab.addEventListener('click', c.rebuild);
+    });
+  })();
+
+  /* できることカルーセル */
+  (function(){
+    const root = document.querySelector('.service-carousel');
+    if(!root) return;
+    const c = makeCarousel(root, '.service-card');
+    if(!c) return;
+
+    // 「詳しく見る」の開閉。中身が伸び縮みするので位置を測り直す
+    root.querySelectorAll('.svc-more').forEach(btn => {
+      const detail = btn.nextElementSibling;
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.querySelector('.svc-more-label').textContent = open ? '詳しく見る' : '閉じる';
+        detail.hidden = open;
+        c.refresh();
       });
     });
-
-    buildDots();
-    window.addEventListener('load', buildDots);
   })();
 
   /* ===== スマホメニューの開閉 ===== */
