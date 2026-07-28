@@ -37,10 +37,16 @@
     font-weight:400;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    /* 日本語の禁則処理。長音符「ー」や小書き文字が行頭に来るのを防ぐ
+       （「デザイナ／ー」のような割れ方をなくす） */
+    line-break:strict;
   }
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
   .container{max-width:1100px;margin:0 auto;padding:0 28px}
+
+  /* 語の途中で改行させたくない箇所に付ける（カタカナ語・数字＋単位など） */
+  .nw{white-space:nowrap}
 
   .hand{font-family:'Caveat',cursive;color:var(--moss-deep);font-weight:500}
   .en{font-family:'Quicksand',sans-serif;letter-spacing:.15em;font-weight:500}
@@ -1250,16 +1256,28 @@
     .section-title .leaf-icon{margin:0 8px;width:15px;height:15px}
     .section-lead{font-size:13.5px;line-height:2}
 
-    /* 担当わけ図：4列だと1マスが狭すぎるので2列×2段に */
+    /* 担当わけ図：2×2にすると「順番」が消えて4つの別物に見えるため、
+       縦一列＋つなぎ線にして受け渡しの流れが分かるようにする */
     .handoff{margin-top:40px}
     .handoff-ttl{font-size:17px}
     .handoff-sub{font-size:12.5px;margin-bottom:22px}
-    .handoff-row{grid-template-columns:1fr 1fr;gap:20px 10px;padding:22px 14px;border-radius:18px}
+    .handoff-row{display:block;padding:20px 18px;border-radius:18px}
+    .ho{
+      flex-direction:row;align-items:center;gap:14px;
+      text-align:left;padding-bottom:20px;
+    }
+    .ho:last-child{padding-bottom:0}
     .ho + .ho::before{display:none}
-    .ho-icon{width:46px;height:46px}
-    .ho-icon svg{width:23px;height:23px}
-    .ho-step{font-size:12.5px}
-    .ho-who{font-size:10.5px;padding:3px 10px}
+    /* アイコン同士をつなぐ縦線 */
+    .ho:not(:last-child)::after{
+      content:'';position:absolute;left:22px;top:50px;height:calc(100% - 50px);
+      width:1.5px;background:var(--buff);
+    }
+    .ho-icon{width:45px;height:45px;flex:none;z-index:1}
+    .ho-icon svg{width:22px;height:22px}
+    .ho-step{font-size:14px;flex:1;line-height:1.55}
+    .ho-step br{display:none}
+    .ho-who{font-size:11px;padding:4px 12px;margin:0;flex:none}
     .handoff-note{font-size:12.5px;margin-top:18px}
     .about-charge{font-size:12px;padding:6px 14px;margin-bottom:14px}
 
@@ -1350,16 +1368,36 @@
     /* ルール4：見出しは手動改行、本文は自動折返し。
        PC向けに入れた<br>はスマホでは変な位置で切れるので解除する */
     .section-lead br,.strength-lead br,.contact p br{display:none}
-    /* 比較表：3列のままだと1マスが狭すぎるので、行ごとの積み上げに切り替える */
-    .cmp{grid-template-columns:1fr 1fr;border-radius:18px}
-    .cmp-head > div:first-child{display:none}
-    .cmp-head > div{padding:15px 10px;font-size:13px}
-    .cmp-head .us{font-size:14px}
+    /* 比較表：長い表を縦に読むと見出しが画面から消え、
+       どちらが自社の列か分からなくなる。1項目=1カードにして
+       各カードに「分けて頼む／Hotta Creative」を書き直す */
+    .cmp{display:block;background:none;border-radius:0}
+    .cmp-head{display:none}
+    .cmp-row{
+      display:grid;grid-template-columns:1fr 1fr;
+      background:var(--white);border-radius:16px;overflow:hidden;
+      margin-bottom:12px;border:1px solid var(--line);
+    }
     .cmp-row .lbl{
       grid-column:1 / -1;background:var(--base-2);
-      padding:12px 16px;font-size:13px;justify-content:center;
+      padding:12px 16px;font-size:13.5px;justify-content:center;
+      border-top:none;font-weight:500;
     }
-    .cmp-row > div{padding:16px 12px;font-size:12.5px;line-height:1.7}
+    .cmp-row > div{padding:14px 12px;font-size:13px;line-height:1.65;border-top:none}
+    .cmp-row .them,.cmp-row .us{
+      flex-direction:column;align-items:center;gap:6px;justify-content:flex-start;
+    }
+    .cmp-row .them{background:var(--base-3)}
+    .cmp-row .us{background:var(--moss-soft)}
+    /* どちらの側かをカードごとに明示する */
+    .cmp-row .them::before{
+      content:'分けて頼む';font-size:10px;letter-spacing:.04em;
+      color:var(--ink-3);display:block;
+    }
+    .cmp-row .us::before{
+      content:'Hotta Creative';font-size:10px;letter-spacing:.04em;
+      color:#4E6340;display:block;font-family:'Quicksand',sans-serif;font-weight:600;
+    }
     .cmp-lead{font-size:17px;margin-top:34px;line-height:1.75}
     .cmp-note{font-size:11.5px;margin-top:16px}
 
@@ -1368,10 +1406,16 @@
     .worry-item p{font-size:14px;line-height:1.8}
     .worry-arrow{margin:26px 0 24px;font-size:18px}
     .worry-arrow::before{height:30px;margin-bottom:11px}
-    .worry-answer{padding:34px 22px;border-radius:22px}
-    .worry-answer h3{font-size:19px;line-height:1.7;margin-bottom:16px}
-    .worry-answer p{font-size:13.5px;line-height:2}
-    .worry-answer .lead-strong{font-size:15px;margin-top:20px}
+    .worry-answer{padding:30px 20px;border-radius:22px}
+    .worry-answer h3{font-size:19px;line-height:1.7;margin-bottom:18px}
+    /* 日本語の複数行は中央揃えだと両端が揃わず読みにくい。本文だけ左揃えに戻す */
+    .worry-answer p{
+      font-size:14px;line-height:1.95;color:#6B5D4B;
+      text-align:left;background:rgba(255,253,245,.55);
+      border-radius:14px;padding:16px 16px;
+    }
+    .worry-answer p br{display:none}          /* PC用の改行はスマホでは解除 */
+    .worry-answer .lead-strong{font-size:15.5px;margin-top:20px;color:var(--ink)}
 
     /* 途中CTA */
     .midcta{padding:48px 0}
@@ -1391,14 +1435,18 @@
     .price-single{margin-top:44px}
     .price-single h3{font-size:18px}
     .price-table{padding:8px 18px;border-radius:18px}
+    /* 名前と金額が別の行だと視線が往復するので、同じ行の左右に置く */
     .price-row{
-      grid-template-columns:1fr;
-      grid-template-areas:"nm" "amt";
-      row-gap:8px;padding:16px 0;
+      grid-template-columns:1fr auto;
+      grid-template-areas:"nm amt";
+      align-items:center;column-gap:12px;padding:15px 0;
     }
-    .price-row .nm{grid-area:nm;font-size:14px}
-    .price-row .nm em{font-size:11.5px;margin-top:3px}
-    .price-row .amt{grid-area:amt;font-size:18px}
+    .price-row .nm{grid-area:nm;font-size:13.5px}
+    .price-row .nm em{font-size:11px;margin-top:2px}
+    .price-row .nm b.entry{
+      margin:4px 0 0 0;display:block;width:fit-content;font-size:10px;padding:3px 9px;
+    }
+    .price-row .amt{grid-area:amt;font-size:17px}
 
     /* 流れ */
     .flow-step{gap:16px;padding-bottom:28px}
@@ -1590,9 +1638,9 @@
         </svg></div>
       <h3>「バラバラに頼むこと」が、<br>いちばんの遠回りです。</h3>
       <p>
-        広告の担当者はデザインを知らず、デザイナーは数字を知らない。<br>
-        あいだをつなぐ人がいないと、そのズレは全部あなたの仕事になります。<br>
-        伝言と調整に時間を取られて、肝心の改善が進まない。
+        広告の担当者は<span class="nw">デザイン</span>を知らず、<span class="nw">デザイナー</span>は数字を知らない。<br>
+        あいだをつなぐ人がいないと、そのズレは全部<span class="nw">あなたの仕事</span>になります。<br>
+        伝言と調整に時間を取られて、肝心の<span class="nw">改善が進まない</span>。
       </p>
       <span class="lead-strong">
         だから私たちは、ぜんぶまとめて<br>
