@@ -1384,9 +1384,11 @@
       border-top:none;font-weight:500;
     }
     .cmp-row > div{padding:14px 12px;font-size:13px;line-height:1.65;border-top:none}
+    /* flex(column) だと本文中の<span>まで独立した行になるためブロック表示にする */
     .cmp-row .them,.cmp-row .us{
-      flex-direction:column;align-items:center;gap:6px;justify-content:flex-start;
+      display:block;text-align:center;
     }
+    .cmp-row .them::before,.cmp-row .us::before{margin-bottom:6px}
     .cmp-row .them{background:var(--base-3)}
     .cmp-row .us{background:var(--moss-soft)}
     /* どちらの側かをカードごとに明示する */
@@ -1549,12 +1551,12 @@
   <div class="container hero-inner">
     <div>
       <h1>
-        広告とデザイン、<br>
+        広告と<span class="nw">デザイン</span>、<br>
         <span class="pen">別々に頼むの</span>、<br>
         もうやめませんか。
       </h1>
       <p class="hero-lead">
-        Meta広告が得意な夫と、デザインが得意な妻。<br>
+        Meta広告が得意な夫と、<span class="nw">デザイン</span>が得意な妻。<br>
         集客の入口から出口まで、ひとつの窓口でお任せいただけます。
       </p>
       <div class="hero-proof">
@@ -1614,7 +1616,7 @@
       <div class="worry-item"><span class="check"></span>
         <p>広告を回しているけれど、何が効いていて何が無駄なのか分からない。</p></div>
       <div class="worry-item"><span class="check"></span>
-        <p>デザインは制作会社、広告は別の会社。あいだの調整を、結局こちらがやっている。</p></div>
+        <p><span class="nw">デザイン</span>は制作会社、広告は別の会社。あいだの調整を、結局こちらがやっている。</p></div>
       <div class="worry-item"><span class="check"></span>
         <p>公式LINEを作ったものの、置いたままになっている。</p></div>
       <div class="worry-item"><span class="check"></span>
@@ -1656,8 +1658,8 @@
       <div class="section-eyebrow">about us</div>
       <h2 class="section-title">わたしたちのこと<span class="leaf-icon"></span></h2>
       <p class="section-lead">
-        鳥取県で活動している、夫婦フリーランスチーム「Hotta」です。<br>
-        広告とデザイン、ふたつの専門性を、ひとつの窓口でお届けしています。
+        鳥取県で活動している、夫婦<span class="nw">フリーランス</span>チーム「Hotta」です。<br>
+        広告と<span class="nw">デザイン</span>、ふたつの専門性を、ひとつの窓口でお届けしています。
       </p>
     </div>
 
@@ -1671,8 +1673,8 @@
           数字をつくる担当
         </div>
         <p class="about-desc">
-          マーケティング歴6年、Meta広告運用を中心に、
-          累計売上3.5億円規模の広告アカウントを担当してきました。
+          <span class="nw">マーケティング</span>歴6年、Meta広告運用を中心に、
+          累計売上3.5億円規模の広告<span class="nw">アカウント</span>を担当してきました。
           LINE構築や、AIを活用した24時間自動監視・自動応答など、
           「数字をつくる」仕組みづくりが得意です。
         </p>
@@ -1697,16 +1699,16 @@
           伝わる形にする担当
         </div>
         <p class="about-desc">
-          Webデザインを軸に、SNSコンテンツの制作・運用まで担当。
-          広告の「クリエイティブ」と「世界観」を、
-          ターゲットに届く形に整えていきます。
+          Web<span class="nw">デザイン</span>を軸に、SNSコンテンツの制作・運用まで担当。
+          広告の「<span class="nw">クリエイティブ</span>」と「世界観」を、
+          <span class="nw">ターゲット</span>に届く形に整えていきます。
         </p>
         <span class="about-tags-label">得意なこと</span>
         <div class="about-skills">
-          <span class="skill-tag">Webデザイン</span>
+          <span class="skill-tag">Web<span class="nw">デザイン</span></span>
           <span class="skill-tag">LP制作</span>
           <span class="skill-tag">バナー制作</span>
-          <span class="skill-tag">リッチメニュー制作</span>
+          <span class="skill-tag"><span class="nw">リッチメニュー</span>制作</span>
           <span class="skill-tag">Instagram運用</span>
           <span class="skill-tag">Canva</span>
         </div>
@@ -1775,11 +1777,11 @@
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
-            <li>アカウント設計・初期構築</li>
+            <li><span class="nw">アカウント</span>設計・初期構築</li>
             <li>ターゲティング・配信設計の強化</li>
-            <li>バナー / A/Bテスト用クリエイティブ制作</li>
-            <li>コンバージョン設定・計測タグ実装</li>
-            <li>既存広告アカウントの最適化</li>
+            <li>バナー / A/Bテスト用<span class="nw">クリエイティブ</span>制作</li>
+            <li><span class="nw">コンバージョン</span>設定・計測タグ実装</li>
+            <li>既存広告<span class="nw">アカウント</span>の最適化</li>
             <li>運用代行（手数料制でスケーリング対応）</li>
             <li>LP制作 / LINE導線まで連携対応</li>
           </ul>
@@ -1801,15 +1803,15 @@
         <div class="service-subtitle">LINE公式 / Lステップ / エルメ対応</div>
         <p class="service-desc">
           「LINEを作る」のではなく「売上に直結するLINEを設計」。
-          広告 × デザイン × LINE構築を、夫婦チームで一気通貫対応します。
+          広告 × <span class="nw">デザイン</span> × LINE構築を、夫婦チームで一気通貫対応します。
         </p>
         <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
         <div class="svc-detail" hidden>
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
-            <li>LINE公式アカウント初期設定・プロフィール構築</li>
-            <li>リッチメニュー制作（最大6分割）</li>
+            <li>LINE公式<span class="nw">アカウント</span>初期設定・プロフィール構築</li>
+            <li><span class="nw">リッチメニュー</span>制作（最大6分割）</li>
             <li>挨拶・自動応答メッセージ設定</li>
             <li>ステップ配信シナリオ設計（5通〜20通）</li>
             <li>Lステップ／エルメ初期設定</li>
@@ -1834,7 +1836,7 @@
         <div class="service-subtitle">広告で反応が取れるバナー</div>
         <p class="service-desc">
           ただ綺麗なだけじゃない、「広告で反応が取れる」バナーを。
-          Meta広告運用者 × Webデザイナーの夫婦チームで、
+          Meta広告運用者 × Web<span class="nw">デザイナー</span>の夫婦チームで、
           反応率の上がる構成・配色・コピーを1枚に凝縮します。
         </p>
         <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
@@ -1842,10 +1844,10 @@
         <div class="service-block">
           <span class="block-label">対応できること</span>
           <ul class="service-list">
-            <li>ターゲットが指を止める1秒インパクト設計</li>
-            <li>コンバージョンに繋がる訴求文の優先順位</li>
+            <li><span class="nw">ターゲット</span>が指を止める1秒インパクト設計</li>
+            <li><span class="nw">コンバージョン</span>に繋がる訴求文の優先順位</li>
             <li>媒体（Meta / LINE / Web）ごとの最適サイズ・余白</li>
-            <li>A/Bテスト用クリエイティブ制作</li>
+            <li>A/Bテスト用<span class="nw">クリエイティブ</span>制作</li>
             <li>キャッチコピー考案・リサイズ展開</li>
             <li>最短2営業日のスピード納品</li>
           </ul>
@@ -1879,7 +1881,7 @@
             <li>LINE Bot・チャットボットの制作</li>
             <li>AIを使った業務支援（文字起こし・要約・書類作成・OCR）</li>
             <li>Notion / スプレッドシート / 外部サービスとの連携</li>
-            <li>業務のヒアリング → 要件整理 → 実装 → 公開まで一括</li>
+            <li>業務の<span class="nw">ヒアリング</span> → 要件整理 → 実装 → 公開まで一括</li>
             <li>まず小さく作って試す、から始められます</li>
           </ul>
         </div>
@@ -1912,14 +1914,14 @@
             <li>データベース構築・リレーション設定</li>
             <li>自動化設計（ボタン・テンプレ・自動入力）</li>
             <li>マーケ視点での運用設計</li>
-            <li>操作マニュアル（PDF）作成・運用レクチャー</li>
+            <li>操作マニュアル（PDF）作成・運用<span class="nw">レクチャー</span></li>
             <li>納品後のチャットサポート</li>
           </ul>
         </div>
         <div class="service-block">
           <span class="block-label">こんな方におすすめ</span>
           <p class="service-example">
-            「Notionを使いたいけど何から始めればいいかわからない」「自分で作ったけど散らかってしまう」「業務に合った仕組みが欲しい」個人事業主・フリーランス・スタートアップの方など
+            「Notionを使いたいけど何から始めればいいかわからない」「自分で作ったけど散らかってしまう」「業務に合った仕組みが欲しい」個人事業主・<span class="nw">フリーランス</span>・スタートアップの方など
           </p>
         </div>
         </div>
@@ -1928,11 +1930,11 @@
       <div class="service-card">
         <div class="service-icon-wrap">06</div>
         <span class="svc-group g2">単発で頼む</span>
-        <h3 class="service-title">広告アカウント診断</h3>
+        <h3 class="service-title">広告<span class="nw">アカウント</span>診断</h3>
         <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M20 38h5v10h-5zM29 30h5v18h-5zM38 34h5v14h-5z"/><path class="ln" d="M20 38h5v10h-5zM29 30h5v18h-5zM38 34h5v14h-5z"/><path class="ln" d="M14 48h36"/><circle class="ln2" cx="42" cy="20" r="9"/><path class="ln2" d="M48.5 26.5L55 33"/></svg>
         <div class="service-subtitle">スポット / レポート1枚</div>
         <p class="service-desc">
-          いまの広告アカウントで何が起きているかを、実データだけで1枚にまとめます。運用を任せる前の健康診断として。
+          いまの広告<span class="nw">アカウント</span>で何が起きているかを、実データだけで1枚にまとめます。運用を任せる前の健康診断として。
         </p>
         <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
         <div class="svc-detail" hidden>
@@ -1941,7 +1943,7 @@
           <ul class="service-list">
             <li>管理画面からの実数値の抽出（推測値は使いません）</li>
             <li>埋もれている成果・止め忘れの配信の洗い出し</li>
-            <li>コンバージョン計測が正しく動いているかの確認</li>
+            <li><span class="nw">コンバージョン</span>計測が正しく動いているかの確認</li>
             <li>改善すべき点を優先順位つきで3つに整理</li>
             <li>レポート1枚にまとめてお渡し</li>
             <li>そのまま運用代行へ引き継ぐことも可能</li>
@@ -1950,7 +1952,7 @@
         <div class="service-block">
           <span class="block-label">こんな方におすすめ</span>
           <p class="service-example">
-            「代理店に任せているが中身が分からない」「数字は見ているけれど、どこを直せばいいか分からない」「引き継いだアカウントの状態を知りたい」という方など
+            「代理店に任せているが中身が分からない」「数字は見ているけれど、どこを直せばいいか分からない」「引き継いだ<span class="nw">アカウント</span>の状態を知りたい」という方など
           </p>
         </div>
         </div>
@@ -1961,7 +1963,7 @@
         <span class="svc-group g2">単発で頼む</span>
         <h3 class="service-title">実績資料の制作</h3>
         <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M17 8h20l10 10v38H17z"/><path class="ln" d="M17 8h20l10 10v38H17a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z"/><path class="ln" d="M37 8v10h10"/><path class="ln2" d="M24 44v-8M31 44V30M38 44v-6"/><path class="ln" d="M24 26h9"/></svg>
-        <div class="service-subtitle">ポートフォリオ / 提案資料</div>
+        <div class="service-subtitle"><span class="nw">ポートフォリオ</span> / 提案資料</div>
         <p class="service-desc">
           管理画面の実数から、盛らずに伝わる実績資料をつくります。このサイトに並んでいる実績カードも同じ作り方です。
         </p>
@@ -1980,7 +1982,7 @@
         <div class="service-block">
           <span class="block-label">こんな方におすすめ</span>
           <p class="service-example">
-            「実績はあるのに資料にできていない」「見積を出す前に信頼してもらいたい」「数字の見せ方が分からない」というフリーランス・事業者の方など
+            「実績はあるのに資料にできていない」「見積を出す前に信頼してもらいたい」「数字の見せ方が分からない」という<span class="nw">フリーランス</span>・事業者の方など
           </p>
         </div>
         </div>
@@ -1989,7 +1991,7 @@
       <div class="service-card">
         <div class="service-icon-wrap">08</div>
         <span class="svc-group g3">教わる</span>
-        <h3 class="service-title">Notionレクチャー</h3>
+        <h3 class="service-title">Notion<span class="nw">レクチャー</span></h3>
         <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M12 14h18a4 4 0 0 1 4 4v32a4 4 0 0 0-4-4H12z"/><path class="ln" d="M12 14h18a4 4 0 0 1 4 4v32a4 4 0 0 0-4-4H12z"/><path class="ln2" d="M52 14H34a4 4 0 0 0-4 4v32a4 4 0 0 1 4-4h18z"/><path class="ln" d="M32 18v32"/></svg>
         <div class="service-subtitle">60分マンツーマン</div>
         <p class="service-desc">
@@ -2007,13 +2009,13 @@
             <li>ご自身のビジネスへの応用方法</li>
             <li>マーケ視点での活用アイデア</li>
             <li>テンプレ・拡張のヒント</li>
-            <li>事前ヒアリング + 画面録画の提供付き</li>
+            <li>事前<span class="nw">ヒアリング</span> + 画面録画の提供付き</li>
           </ul>
         </div>
         <div class="service-block">
           <span class="block-label">こんな方におすすめ</span>
           <p class="service-example">
-            「本やYouTubeで学んでもピンと来ない」「自分のビジネスに最適化したい」初心者〜既に使っているが活用しきれていない個人事業主・フリーランスの方など
+            「本やYouTubeで学んでもピンと来ない」「自分のビジネスに最適化したい」初心者〜既に使っているが活用しきれていない個人事業主・<span class="nw">フリーランス</span>の方など
           </p>
         </div>
         </div>
@@ -2022,7 +2024,7 @@
       <div class="service-card">
         <div class="service-icon-wrap">09</div>
         <span class="svc-group g3">教わる</span>
-        <h3 class="service-title">AI開発レクチャー</h3>
+        <h3 class="service-title">AI開発<span class="nw">レクチャー</span></h3>
         <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><rect class="fl2" x="10" y="14" width="44" height="28" rx="3"/><rect class="ln" x="10" y="14" width="44" height="28" rx="3"/><path class="ln" d="M24 50h16M32 42v8"/><path class="ln2" d="M26 28l-4 4 4 4M38 28l4 4-4 4"/><path class="ln" d="M47 10l1.2 3L51 14l-2.8 1L47 18l-1.2-3L43 14l2.8-1z"/></svg>
         <div class="service-subtitle">マンツーマン / 画面録画つき</div>
         <p class="service-desc">
@@ -2038,7 +2040,7 @@
             <li>小さく作って動かすまでの型</li>
             <li>うまくいかないときの戻し方</li>
             <li>ご自身の業務に合わせた題材で実践</li>
-            <li>事前ヒアリング + 画面録画の提供付き</li>
+            <li>事前<span class="nw">ヒアリング</span> + 画面録画の提供付き</li>
           </ul>
         </div>
         <div class="service-block">
@@ -2078,7 +2080,7 @@
   <div class="container">
     <div class="section-eyebrow">our strength</div>
     <h2>
-      「広告」と「デザイン」を、<br>
+      「広告」と「<span class="nw">デザイン</span>」を、<br>
       <span class="pen">夫婦ふたり</span>で、まるっと。
     </h2>
     <p class="strength-lead">
@@ -2099,7 +2101,7 @@
           <div class="strength-num">01</div>
         <div class="strength-title">窓口はひとつ</div>
         <div class="strength-desc">
-          広告担当・デザイナーを、別々に探す必要がありません。
+          広告担当・<span class="nw">デザイナー</span>を、別々に探す必要がありません。
           ひとつのご依頼で完結します。
         </div>
       </div>
@@ -2112,10 +2114,10 @@
             <path class="ln2" d="M35 12h5v5"/>
           </svg></div>
           <div class="strength-num">02</div>
-        <div class="strength-title">数字に強いデザイン</div>
+        <div class="strength-title">数字に強い<span class="nw">デザイン</span></div>
         <div class="strength-desc">
           広告運用者の知見を踏まえた、
-          「CVRが上がる」クリエイティブをご提案。
+          「CVRが上がる」<span class="nw">クリエイティブ</span>をご提案。
         </div>
       </div>
       <div class="strength-item">
@@ -2163,7 +2165,7 @@
         <div class="price-amount" style="white-space:nowrap">50<span class="unit">,000円 / 月</span></div>
         <div class="price-note">広告費は別途（月5万円〜が目安）</div>
         <ul class="price-inc">
-          <li>広告アカウントの設計・初期構築</li>
+          <li>広告<span class="nw">アカウント</span>の設計・初期構築</li>
           <li>配信の運用・調整</li>
           <li>月1回のレポート</li>
           <li>バナー制作 月2枚まで</li>
@@ -2184,7 +2186,7 @@
           <path class="ln2" d="M46 45v3M50 44v4"/>
         </svg></div>
         <div class="price-name">スタンダード</div>
-        <div class="price-sub">広告 × クリエイティブ</div>
+        <div class="price-sub">広告 × <span class="nw">クリエイティブ</span></div>
         <div class="price-amount" style="white-space:nowrap">100<span class="unit">,000円 / 月</span></div>
         <div class="price-note">広告費は別途（月10万円〜が目安）</div>
         <ul class="price-inc">
@@ -2192,7 +2194,7 @@
           <li>バナー制作 枚数の上限なし</li>
           <li>A/Bテストの設計・実施</li>
           <li>LPの改善提案</li>
-          <li>隔週のオンライン定例</li>
+          <li>隔週の<span class="nw">オンライン</span>定例</li>
         </ul>
       </div>
 
@@ -2218,7 +2220,7 @@
           <li>LP制作・改修</li>
           <li>公式LINEの構築・配信設計</li>
           <li>数値レポートの自動化</li>
-          <li>毎週のオンライン定例</li>
+          <li>毎週の<span class="nw">オンライン</span>定例</li>
         </ul>
       </div>
     </div>
@@ -2236,8 +2238,10 @@
     </div><!-- /plan-carousel -->
 
     <div class="price-foot">
-      表示はすべて税込です。ご契約期間の縛りはありません。<br>
-      内容によって前後しますので、正式なお見積りはヒアリングのうえでお出しします。
+      表示はすべて税込です。<br>
+      ご契約期間の縛りはありません。<br>
+      内容によって前後する場合があります。<br>
+      正式なお見積りは<span class="nw">ヒアリング</span>のうえでお出しします。
     </div>
 
     <div class="price-single">
@@ -2249,7 +2253,7 @@
           <span class="amt">50,000<small>円 / 月</small></span>
         </div>
         <div class="price-row is-entry">
-          <span class="nm">広告アカウント診断<b class="entry">まずはここから</b><em>レポート1枚でお渡し</em></span>
+          <span class="nm">広告<span class="nw">アカウント</span>診断<b class="entry">まずはここから</b><em>レポート1枚でお渡し</em></span>
           <span class="amt">15,000<small>円 / 1回</small></span>
         </div>
         <div class="price-row is-entry">
@@ -2257,7 +2261,7 @@
           <span class="amt">5,000<small>円</small></span>
         </div>
         <div class="price-row">
-          <span class="nm">リッチメニュー制作<em>最大6分割</em></span>
+          <span class="nm"><span class="nw">リッチメニュー</span>制作<em>最大6分割</em></span>
           <span class="amt">20,000<small>円</small></span>
         </div>
         <div class="price-row">
@@ -2281,11 +2285,11 @@
           <span class="amt">50,000<small>円〜</small></span>
         </div>
         <div class="price-row is-entry">
-          <span class="nm">Notionレクチャー<b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
+          <span class="nm">Notion<span class="nw">レクチャー</span><b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
           <span class="amt">5,000<small>円 / 60分</small></span>
         </div>
         <div class="price-row is-entry">
-          <span class="nm">AI開発レクチャー<b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
+          <span class="nm">AI開発<span class="nw">レクチャー</span><b class="entry">まずはここから</b><em>マンツーマン60分</em></span>
           <span class="amt">7,500<small>円 / 60分</small></span>
         </div>
       </div>
@@ -2333,7 +2337,7 @@
         </div>
         <div class="cmp-row">
           <div class="lbl">「反応が悪い」となったとき</div>
-          <div class="them">広告のせいか<br>デザインのせいか<br>分からない</div>
+          <div class="them">広告かデザインか、<br>原因が分からない</div>
           <div class="us">両方見ているので<br>すぐ切り分けできる</div>
         </div>
         <div class="cmp-row">
@@ -2368,7 +2372,7 @@
 
     <div class="works-tabs">
       <button class="tab active" data-category="banner">バナー</button>
-      <button class="tab" data-category="richmenu">リッチメニュー</button>
+      <button class="tab" data-category="richmenu"><span class="nw">リッチメニュー</span></button>
       <button class="tab" data-category="meta">Meta広告</button>
       <button class="tab" data-category="app">アプリ開発</button>
       <button class="tab" data-category="lp">LP制作</button>
@@ -2382,8 +2386,8 @@
           <img src="img/meta-case-web-school.png" alt="Web制作スクール Meta・WEB広告 × インサイドセールス 実績">
         </div>
         <div class="work-cat">— Meta広告</div>
-        <div class="work-title">Web制作スクール①｜Meta・WEB広告 × インサイドセールス</div>
-        <div class="work-meta">運用29ヶ月 / 4アカウント並行</div>
+        <div class="work-title">Web制作スクール①｜Meta・WEB広告 × <span class="nw">インサイドセールス</span></div>
+        <div class="work-meta">運用29ヶ月 / 4<span class="nw">アカウント</span>並行</div>
         <span class="work-result">累計登録3,177件</span>
       </div>
       <div class="work-card" data-category="meta">
@@ -2400,7 +2404,7 @@
           <img src="img/meta-case-online-course.png" alt="女性向けオンライン講座 Meta広告 × 公式LINE構築 実績">
         </div>
         <div class="work-cat">— Meta広告</div>
-        <div class="work-title">女性向けオンライン講座①｜Meta広告 × 公式LINE構築</div>
+        <div class="work-title">女性向け<span class="nw">オンライン</span>講座①｜Meta広告 × 公式LINE構築</div>
         <div class="work-meta">運用19ヶ月 継続中</div>
         <span class="work-result">累計登録461件</span>
       </div>
@@ -2409,7 +2413,7 @@
           <img src="img/meta-case-online-course-2.png" alt="女性向けオンライン講座 広告表示から登録までのファネルと月別推移">
         </div>
         <div class="work-cat">— Meta広告</div>
-        <div class="work-title">女性向けオンライン講座②｜広告表示から登録までの実数</div>
+        <div class="work-title">女性向け<span class="nw">オンライン</span>講座②｜広告表示から登録までの実数</div>
         <div class="work-meta">ファネル全体 / 月別推移</div>
         <span class="work-result">最多月81件</span>
       </div>
@@ -2427,7 +2431,7 @@
           <img src="img/meta-case-beauty-school-2.png" alt="美容サロン系スクール キャンペーン目的の再設計 before after">
         </div>
         <div class="work-cat">— Meta広告</div>
-        <div class="work-title">美容サロン系スクール②｜キャンペーン目的の再設計</div>
+        <div class="work-title">美容サロン系スクール②｜<span class="nw">キャンペーン</span>目的の再設計</div>
         <div class="work-meta">ファネル全体 / 目的切替の効果</div>
         <span class="work-result">0件→104件</span>
       </div>
@@ -2466,7 +2470,7 @@
         <div class="work-cat">— アプリ開発</div>
         <div class="work-title">架電管理 アプリ</div>
         <div class="work-meta">架電リスト / 結果記録 / 誤発信防止</div>
-        <span class="work-result">インサイドセールス</span>
+        <span class="work-result"><span class="nw">インサイドセールス</span></span>
       </div>
       <div class="work-card" data-category="app">
         <div class="work-thumb has-image">
@@ -2517,7 +2521,7 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-myselfnotebook.png" alt="My Self Note Book リッチメニュー">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">My Self Note Book｜講座用</div>
         <div class="work-meta">2分割 / 女性向け講座</div>
         <span class="work-result">アンケート誘導</span>
@@ -2526,7 +2530,7 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-nail-atelier.png" alt="nail atelier lume リッチメニュー">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">nail atelier lume｜ネイルサロン</div>
         <div class="work-meta">2分割 / ネイルサロン</div>
         <span class="work-result">予約導線</span>
@@ -2535,7 +2539,7 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-salon-green.png" alt="サロン リッチメニュー モスグリーン">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">サロン｜モスグリーン6分割</div>
         <div class="work-meta">6分割 / 美容サロン</div>
         <span class="work-result">フル機能訴求</span>
@@ -2544,16 +2548,16 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-salon-blue.png" alt="サロン リッチメニュー ブルー水彩">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">サロン｜ブルー水彩タッチ</div>
         <div class="work-meta">6分割 / 美容サロン</div>
-        <span class="work-result">透明感のあるデザイン</span>
+        <span class="work-result">透明感のある<span class="nw">デザイン</span></span>
       </div>
       <div class="work-card" data-category="richmenu">
         <div class="work-thumb has-image">
           <img src="img/richmenu-shop-natural.png" alt="店舗 リッチメニュー ナチュラル">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">店舗｜営業時間入りナチュラル</div>
         <div class="work-meta">3分割 / 店舗</div>
         <span class="work-result">情報集約型</span>
@@ -2562,7 +2566,7 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-paw-care.png" alt="PAW &amp; CARE ペットサロン リッチメニュー">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">PAW &amp; CARE｜ペットサロン</div>
         <div class="work-meta">4分割 / ペットサロン</div>
         <span class="work-result">写真活用型</span>
@@ -2571,16 +2575,16 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-school-blue.png" alt="講座 リッチメニュー 青×黄">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">講座｜お問い合わせ集約型</div>
-        <div class="work-meta">6分割 / オンライン講座</div>
+        <div class="work-meta">6分割 / <span class="nw">オンライン</span>講座</div>
         <span class="work-result">コントラスト訴求</span>
       </div>
       <div class="work-card" data-category="richmenu">
         <div class="work-thumb has-image">
           <img src="img/richmenu-bloom-path.png" alt="Bloom Path リッチメニュー">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">Bloom Path｜自己分析サービス</div>
         <div class="work-meta">3分割 / 自己分析・キャリア</div>
         <span class="work-result">水彩フローラル</span>
@@ -2589,7 +2593,7 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-cafe-beige.png" alt="カフェ リッチメニュー シーズナル">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">カフェ｜シーズナル6分割</div>
         <div class="work-meta">6分割 / カフェ・飲食</div>
         <span class="work-result">フル機能訴求</span>
@@ -2598,16 +2602,16 @@
         <div class="work-thumb has-image">
           <img src="img/richmenu-school-pink.png" alt="講座 リッチメニュー ピンクマーブル">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">講座｜フェミニンスクール</div>
-        <div class="work-meta">6分割 / オンライン講座</div>
+        <div class="work-meta">6分割 / <span class="nw">オンライン</span>講座</div>
         <span class="work-result">上品な大人女性向け</span>
       </div>
       <div class="work-card" data-category="richmenu">
         <div class="work-thumb has-image">
           <img src="img/richmenu-ecru-nail.png" alt="écru nail ネイルサロン リッチメニュー">
         </div>
-        <div class="work-cat">— リッチメニュー</div>
+        <div class="work-cat">— <span class="nw">リッチメニュー</span></div>
         <div class="work-title">écru nail｜ネイルサロン</div>
         <div class="work-meta">2分割 / ネイルサロン</div>
         <span class="work-result">大人ニュアンス系</span>
@@ -2635,7 +2639,7 @@
           <img src="img/banner-webdesigner.png" alt="WEBデザインスクール 広告バナー">
         </div>
         <div class="work-cat">— バナー</div>
-        <div class="work-title">WEBデザインスクール｜申込訴求</div>
+        <div class="work-title">WEB<span class="nw">デザイン</span>スクール｜申込訴求</div>
         <div class="work-meta">正方形 / スクール業界</div>
         <span class="work-result">未経験向け訴求</span>
       </div>
@@ -2671,8 +2675,8 @@
           <img src="img/banner-maternity.png" alt="産前産後ダイエット 広告バナー">
         </div>
         <div class="work-cat">— バナー</div>
-        <div class="work-title">産前産後ダイエット｜オンライン</div>
-        <div class="work-meta">正方形 / オンラインフィットネス</div>
+        <div class="work-title">産前産後ダイエット｜<span class="nw">オンライン</span></div>
+        <div class="work-meta">正方形 / <span class="nw">オンライン</span>フィットネス</div>
         <span class="work-result">ママ向け訴求</span>
       </div>
       <div class="work-card" data-category="banner">
@@ -2706,7 +2710,7 @@
         <div class="work-thumb has-image">
           <img src="img/card-1.png" alt="Lumière Palette 名刺">
         </div>
-        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-cat">— 名刺<span class="nw">デザイン</span></div>
         <div class="work-title">女性向けブランド｜表裏セット</div>
         <div class="work-meta">両面 / フェミニンブランド</div>
         <span class="work-result">ガーリー訴求</span>
@@ -2715,7 +2719,7 @@
         <div class="work-thumb has-image">
           <img src="img/card-2.png" alt="さくらファミリー歯科 名刺">
         </div>
-        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-cat">— 名刺<span class="nw">デザイン</span></div>
         <div class="work-title">親子歯科医院｜表裏セット</div>
         <div class="work-meta">両面 / 歯科・医療業界</div>
         <span class="work-result">ファミリー訴求</span>
@@ -2724,7 +2728,7 @@
         <div class="work-thumb has-image">
           <img src="img/card-3.png" alt="NEXLEAD 名刺">
         </div>
-        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-cat">— 名刺<span class="nw">デザイン</span></div>
         <div class="work-title">DXコンサル企業｜表裏セット</div>
         <div class="work-meta">両面 / コンサル・ビジネス</div>
         <span class="work-result">信頼感訴求</span>
@@ -2733,9 +2737,9 @@
         <div class="work-thumb has-image">
           <img src="img/card-4.png" alt="FRAME SHIFT 名刺">
         </div>
-        <div class="work-cat">— 名刺デザイン</div>
+        <div class="work-cat">— 名刺<span class="nw">デザイン</span></div>
         <div class="work-title">映像クリエイター｜表裏セット</div>
-        <div class="work-meta">両面 / 映像・クリエイティブ</div>
+        <div class="work-meta">両面 / 映像・<span class="nw">クリエイティブ</span></div>
         <span class="work-result">ラグジュアリー訴求</span>
       </div>
       <div class="work-card" data-category="lp">
@@ -2743,8 +2747,8 @@
           <img src="img/lp-renai-koza.png" alt="恋愛・自己啓発オンライン講座 LP">
         </div>
         <div class="work-cat">— LP制作</div>
-        <div class="work-title">恋愛・自己啓発オンライン講座｜LP</div>
-        <div class="work-meta">PC + スマホ / オンライン講座</div>
+        <div class="work-title">恋愛・自己啓発<span class="nw">オンライン</span>講座｜LP</div>
+        <div class="work-meta">PC + スマホ / <span class="nw">オンライン</span>講座</div>
         <span class="work-result">10大特典でLINE誘導</span>
       </div>
       <div class="work-card" data-category="lp">
@@ -2824,9 +2828,9 @@
         <div class="flow-num">02</div>
         <div class="flow-body">
           <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M8 14h30v20H20l-8 7v-7H8z"/><path class="ln" d="M8 14h30v20H20l-8 7v-7H8z"/><path class="ln2" d="M28 30h28v18H44l-6 6v-6h-10z"/></svg>
-          <h4>ヒアリング</h4>
-          <p>いまの状況と、困っていることをお聞きします。すでにお使いの広告アカウントやLINEがあれば、その場で拝見します。</p>
-          <span class="tag">無料 ／ オンライン30分ほど</span>
+          <h4><span class="nw">ヒアリング</span></h4>
+          <p>いまの状況と、困っていることをお聞きします。すでにお使いの広告<span class="nw">アカウント</span>やLINEがあれば、その場で拝見します。</p>
+          <span class="tag">無料 ／ <span class="nw">オンライン</span>30分ほど</span>
         </div>
       </div>
       <div class="flow-step">
@@ -2874,7 +2878,7 @@
           <span class="caret"></span>
         </button>
         <div class="faq-a" hidden><span class="amark">A.</span>
-          <span>はい。打ち合わせはすべてオンラインで完結するので、全国どこでも対応しています。現在のお取引先も県外の方が中心です。</span>
+          <span>はい。打ち合わせはすべて<span class="nw">オンライン</span>で完結するので、全国どこでも対応しています。現在のお取引先も県外の方が中心です。</span>
         </div>
       </div>
       <div class="faq-item">
@@ -2914,7 +2918,7 @@
           <span class="caret"></span>
         </button>
         <div class="faq-a" hidden><span class="amark">A.</span>
-          <span>もちろんです。バナー1枚から、広告アカウントを見るだけの単発まで対応しています。まとめてお任せいただくこともできます。</span>
+          <span>もちろんです。バナー1枚から、広告<span class="nw">アカウント</span>を見るだけの単発まで対応しています。まとめてお任せいただくこともできます。</span>
         </div>
       </div>
       <div class="faq-item">
@@ -2924,7 +2928,7 @@
           <span class="caret"></span>
         </button>
         <div class="faq-a" hidden><span class="amark">A.</span>
-          <span>対応しています。広告アカウント・公式LINE・LPなど、途中まで作られたものの引き継ぎや立て直しもよくご相談いただきます。</span>
+          <span>対応しています。広告<span class="nw">アカウント</span>・公式LINE・LPなど、途中まで作られたものの引き継ぎや立て直しもよくご相談いただきます。</span>
         </div>
       </div>
     </div>
@@ -2943,11 +2947,11 @@
 
       <div class="sns-label">SNSでもご相談いただけます</div>
       <div class="sns-row">
-        <a class="sns-btn ig" href="https://www.instagram.com/hottacreative" target="_blank" rel="noopener noreferrer">
+        <a class="sns-btn ig" href="https://www.instagram.com/hottacreative_" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
           <span>Instagram<span class="sub">DMでお気軽に</span></span>
         </a>
-        <a class="sns-btn th" href="https://www.threads.com/@hottacreative" target="_blank" rel="noopener noreferrer">
+        <a class="sns-btn th" href="https://www.threads.com/@hottacreative_" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 21c-5 0-8.5-3.4-8.5-9s3.4-9 8.4-9c3.6 0 6 1.7 7.1 4.3"/><path d="M9.4 13.6c0-1.7 1.6-2.7 3.6-2.7 3 0 4.6 1.6 4.6 4 0 2-1.2 3.4-2.9 3.4-1.5 0-2.4-.9-2.6-2.4-.3-2.5.6-5.3 3.4-5.6"/></svg>
           <span>Threads<span class="sub">日々の発信はこちら</span></span>
         </a>
@@ -2984,7 +2988,7 @@
             <div class="logo-sub">— freelance couple —</div>
           </div>
         </div>
-        <p>鳥取県を拠点に活動する、夫婦フリーランスチーム。広告 × デザインで、地方からあなたの事業を支えます。</p>
+        <p>鳥取県を拠点に活動する、夫婦<span class="nw">フリーランス</span>チーム。広告 × <span class="nw">デザイン</span>で、地方からあなたの事業を支えます。</p>
       </div>
       <div class="footer-col">
         <h4>service</h4>
@@ -2993,7 +2997,7 @@
           <li><a href="#service">LINE公式構築</a></li>
           <li><a href="#service">バナー制作</a></li>
           <li><a href="#service">Notion構築代行</a></li>
-          <li><a href="#service">Notionレクチャー</a></li>
+          <li><a href="#service">Notion<span class="nw">レクチャー</span></a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -3007,8 +3011,8 @@
         <h4>contact</h4>
         <ul>
           <li><a href="#contact">お問い合わせ</a></li>
-          <li><a href="https://www.instagram.com/hottacreative" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="https://www.threads.com/@hottacreative" target="_blank" rel="noopener noreferrer">Threads</a></li>
+          <li><a href="https://www.instagram.com/hottacreative_" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.threads.com/@hottacreative_" target="_blank" rel="noopener noreferrer">Threads</a></li>
           <li><a href="https://www.lancers.jp/profile/syuto_s" target="_blank" rel="noopener noreferrer">Lancers</a></li>
           <li><a href="https://coconala.com/users/4943677" target="_blank" rel="noopener noreferrer">Coconala</a></li>
         </ul>
