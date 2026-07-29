@@ -1234,8 +1234,11 @@
     .hero-cta .btn{justify-content:center;width:100%;padding:0 24px;height:54px}
     .hero-note{margin:14px 0 0;text-align:center;font-size:16px}
     /* 写真は見出しの直下。開いた瞬間に目に入る位置なので、少しだけ大きくする。
-       幅いっぱいにすると縦が伸びてリード文が押し出されるので vw で頭打ちにする */
-    .hero-visual{max-width:min(72vw,268px);margin:2px auto 26px}
+       幅いっぱいにすると縦が伸びてリード文が押し出されるので vw で頭打ちにする。
+       ⚠️ 中の写真(848:1264)は箱の82%幅で入るため、箱の高さ(1:1.15)より
+          20pxほど下にはみ出す。PCは下が余白なので問題ないが、スマホは真下に
+          リード文が来るので文字に重なる。箱の高さを中身に合わせて逃がす。 */
+    .hero-visual{max-width:min(72vw,268px);aspect-ratio:1/1.30;margin:2px auto 26px}
     .stamp{width:64px;height:64px;font-size:13px}
     .leaf-1{width:42px;height:42px}
     .leaf-2{width:34px;height:34px}
@@ -1382,16 +1385,18 @@
       display:block;text-align:center;
     }
     .cmp-row .them::before,.cmp-row .us::before{margin-bottom:6px}
-    .cmp-row .them{background:var(--base-3)}
+    /* 薄い文字が薄い背景に乗っていて読みにくかったので、スマホだけ濃くする。
+       いずれもコントラスト比 4.5:1（WCAG AA）以上。10pxの見出しは特に効く */
+    .cmp-row .them{background:var(--base-3);color:#6B5D4B}
     .cmp-row .us{background:var(--moss-soft)}
     /* どちらの側かをカードごとに明示する */
     .cmp-row .them::before{
-      content:'分けて頼む';font-size:10px;letter-spacing:.04em;
-      color:var(--ink-3);display:block;
+      content:'分けて頼む';font-size:10.5px;letter-spacing:.04em;
+      color:#6E6151;display:block;
     }
     .cmp-row .us::before{
-      content:'Hotta Creative';font-size:10px;letter-spacing:.04em;
-      color:#4E6340;display:block;font-family:'Quicksand',sans-serif;font-weight:600;
+      content:'Hotta Creative';font-size:10.5px;letter-spacing:.04em;
+      color:#3E5230;display:block;font-family:'Quicksand',sans-serif;font-weight:600;
     }
     .cmp-lead{font-size:17px;margin-top:34px;line-height:1.75}
     .cmp-note{font-size:11.5px;margin-top:16px}
@@ -1410,6 +1415,19 @@
       border-radius:14px;padding:16px 16px;
     }
     .worry-answer p br{display:none}          /* PC用の改行はスマホでは解除 */
+    /* 5行がべったり続いて読む気が失せるので、文ごとに切って間を空ける。
+       頭の丸ドットで「言いたいことは3つ」と見た目で分かるようにする。
+       PCでは .wl は inline のまま＝何も変わらない */
+    .worry-answer p .wl{
+      display:block;position:relative;
+      padding-left:18px;margin-top:12px;
+    }
+    .worry-answer p .wl:first-child{margin-top:0}
+    .worry-answer p .wl::before{
+      content:'';position:absolute;left:1px;top:.72em;
+      width:7px;height:7px;border-radius:50%;
+      background:var(--moss);
+    }
     .worry-answer .lead-strong{font-size:15.5px;margin-top:20px;color:var(--ink)}
 
     /* 途中CTA */
@@ -1694,9 +1712,9 @@
         </svg></div>
       <h3>「バラバラに頼むこと」が、<br>いちばんの遠回りです。</h3>
       <p>
-        広告の担当者は<span class="nw">デザイン</span>を知らず、<span class="nw">デザイナー</span>は数字を知らない。<br>
-        あいだをつなぐ人がいないと、そのズレは全部<span class="nw">あなたの仕事</span>になります。<br>
-        伝言と調整に時間を取られて、肝心の<span class="nw">改善が進まない</span>。
+        <span class="wl">広告の担当者は<span class="nw">デザイン</span>を知らず、<span class="nw">デザイナー</span>は数字を知らない。</span><br>
+        <span class="wl">あいだをつなぐ人がいないと、<span class="nw">そのズレは</span>全部<span class="nw">あなたの仕事</span>です。</span><br>
+        <span class="wl">伝言と調整に時間を取られて、<span class="nw">肝心の改善が進まない</span>。</span>
       </p>
       <span class="lead-strong">
         だから私たちは、ぜんぶまとめて<br>
@@ -2883,7 +2901,7 @@
         <div class="flow-body">
           <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl" d="M8 14h30v20H20l-8 7v-7H8z"/><path class="ln" d="M8 14h30v20H20l-8 7v-7H8z"/><path class="ln2" d="M28 30h28v18H44l-6 6v-6h-10z"/></svg>
           <h4><span class="nw">ヒアリング</span></h4>
-          <p>いまの状況と、困っていることをお聞きします。すでにお使いの広告<span class="nw">アカウント</span>やLINEがあれば、その場で拝見します。</p>
+          <p>いまの状況と、困っていることをお聞きします。すでにお使いの<span class="nw">広告アカウント</span>やLINEがあれば、その場で拝見します。</p>
           <span class="tag">無料 ／ <span class="nw">オンライン</span>30分ほど</span>
         </div>
       </div>
@@ -2893,7 +2911,7 @@
           <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M16 8h20l10 10v38H16z"/><path class="ln" d="M16 8h20l10 10v38H16a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z"/><path class="ln" d="M36 8v10h10"/><path class="ln2" d="M22 34l5 5 11-12"/></svg>
           <h4>ご提案・お見積り</h4>
           <p>ご予算と目的に合わせて、いちばん合う形をご提案します。「そこまでは要りません」もはっきりお伝えします。</p>
-          <span class="tag">無料 ／ ここで終了しても費用はかかりません</span>
+          <span class="tag">無料 ／ 断っても大丈夫です</span>
         </div>
       </div>
       <div class="flow-step">
