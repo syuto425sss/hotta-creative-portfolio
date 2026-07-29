@@ -607,37 +607,9 @@
     background:var(--moss);color:var(--white);
   }
 
-  /* ===== 開いたときに最下部へ飛ぶ問題への対策 =====
-     iOS Safari は前回のスクロール位置を復元する（scrollRestoration:auto）。
-     一枚もののLPでは毎回先頭から読ませたいので manual に切り替える。      */
-  (function(){
-    if('scrollRestoration' in history) history.scrollRestoration = 'manual';
-
-    function toTop(){
-      if(!location.hash) window.scrollTo(0, 0);
-    }
-    toTop();
-    window.addEventListener('load', toTop);
-    // 一部端末で load 後にレイアウトが伸びて再度ずれることがあるので、念のためもう一度
-    window.addEventListener('load', function(){ setTimeout(toTop, 60); });
-
-    /* CSSの scroll-behavior:smooth を外したぶん、ページ内リンクはJSで滑らかに動かす。
-       固定ヘッダー(64px)に隠れないよう、その分だけ手前で止める。 */
-    document.addEventListener('click', function(e){
-      var a = e.target.closest('a[href^="#"]');
-      if(!a) return;
-      var id = a.getAttribute('href');
-      if(id === '#' || id.length < 2) return;
-      var t = document.querySelector(id);
-      if(!t) return;
-      e.preventDefault();
-      var header = window.matchMedia('(max-width:600px)').matches ? 64 : 76;
-      var y = t.getBoundingClientRect().top + window.pageYOffset - header + 1;
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({top:y, behavior: reduce ? 'auto' : 'smooth'});
-      history.replaceState(null, '', id);
-    });
-  })();
+  /* ⚠️「開いたときに最下部へ飛ぶ問題」の対策JSは、以前ここ（＝<style>の中）に
+     書かれていて一度も実行されていなかった。<body>直後の<script>に移設済み。
+     JSは絶対にこのスタイルシートの中に書かないこと。 */
 
   /* ===== 実績カルーセル =====
      縦に積むと延々スクロールになるので、横に流して1画面に収める。 */
@@ -1155,7 +1127,10 @@
     font-size:15px;letter-spacing:.08em;
   }
 
-  /* ===== スマホ下部の固定CTA ===== */
+  /* ===== スマホ下部の固定CTA =====
+     ファーストビューには「まずは無料相談」「実績を見る」があるので、
+     そこにいるあいだに固定バーまで出すとボタンが3つ並んで見える。
+     FVのボタンが画面から出たときだけ、下からせり上がらせる（JSで .is-visible）。 */
   .mobile-cta{
     display:none;
     position:fixed;left:0;right:0;bottom:0;z-index:98;
@@ -1163,7 +1138,10 @@
     background:rgba(248,242,228,.94);
     backdrop-filter:blur(12px);
     border-top:1px solid var(--line);
+    transform:translateY(115%);visibility:hidden;
+    transition:transform .28s ease, visibility .28s;
   }
+  .mobile-cta.is-visible{transform:none;visibility:visible}
   .mobile-cta a{
     display:flex;align-items:center;justify-content:center;gap:8px;
     height:52px;border-radius:999px;
@@ -1218,13 +1196,27 @@
       color:#7A6D5B;
     }
 
-    /* ヒーロー */
+    /* ===== ヒーロー：スマホだけ並び替える =====
+       PCは「文章｜写真」の横並びで完成しているので触らない。
+       スマホは写真がボタンより下に回って、開いた画面に入らなかったため、
+       見出しのすぐ下へ引き上げる。
+         見出し → 写真 → リード文 → 実績帯 → ボタン
+       文章のかたまり(.hero-copy)を display:contents で透明にして、
+       中の4つを写真と同じ grid の兄弟に並べ、order で順番を決める。
+       ⚠️ gap を残すと各要素の margin と二重になるので 0 にして margin で調整する */
     .hero{padding:88px 0 56px}
-    .hero-inner{gap:30px}
+    .hero-inner{gap:0}
+    .hero-copy{display:contents}
+    .hero h1{order:1}
+    .hero-visual{order:2}
+    .hero-lead{order:3}
+    .hero-proof{order:4}
+    .hero-cta{order:5}
+
     .hero-eyebrow{margin-bottom:18px;font-size:11.5px}
     .hero h1{
       font-size:clamp(24px,7.6vw,30px);
-      line-height:1.62;margin-bottom:20px;letter-spacing:0;
+      line-height:1.62;margin-bottom:18px;letter-spacing:0;
     }
     .hero h1 .pen::after{height:11px;bottom:2px}
     .hero-lead{font-size:14.5px;line-height:1.95;margin-bottom:24px}
@@ -1241,8 +1233,9 @@
     .hero-cta{flex-direction:column;align-items:stretch;gap:11px}
     .hero-cta .btn{justify-content:center;width:100%;padding:0 24px;height:54px}
     .hero-note{margin:14px 0 0;text-align:center;font-size:16px}
-    /* 写真は主役を譲る。CTAより下でよいので、その分だけ小さくする */
-    .hero-visual{max-width:250px}
+    /* 写真は見出しの直下。開いた瞬間に目に入る位置なので、少しだけ大きくする。
+       幅いっぱいにすると縦が伸びてリード文が押し出されるので vw で頭打ちにする */
+    .hero-visual{max-width:min(72vw,268px);margin:2px auto 26px}
     .stamp{width:64px;height:64px;font-size:13px}
     .leaf-1{width:42px;height:42px}
     .leaf-2{width:34px;height:34px}
@@ -1509,6 +1502,67 @@
 </head>
 <body>
 
+<script>
+/* ===== 開いたときに最下部へ飛ぶ問題への対策 =====
+   iOS Safari は前回のスクロール位置を覚えていて、開き直したときに復元する。
+   一枚もののLPでは毎回先頭から読ませたいので manual に切り替える。
+   ★2026-07-29：この処理は <style> の中に書かれていて一度も動いていなかった。
+     ヘッドレスのChromeは位置を復元しないため、実機でしか出ない不具合だった。 */
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  /* もうひとつの原因：ページ内リンク（#contact など）を一度踏むと、
+     URLの末尾に #contact が残る。#contact はページのいちばん下にあるので、
+     次に同じタブを開いたときに「開いた瞬間いちばん下」になる。
+     この一枚もののLPは常に先頭から読ませたいので、残ったハッシュは消す。
+     （ページ内リンクの側でもURLを書き換えないようにしてある） */
+  if(location.hash){
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+
+  /* 人が自分でスクロールし始めたら、そこから先は勝手に先頭へ戻さない */
+  var moved = false;
+  ['touchstart','touchmove','wheel','keydown','pointerdown'].forEach(function(ev){
+    window.addEventListener(ev, function(){ moved = true; }, {passive:true, once:true});
+  });
+
+  function toTop(){
+    if(moved) return;
+    window.scrollTo(0, 0);
+  }
+  toTop();
+  document.addEventListener('DOMContentLoaded', toTop);
+  window.addEventListener('load', function(){
+    toTop();
+    /* 画像やWebフォントが後から入って高さが伸びると、
+       Safari がそのタイミングでもう一度位置を戻すことがある */
+    [60, 200, 500].forEach(function(ms){ setTimeout(toTop, ms); });
+  });
+  /* 「戻る」や別タブからの復帰（bfcache）でも同じことが起きる */
+  window.addEventListener('pageshow', function(e){ if(e.persisted) toTop(); });
+
+  /* CSSの scroll-behavior:smooth を外したぶん、ページ内リンクはJSで滑らかに動かす。
+     固定ヘッダーに隠れないよう、その分だけ手前で止める。 */
+  document.addEventListener('click', function(e){
+    var el = e.target;
+    if(!el || !el.closest) return;
+    var a = el.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute('href');
+    if(id === '#' || id.length < 2) return;
+    var t = document.querySelector(id);
+    if(!t) return;
+    e.preventDefault();
+    var header = window.matchMedia('(max-width:600px)').matches ? 64 : 76;
+    var y = t.getBoundingClientRect().top + window.pageYOffset - header + 1;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:y, behavior: reduce ? 'auto' : 'smooth'});
+    /* ⚠️ ここでURLに #contact 等を書き足さないこと。
+       残っていると、次に開いたときにページ下部から始まってしまう。 */
+  });
+})();
+</script>
+
 <header>
   <div class="container nav">
     <div class="logo">
@@ -1549,7 +1603,7 @@
   <div class="dot-cluster"><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
   <div class="container hero-inner">
-    <div>
+    <div class="hero-copy">
       <h1>
         広告と<span class="nw">デザイン</span>、<br>
         <span class="pen">別々に頼むの</span>、<br>
@@ -2820,7 +2874,7 @@
         <div class="flow-body">
           <svg class="illust flow-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M10 18h44v28H10z"/><path class="ln" d="M10 18h44v28H10z"/><path class="ln" d="M10 18l22 16 22-16"/></svg>
           <h4>お問い合わせ</h4>
-          <p>LancersかCoconalaから、ひとことだけ送ってください。「何をお願いできるか分からない」の段階で大丈夫です。</p>
+          <p><span class="nw">InstagramのDM</span>から、ひとことだけ送ってください。「何をお願いできるか分からない」の段階で大丈夫です。</p>
           <span class="tag">無料 ／ 当日中〜翌営業日にご返信</span>
         </div>
       </div>
@@ -3024,6 +3078,12 @@
     </div>
   </div>
 </footer>
+
+<!-- スマホ下部の固定CTA。position:fixed なので置き場所は見た目に影響しないが、
+     下の <script> から参照するので、必ずスクリプトより前に置くこと。 -->
+<div class="mobile-cta">
+  <a href="#contact">まずは無料相談 <span aria-hidden="true">→</span></a>
+</div>
 
 <script>
   (function(){
@@ -3282,10 +3342,26 @@
       if(e.matches) setOpen(false);
     });
   })();
-</script>
 
-<div class="mobile-cta">
-  <a href="#contact">まずは無料相談 <span aria-hidden="true">→</span></a>
-</div>
+  /* ===== スマホ下部の固定CTA：ファーストビューのあいだは出さない =====
+     FVの「まずは無料相談／実績を見る」が画面の上へ流れたら表示、戻したら引っ込める。
+     スクロール量(px)で判定すると端末ごとにズレるので、FVのボタンの位置そのものを見る。
+     ※IntersectionObserver は画面が非表示のときに発火しない環境があるため、
+       確実に動くスクロール監視で実装している。 */
+  (function(){
+    const bar = document.querySelector('.mobile-cta');
+    const fv  = document.querySelector('.hero-cta');
+    if(!bar || !fv) return;
+
+    function update(){
+      const r = fv.getBoundingClientRect();
+      bar.classList.toggle('is-visible', r.bottom < 0);
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update, {passive:true});
+    window.addEventListener('load', update);
+    update();
+  })();
+</script>
 </body>
 </html>
