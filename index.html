@@ -164,6 +164,12 @@
     font-size:27px;color:var(--moss-deep);line-height:1;
     white-space:nowrap;
   }
+  /* 「1億2,540万円」は桁が多いので少し詰める（他2つは既定サイズのまま） */
+  .hero-proof .hp-num.is-big{font-size:24px;letter-spacing:-.01em}
+  .hero-proof-note{
+    max-width:520px;margin:-22px 0 30px;
+    font-size:11px;line-height:1.7;color:#8a7a63;letter-spacing:.02em;
+  }
   .hero-proof .hp-num u{
     text-decoration:none;font-family:'Zen Kaku Gothic New',sans-serif;
     font-weight:400;font-size:12px;color:var(--ink-2);margin-left:2px;
@@ -1225,8 +1231,10 @@
     }
     .hero-proof .hp{gap:7px;padding:0 3px}
     .hero-proof .hp-lbl{font-size:10px;letter-spacing:.04em}
-    .hero-proof .hp-num{font-size:22px}
-    .hero-proof .hp-num u{font-size:10.5px}
+    .hero-proof .hp-num{font-size:20px}
+    .hero-proof .hp-num.is-big{font-size:16.5px}
+    .hero-proof .hp-num u{font-size:10px}
+    .hero-proof-note{margin:-18px 0 24px;font-size:10.5px}
     /* 4行に折る指定はPC用。スマホでは自然に流す */
     .hero-lead br{display:none}
     /* ボタンは縦積み・全幅。横に並べると375pxでは必ずはみ出す */
@@ -1633,18 +1641,22 @@
       </p>
       <div class="hero-proof">
         <div class="hp">
-          <span class="hp-lbl">累計運用額</span>
+          <span class="hp-lbl">広告費</span>
           <span class="hp-num">908<u>万円</u></span>
         </div>
         <div class="hp">
-          <span class="hp-lbl">累計登録獲得</span>
-          <span class="hp-num">3,177<u>件</u></span>
+          <span class="hp-lbl"><span class="nw">広告経由</span>の売上</span>
+          <span class="hp-num is-big">1<u>億</u>2,540<u>万円</u></span>
         </div>
         <div class="hp">
-          <span class="hp-lbl">最長の継続</span>
-          <span class="hp-num">29<u>ヶ月</u></span>
+          <span class="hp-lbl">ROAS</span>
+          <span class="hp-num">1,381<u>%</u></span>
         </div>
       </div>
+      <p class="hero-proof-note">
+        Meta広告 4アカウント／2023年7月〜2025年12月・<span class="nw">29ヶ月累計</span>。
+        売上は<span class="nw">契約総額</span>ベース。
+      </p>
 
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">
@@ -1746,7 +1758,8 @@
         </div>
         <p class="about-desc">
           <span class="nw">マーケティング</span>歴6年、Meta広告運用を中心に、
-          累計売上3.5億円規模の広告<span class="nw">アカウント</span>を担当してきました。
+          広告費908万円から<span class="nw">売上1億2,540万円</span>（<span class="nw">ROAS 1,381%</span>）を
+          つくってきました。
           LINE構築や、AIを活用した24時間自動監視・自動応答など、
           「数字をつくる」仕組みづくりが得意です。
         </p>
@@ -1841,7 +1854,7 @@
         <svg class="illust svc-illust" viewBox="0 0 64 64" aria-hidden="true"><path class="fl2" d="M14 26h9l16-9v30l-16-9h-9z"/><path class="ln" d="M14 26h9l16-9v30l-16-9h-9a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3z"/><path class="ln2" d="M45 24a11 11 0 0 1 0 16M50 19a18 18 0 0 1 0 26"/><path class="ln" d="M20 38v7a3 3 0 0 0 6 0v-5"/></svg>
         <div class="service-subtitle">Facebook / Instagram Ads</div>
         <p class="service-desc">
-          契約100件超・売上3.5億円規模の運用経験から、
+          契約100件超・<span class="nw">ROAS 1,381%</span>の運用実績をもとに、
           広告 × LP × LINE を夫婦で一気通貫設計します。
         </p>
         <button class="svc-more" type="button" aria-expanded="false"><span class="svc-more-label">詳しく見る</span><span class="svc-more-icon"></span></button>
